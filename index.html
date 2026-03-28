@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RLKU Dictionary — Rashid Latif Khan University</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RLKU DICTIONARY — REDESIGNED
+   Aesthetic: Academic Luxury Dark — Deep navy, gold accents,
+   editorial typography, glass morphism cards
+   ============================================================ */
+
+:root {
+  --bg:        #040810;
+  --bg2:       #070d1a;
+  --surface:   #0a1020;
+  --surface2:  #0f1828;
+  --surface3:  #162035;
+  --glass:     rgba(15,24,40,0.8);
+  --border:    rgba(100,140,200,0.12);
+  --border2:   rgba(100,140,200,0.2);
+  --gold:      #d4a843;
+  --gold2:     #f0c866;
+  --gold-dim:  rgba(212,168,67,0.15);
+  --blue:      #3d7fff;
+  --blue2:     #6fa3ff;
+  --blue-dim:  rgba(61,127,255,0.12);
+  --teal:      #2ec4b6;
+  --red:       #ff5e5b;
+  --green:     #2dd4aa;
+  --purple:    #a78bfa;
+  --text:      #dce8f8;
+  --text2:     #8ba4c0;
+  --text3:     #3d5470;
+  --glow-gold: 0 0 40px rgba(212,168,67,0.15);
+  --glow-blue: 0 0 40px rgba(61,127,255,0.15);
+  --shadow:    0 16px 48px rgba(0,0,0,0.6);
+  --radius:    12px;
+}
+
+[data-theme="light"] {
+  --bg:       #f5f0e8;
+  --bg2:      #ede8dc;
+  --surface:  #ffffff;
+  --surface2: #f8f4ec;
+  --surface3: #ede8de;
+  --glass:    rgba(255,255,255,0.85);
+  --border:   rgba(160,120,60,0.2);
+  --border2:  rgba(160,120,60,0.35);
+  --text:     #1a2535;
+  --text2:    #5a6a7a;
+  --text3:    #aab4be;
+  --glow-gold: 0 0 30px rgba(212,168,67,0.1);
+  --shadow:   0 8px 32px rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background .4s, color .4s;
+}
+
+/* Atmospheric background */
+body::before {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse 60% 60% at 0% 0%,   rgba(61,127,255,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 100% 100%, rgba(212,168,67,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 100%,  rgba(46,196,182,0.04) 0%, transparent 55%);
+}
+
+/* Noise texture */
+body::after {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap { position:relative; z-index:1; max-width:1000px; margin:0 auto; padding:0 20px 80px; }
+
+/* ===================== SPLASH ===================== */
+#splash {
+  position:fixed; inset:0; z-index:9999;
+  background: var(--bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  transition: opacity .7s ease;
+}
+.splash-logo { height:70px; animation: splashFloat 2s ease-in-out infinite alternate; filter: drop-shadow(0 0 20px rgba(212,168,67,0.5)); }
+.splash-name { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; letter-spacing:8px; color:var(--gold); text-transform:uppercase; }
+.splash-sub  { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:4px; color:var(--text2); text-transform:uppercase; }
+.splash-track { width:180px; height:2px; background:var(--surface3); border-radius:2px; overflow:hidden; margin-top:8px; }
+.splash-fill  { height:100%; background:linear-gradient(90deg, var(--blue), var(--gold)); border-radius:2px; animation:splashLoad 2.2s ease forwards; }
+@keyframes splashFloat { from{transform:translateY(0)} to{transform:translateY(-8px)} }
+@keyframes splashLoad  { from{width:0} to{width:100%} }
+
+/* ===================== HEADER ===================== */
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 0 18px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom:28px;
+  flex-wrap:wrap; gap:14px;
+  position:sticky; top:0; z-index:100;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  padding-left:4px; padding-right:4px;
+  margin-left:-4px; margin-right:-4px;
+}
+
+.brand { display:flex; align-items:center; gap:14px; }
+.brand-logo {
+  height:48px;
+  filter: drop-shadow(0 2px 12px rgba(212,168,67,0.4));
+  transition: filter .3s;
+}
+.brand-logo:hover { filter: drop-shadow(0 4px 20px rgba(212,168,67,0.7)); }
+.brand-title { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:700; letter-spacing:3px; color:var(--gold); text-transform:uppercase; }
+.brand-sub   { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--text2); text-transform:uppercase; margin-top:2px; }
+
+.hdr-right { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+.btn-icon {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text2); cursor:pointer; font-size:15px;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.btn-icon:hover { border-color:var(--gold); color:var(--gold); box-shadow:var(--glow-gold); }
+
+nav { display:flex; gap:5px; flex-wrap:wrap; }
+.nb {
+  background:none; border:1px solid var(--border);
+  color:var(--text2); padding:7px 14px; border-radius:8px;
+  cursor:pointer; font-family:'JetBrains Mono',monospace;
+  font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+  transition:all .2s; position:relative; white-space:nowrap;
+}
+.nb:hover { border-color:var(--blue2); color:var(--blue2); background:var(--blue-dim); }
+.nb.active { background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 0 20px rgba(61,127,255,0.3); }
+.nbadge {
+  background:var(--gold); color:#000; font-size:9px; font-weight:700;
+  padding:1px 5px; border-radius:8px; position:absolute; top:-7px; right:-7px;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ===================== WOTD ===================== */
+#wotd {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border2);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 20px 26px;
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 20px;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: fadeUp .7s ease both;
+}
+#wotd::before {
+  content:''; position:absolute; right:-40px; top:-40px;
+  width:180px; height:180px;
+  background: radial-gradient(circle, var(--gold-dim) 0%, transparent 70%);
+  pointer-events:none;
+}
+.wotd-pill {
+  font-family:'JetBrains Mono',monospace; font-size:9px;
+  letter-spacing:3px; color:var(--gold); text-transform:uppercase;
+  white-space:nowrap; line-height:2; text-align:center;
+  background:var(--gold-dim); border:1px solid rgba(212,168,67,0.25);
+  padding:8px 12px; border-radius:8px;
+}
+.wotd-divider { width:1px; height:52px; background:var(--border2); flex-shrink:0; }
+.wotd-body { flex:1; min-width:0; }
+.wotd-word {
+  font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700;
+  cursor:pointer; color:var(--text); transition:color .2s;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.wotd-word:hover { color:var(--gold); }
+.wotd-pos  { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue2); margin:4px 0; font-style:italic; }
+.wotd-def  { font-size:13px; color:var(--text2); line-height:1.5; }
+.wotd-right { display:flex; gap:8px; flex-shrink:0; }
+.wotd-notif {
+  background:var(--surface3); border:1px solid var(--border);
+  color:var(--text2); padding:9px 13px; border-radius:8px;
+  cursor:pointer; font-size:15px; transition:all .2s;
+}
+.wotd-notif:hover { border-color:var(--gold); color:var(--gold); }
+.wotd-explore {
+  background:var(--gold); border:none; color:#000;
+  padding:9px 18px; border-radius:8px; cursor:pointer;
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  font-weight:600; letter-spacing:1px; white-space:nowrap;
+  transition:all .2s;
+}
+.wotd-explore:hover { background:var(--gold2); transform:translateY(-1px); box-shadow:var(--glow-gold); }
+
+/* ===================== SEARCH TAB ===================== */
+.font-row { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.font-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--text3); text-transform:uppercase; }
+.fbtn {
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text2); width:28px; height:28px; border-radius:6px;
+  cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.fbtn:hover { border-color:var(--blue2); color:var(--blue2); }
+#font-val { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); min-width:30px; text-align:center; }
+
+.lang-row { display:flex; gap:7px; margin-bottom:14px; flex-wrap:wrap; }
+.lp {
+  background:var(--surface); border:1px solid var(--border);
+  color:var(--text2); padding:5px 14px; border-radius:20px;
+  cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px;
+  transition:all .2s;
+}
+.lp:hover, .lp.active { background:var(--surface3); border-color:var(--blue2); color:var(--blue2); }
+
+/* Search box */
+.search-wrap { position:relative; margin-bottom:22px; }
+.search-row { display:flex; }
+.si {
+  flex:1; background:var(--surface);
+  border:1px solid var(--border); border-right:none;
+  color:var(--text); padding:16px 22px;
+  font-family:'Cormorant Garamond',serif; font-size:24px;
+  border-radius:10px 0 0 10px; outline:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.si::placeholder { color:var(--text3); font-style:italic; font-size:20px; }
+.si:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(61,127,255,0.1); }
+.sb {
+  background:var(--blue); border:1px solid var(--blue);
+  color:#fff; padding:16px 26px; border-radius:0 10px 10px 0;
+  cursor:pointer; font-family:'JetBrains Mono',monospace;
+  font-size:12px; font-weight:500; letter-spacing:1px; transition:all .2s;
+}
+.sb:hover { background:var(--blue2); border-color:var(--blue2); }
+
+/* Suggestions */
+#sug {
+  position:absolute; top:100%; left:0; right:70px;
+  background:var(--surface); border:1px solid var(--border2);
+  border-top:none; border-radius:0 0 10px 10px;
+  z-index:200; max-height:230px; overflow-y:auto;
+  box-shadow:var(--shadow); display:none;
+  backdrop-filter:blur(20px);
+}
+.si-item {
+  padding:11px 20px; cursor:pointer;
+  display:flex; align-items:center; gap:12px;
+  border-bottom:1px solid var(--border);
+  transition:background .15s; font-size:15px;
+}
+.si-item:last-child { border-bottom:none; }
+.si-item:hover, .si-item.focused { background:var(--surface2); }
+.si-hl { color:var(--blue2); font-weight:600; }
+.si-ico { color:var(--text3); font-size:11px; }
+
+/* History */
+.hist-row { display:flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.hist-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--text3); text-transform:uppercase; white-space:nowrap; }
+.hist-chips { display:flex; gap:7px; flex-wrap:wrap; flex:1; }
+.hchip {
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text2); padding:4px 12px; border-radius:20px;
+  font-size:12px; cursor:pointer; transition:all .2s;
+  font-family:'JetBrains Mono',monospace;
+}
+.hchip:hover { border-color:var(--blue2); color:var(--blue2); }
+.clr { background:none; border:1px solid var(--border); color:var(--text3); padding:4px 10px; border-radius:6px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; transition:all .2s; }
+.clr:hover { border-color:var(--red); color:var(--red); }
+
+/* ===================== RESULTS ===================== */
+#results { animation:fadeUp .4s ease both; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.res-hero {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:6px; flex-wrap:wrap; gap:14px;
+}
+.res-word {
+  font-family:'Cormorant Garamond',serif;
+  font-size:58px; font-weight:700; line-height:1;
+  background: linear-gradient(135deg, var(--text) 0%, var(--blue2) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.res-phonetic { font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--text2); margin-top:6px; }
+.res-btns { display:flex; gap:8px; flex-wrap:wrap; padding-bottom:4px; }
+
+.rbtn {
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--border); background:var(--surface2);
+  cursor:pointer; font-size:16px;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .25s;
+}
+.rbtn.audio:hover  { background:var(--blue);   border-color:var(--blue);   color:#fff; box-shadow:var(--glow-blue); }
+.rbtn.fav:hover, .rbtn.fav.on { background:var(--gold-dim); color:var(--gold); border-color:var(--gold); }
+.rbtn.copy:hover   { background:rgba(45,212,170,.12); color:var(--green);  border-color:var(--green); }
+.rbtn.share:hover  { background:rgba(61,127,255,.12); color:var(--blue2);  border-color:var(--blue2); }
+.rbtn.print:hover  { background:rgba(167,139,250,.12);color:var(--purple); border-color:var(--purple); }
+
+/* Word meta chips */
+.word-meta { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+.meta-chip {
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:1px; text-transform:uppercase;
+  padding:4px 12px; border-radius:20px;
+}
+.chip-easy   { background:rgba(45,212,170,.1);  color:var(--green);  border:1px solid rgba(45,212,170,.25); }
+.chip-medium { background:var(--gold-dim);       color:var(--gold);   border:1px solid rgba(212,168,67,.25); }
+.chip-hard   { background:rgba(255,94,91,.1);   color:var(--red);    border:1px solid rgba(255,94,91,.25); }
+.chip-ety    { background:rgba(167,139,250,.1); color:var(--purple); border:1px solid rgba(167,139,250,.25); cursor:pointer; transition:background .2s; }
+.chip-ety:hover { background:rgba(167,139,250,.2); }
+
+/* Urdu strip */
+.urdu-strip {
+  background: linear-gradient(135deg, var(--surface2), var(--surface3));
+  border:1px solid var(--border2);
+  border-left:3px solid var(--gold);
+  border-radius:10px; padding:14px 20px;
+  display:flex; align-items:center; gap:16px;
+  margin:14px 0; flex-wrap:wrap;
+}
+.urdu-lbl { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; white-space:nowrap; }
+.urdu-txt { font-size:24px; color:var(--text); direction:rtl; flex:1; text-align:right; line-height:1.4; }
+.urdu-rom { font-size:13px; color:var(--text2); font-style:italic; margin-top:2px; text-align:right; width:100%; direction:ltr; }
+
+/* Meanings */
+.meanings { margin-top:22px; }
+
+.pos-block { margin-bottom:28px; animation:fadeUp .5s ease both; }
+.pos-hdr { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.pos-tag {
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:3px; text-transform:uppercase;
+  padding:4px 12px; border-radius:4px;
+  background:var(--blue-dim); color:var(--blue2);
+  border:1px solid rgba(61,127,255,.2);
+}
+.pos-line { flex:1; height:1px; background:var(--border); }
+
+.def-card {
+  display:flex; gap:14px; padding:15px 18px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; margin-bottom:10px;
+  transition:all .25s; cursor:default;
+}
+.def-card:hover { border-color:var(--blue); box-shadow:0 4px 20px rgba(61,127,255,.08); transform:translateX(2px); }
+.def-n { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold); min-width:24px; margin-top:3px; opacity:.7; }
+.def-body { flex:1; }
+.def-txt  { font-size:15px; line-height:1.7; color:var(--text); }
+.def-ex   { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--text2); margin-top:8px; padding-left:14px; border-left:2px solid var(--border2); }
+
+/* Tags */
+.tags-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--border); align-items:center; }
+.tl { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--text2); letter-spacing:3px; text-transform:uppercase; }
+.wtag { background:var(--surface2); border:1px solid var(--border); color:var(--blue2); padding:3px 10px; border-radius:6px; font-size:12px; font-family:'JetBrains Mono',monospace; cursor:pointer; transition:all .2s; }
+.wtag:hover { border-color:var(--blue2); background:var(--blue-dim); }
+.wtag.ant { color:var(--red); border-color:rgba(255,94,91,.2); }
+.wtag.ant:hover { border-color:var(--red); background:rgba(255,94,91,.08); }
+
+/* Rhymes */
+.extra-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 20px; margin-top:14px; }
+.extra-hdr { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--text2); text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.extra-hdr::before { content:''; width:16px; height:1px; background:var(--gold); }
+.rhyme-tags { display:flex; flex-wrap:wrap; gap:7px; }
+.rtag { background:var(--surface2); border:1px solid var(--border); color:var(--purple); padding:3px 10px; border-radius:6px; font-size:12px; font-family:'JetBrains Mono',monospace; cursor:pointer; transition:all .2s; }
+.rtag:hover { border-color:var(--purple); background:rgba(167,139,250,.1); }
+
+/* Citation */
+.cite-body { font-size:12px; color:var(--text2); line-height:1.8; font-style:italic; background:var(--surface2); padding:12px 16px; border-radius:8px; }
+.cite-copy { background:none; border:1px solid var(--border); color:var(--text2); padding:7px 16px; border-radius:6px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; margin-top:10px; transition:all .2s; letter-spacing:1px; text-transform:uppercase; }
+.cite-copy:hover { border-color:var(--purple); color:var(--purple); }
+
+/* Notes */
+.note-ta { width:100%; background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:12px 16px; border-radius:8px; font-size:14px; font-family:'Outfit',sans-serif; resize:vertical; min-height:80px; outline:none; transition:border-color .2s; line-height:1.6; }
+.note-ta:focus { border-color:var(--green); }
+.note-save { background:var(--green); border:none; color:#000; padding:8px 20px; border-radius:6px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; margin-top:10px; transition:all .2s; font-weight:600; letter-spacing:1px; }
+.note-save:hover { opacity:.85; }
+
+/* ===================== FLASHCARDS ===================== */
+.fc-wrap { max-width:500px; margin:0 auto; }
+.fc-ctrl { display:flex; gap:10px; align-items:center; margin-bottom:24px; flex-wrap:wrap; }
+.fc-cnt { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); }
+.btn-pri { background:var(--blue); border:none; color:#fff; padding:10px 20px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; transition:all .2s; }
+.btn-pri:hover { background:var(--blue2); }
+.btn-sec { background:var(--surface2); border:1px solid var(--border); color:var(--text2); padding:10px 20px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; transition:all .2s; }
+.btn-sec:hover { border-color:var(--blue2); color:var(--blue2); }
+
+.fc-prog { margin-bottom:20px; }
+.fc-prog-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.fc-prog-fill { height:100%; background:linear-gradient(90deg, var(--blue), var(--gold)); border-radius:2px; transition:width .4s; }
+
+.flashcard { perspective:1000px; height:260px; cursor:pointer; margin-bottom:24px; }
+.fc-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.fc-inner.flipped { transform:rotateY(180deg); }
+.fc-face {
+  position:absolute; inset:0; backface-visibility:hidden;
+  background:var(--surface); border:1px solid var(--border2);
+  border-radius:16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:32px; box-shadow:var(--shadow);
+}
+.fc-back-face { transform:rotateY(180deg); background:var(--surface2); }
+.fc-word { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:700; text-align:center; }
+.fc-pos2 { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue2); margin-top:8px; letter-spacing:2px; }
+.fc-hint { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text3); margin-top:18px; letter-spacing:1px; }
+.fc-def2 { font-size:15px; color:var(--text); text-align:center; line-height:1.6; }
+.fc-nav { display:flex; justify-content:center; gap:14px; }
+.fc-nav-btn { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:10px 26px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; transition:all .2s; }
+.fc-nav-btn:hover:not([disabled]) { border-color:var(--blue2); color:var(--blue2); }
+.fc-nav-btn[disabled] { opacity:.3; cursor:not-allowed; }
+
+/* ===================== QUIZ ===================== */
+.quiz-start-screen { text-align:center; padding:50px 20px; }
+.quiz-start-screen h2 { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; margin-bottom:10px; }
+.quiz-start-screen p { color:var(--text2); font-size:14px; margin-bottom:28px; line-height:1.6; }
+.btn-gold { background:var(--gold); border:none; color:#000; padding:14px 36px; border-radius:10px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; letter-spacing:1px; transition:all .2s; }
+.btn-gold:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:var(--glow-gold); }
+
+.quiz-area { max-width:620px; margin:0 auto; }
+.quiz-prog-row { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.quiz-num { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); }
+.quiz-bar { flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.quiz-fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--gold)); border-radius:2px; transition:width .3s; }
+.quiz-score { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--green); }
+.quiz-q-label { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text2); margin-bottom:8px; font-style:italic; }
+.quiz-word-big { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:700; margin-bottom:26px; }
+.quiz-opts { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.qopt {
+  background:var(--surface); border:2px solid var(--border);
+  color:var(--text); padding:15px 16px; border-radius:10px;
+  cursor:pointer; font-size:14px; line-height:1.4; text-align:left;
+  transition:all .2s; font-family:'Outfit',sans-serif;
+}
+.qopt:hover:not([disabled]) { border-color:var(--blue); background:var(--blue-dim); }
+.qopt.correct { border-color:var(--green)!important; background:rgba(45,212,170,.1)!important; color:var(--green)!important; }
+.qopt.wrong   { border-color:var(--red)!important;   background:rgba(255,94,91,.08)!important; color:var(--red)!important; }
+
+.quiz-result { text-align:center; padding:50px 20px; animation:fadeUp .4s ease both; }
+.quiz-result h2 { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:700; margin-bottom:6px; }
+.quiz-score-big { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:700; color:var(--gold); margin:16px 0; line-height:1; }
+.quiz-result p { color:var(--text2); margin-bottom:26px; font-size:14px; }
+
+/* ===================== GLOSSARY ===================== */
+.wotw-banner {
+  background:linear-gradient(135deg, var(--surface2), var(--surface3));
+  border:1px solid var(--border2); border-left:3px solid var(--gold);
+  border-radius:12px; padding:22px 26px; margin-bottom:24px;
+}
+.wotw-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.wotw-word { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; }
+.wotw-def  { font-size:14px; color:var(--text2); margin-top:6px; line-height:1.6; }
+
+.dept-btns { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.dept-btn { background:var(--surface); border:1px solid var(--border); color:var(--text2); padding:8px 16px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; transition:all .2s; }
+.dept-btn:hover, .dept-btn.active { background:var(--surface2); border-color:var(--blue2); color:var(--blue2); }
+
+.gloss-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; }
+.gloss-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; cursor:pointer; transition:all .25s; }
+.gloss-card:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+.gloss-word  { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:700; }
+.gloss-field { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin:4px 0 6px; }
+.gloss-def   { font-size:12px; color:var(--text2); line-height:1.5; }
+
+/* ===================== FAVORITES ===================== */
+.fav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:16px; }
+.fav-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; cursor:pointer; transition:all .25s; position:relative; }
+.fav-card:hover { border-color:var(--blue2); transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.fav-word { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; }
+.fav-pos  { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--blue2); letter-spacing:2px; text-transform:uppercase; margin:4px 0; }
+.fav-def  { font-size:12px; color:var(--text2); line-height:1.4; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+.fav-del  { position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:14px; line-height:1; transition:color .2s; }
+.fav-del:hover { color:var(--red); }
+
+/* ===================== UTILS ===================== */
+.loader { display:flex; align-items:center; justify-content:center; gap:8px; padding:70px; color:var(--text2); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; }
+.dot { width:6px; height:6px; background:var(--blue); border-radius:50%; animation:blink 1.2s infinite ease-in-out; }
+.dot:nth-child(2){animation-delay:.2s} .dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+
+.err { background:rgba(255,94,91,.07); border:1px solid rgba(255,94,91,.25); color:var(--red); padding:18px 24px; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; }
+.empty { text-align:center; padding:70px 20px; color:var(--text2); }
+.empty-icon { font-size:44px; opacity:.2; display:block; margin-bottom:14px; }
+.empty p { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; opacity:.5; }
+
+.sec-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--text3); text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:14px; }
+.sec-lbl::before { content:''; width:18px; height:1px; background:var(--gold); }
+
+/* Toast */
+.toast { position:fixed; bottom:28px; right:28px; background:var(--surface2); border:1px solid var(--border2); color:var(--text); padding:12px 20px; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:12px; z-index:9000; box-shadow:var(--shadow); animation:fadeUp .3s ease; }
+
+::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:640px){
+  .res-word{font-size:42px} header{flex-direction:column;align-items:flex-start}
+  #wotd{flex-direction:column;gap:12px} .wotd-divider{display:none}
+  .quiz-opts{grid-template-columns:1fr}
+}
+
+/* ===================== MEDICAL HUB ===================== */
+.med-subnav {
+  display:flex; gap:6px; flex-wrap:wrap; margin-bottom:24px;
+  padding:12px; background:var(--surface); border:1px solid var(--border);
+  border-radius:12px; border-left:3px solid var(--teal);
+}
+.med-snb {
+  background:none; border:1px solid var(--border); color:var(--text2);
+  padding:7px 13px; border-radius:8px; cursor:pointer;
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:1px; transition:all .2s; white-space:nowrap;
+}
+.med-snb:hover { border-color:var(--teal); color:var(--teal); }
+.med-snb.active { background:var(--teal); border-color:var(--teal); color:#000; font-weight:700; }
+
+.drug-box { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px; }
+.drug-inputs { display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:start; }
+.drug-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--teal); text-transform:uppercase; display:block; margin-bottom:6px; }
+.drug-result-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.drug-disclaimer { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text3); margin-top:16px; border:1px solid rgba(255,94,91,.15); background:rgba(255,94,91,.04); padding:10px 14px; border-radius:8px; }
+
+.dose-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px; }
+.dose-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+.dose-field label { display:block; }
+.dose-result-card { background:linear-gradient(135deg,var(--surface),var(--surface2)); border:1px solid var(--teal); border-radius:12px; padding:22px; }
+.dose-big { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:700; color:var(--teal); line-height:1; }
+.dose-sub { font-size:13px; color:var(--text2); margin-top:6px; }
+.dose-table { width:100%; border-collapse:collapse; margin-top:16px; font-size:13px; }
+.dose-table th { text-align:left; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--text3); text-transform:uppercase; padding:6px 0; border-bottom:1px solid var(--border); }
+.dose-table td { padding:8px 0; border-bottom:1px solid var(--border); color:var(--text2); }
+.dose-table td:last-child { color:var(--text); font-weight:500; }
+
+.abbr-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; }
+.abbr-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; cursor:pointer; transition:all .2s; }
+.abbr-card:hover { border-color:var(--teal); transform:translateY(-2px); }
+.abbr-short { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; color:var(--teal); }
+.abbr-full { font-size:13px; color:var(--text); margin:3px 0; }
+.abbr-note { font-size:11px; color:var(--text2); }
+
+.roots-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; }
+.root-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; transition:all .2s; }
+.root-card:hover { border-color:var(--gold); }
+.root-word { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:var(--gold); }
+.root-lang { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--text3); letter-spacing:2px; text-transform:uppercase; margin:2px 0 4px; }
+.root-meaning { font-size:13px; color:var(--text); }
+.root-examples { font-size:11px; color:var(--text2); margin-top:4px; font-style:italic; }
+
+.case-form { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.case-tags-row { display:flex; align-items:center; gap:10px; }
+.case-item { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:10px; transition:all .2s; position:relative; }
+.case-item:hover { border-color:var(--teal); }
+.case-item-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; }
+.case-item-tags { display:flex; gap:6px; flex-wrap:wrap; margin:6px 0; }
+.case-tag { background:rgba(46,196,182,.1); border:1px solid rgba(46,196,182,.2); color:var(--teal); padding:2px 10px; border-radius:12px; font-size:11px; font-family:'JetBrains Mono',monospace; }
+.case-item-body { font-size:13px; color:var(--text2); line-height:1.6; margin-top:8px; white-space:pre-wrap; }
+.case-del { position:absolute; top:14px; right:14px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:16px; }
+.case-del:hover { color:var(--red); }
+
+.interact-badge { display:inline-block; padding:4px 12px; border-radius:20px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; margin-bottom:10px; }
+.badge-severe { background:rgba(255,94,91,.15); border:1px solid rgba(255,94,91,.4); color:var(--red); }
+.badge-moderate { background:rgba(212,168,67,.15); border:1px solid rgba(212,168,67,.4); color:var(--gold); }
+.badge-minor { background:rgba(45,212,170,.1); border:1px solid rgba(45,212,170,.3); color:var(--teal); }
+.badge-none { background:rgba(61,127,255,.1); border:1px solid rgba(61,127,255,.3); color:var(--blue2); }
+
+.btn-gold { background:var(--gold); border:none; color:#000; padding:11px 24px; border-radius:10px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:1px; transition:all .2s; }
+.btn-gold:hover { background:var(--gold2); transform:translateY(-1px); box-shadow:var(--glow-gold); }
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- SPLASH -->
+<div id="splash">
+  <img class="splash-logo" src="https://rlku.edu.pk/images/rlku4.png" alt="RLKU" onerror="this.style.display='none'">
+  <div class="splash-name">RLKU Dictionary</div>
+  <div class="splash-sub">Rashid Latif Khan University — Lahore</div>
+  <div class="splash-track"><div class="splash-fill"></div></div>
+</div>
+
+<div class="wrap">
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <img class="brand-logo" src="https://rlku.edu.pk/images/rlku4.png" alt="RLKU" onerror="this.style.display='none'">
+    <div>
+      <div class="brand-title">RLKU Dictionary</div>
+      <div class="brand-sub">Rashid Latif Khan University</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <button class="btn-icon" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <nav>
+      <button class="nb active" id="nb-search" onclick="goTab('search')">Search</button>
+      <button class="nb" id="nb-medical" onclick="goTab('medical')" style="border-color:rgba(45,212,170,0.35);color:#2dd4aa">🏥 Medical</button>
+      <button class="nb" id="nb-flash"  onclick="goTab('flash')">Cards</button>
+      <button class="nb" id="nb-quiz"   onclick="goTab('quiz')">Quiz</button>
+      <button class="nb" id="nb-dept"   onclick="goTab('dept')">Glossary</button>
+      <button class="nb" id="nb-fav"    onclick="goTab('fav')">
+        Saved <span class="nbadge" id="fav-badge" style="display:none">0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- WORD OF THE DAY -->
+<div id="wotd">
+  <div class="wotd-pill">Word<br>of the<br>Day</div>
+  <div class="wotd-divider"></div>
+  <div class="wotd-body">
+    <div class="wotd-word" id="wotd-word">Loading…</div>
+    <div class="wotd-pos"  id="wotd-pos"></div>
+    <div class="wotd-def"  id="wotd-def"></div>
+  </div>
+  <div class="wotd-right">
+    <button class="wotd-notif"   onclick="notifyMe()" title="Daily reminder">🔔</button>
+    <button class="wotd-explore" onclick="exploreWotd()">Explore →</button>
+  </div>
+</div>
+
+<!-- ======= SEARCH TAB ======= -->
+<div id="search-tab">
+  <div class="font-row">
+    <span class="font-lbl">Text Size</span>
+    <button class="fbtn" onclick="changeFont(-1)">A−</button>
+    <span id="font-val">16px</span>
+    <button class="fbtn" onclick="changeFont(1)">A+</button>
+  </div>
+
+  <div class="lang-row">
+    <button class="lp active" onclick="setLang(this,'en')">🇬🇧 English</button>
+    <button class="lp" onclick="setLang(this,'es')">🇪🇸 Español</button>
+    <button class="lp" onclick="setLang(this,'fr')">🇫🇷 Français</button>
+    <button class="lp" onclick="setLang(this,'de')">🇩🇪 Deutsch</button>
+    <button class="lp" onclick="setLang(this,'it')">🇮🇹 Italiano</button>
+    <button class="lp" onclick="setLang(this,'pt')">🇧🇷 Português</button>
+    <button class="lp" onclick="setLang(this,'hi')">🇮🇳 Hindi</button>
+    <button class="lp" onclick="setLang(this,'tr')">🇹🇷 Türkçe</button>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-row">
+      <input type="text" id="si" class="si" placeholder="Search any word…"
+        autocomplete="off" spellcheck="false"
+        oninput="onInput(this.value)"
+        onkeydown="onKD(event)"
+        onfocus="if(this.value.length>1)showSug()">
+      <button class="sb" onclick="doSearch()">Search</button>
+    </div>
+    <div id="sug"></div>
+  </div>
+
+  <div id="hist-row" class="hist-row" style="display:none">
+    <span class="hist-lbl">Recent</span>
+    <div class="hist-chips" id="hist-chips"></div>
+    <button class="clr" onclick="clearHist()">Clear</button>
+  </div>
+
+  <div id="results"></div>
+</div>
+
+<!-- ======= FLASHCARDS TAB ======= -->
+<div id="flash-tab" style="display:none">
+  <div class="sec-lbl">Flashcard Practice</div>
+  <div id="flash-content">
+    <div class="empty"><span class="empty-icon">🃏</span><p>Search words first,<br>then practice here!</p></div>
+  </div>
+</div>
+
+<!-- ======= QUIZ TAB ======= -->
+<div id="quiz-tab" style="display:none">
+  <div id="quiz-content">
+    <div class="quiz-start-screen">
+      <h2>Vocabulary Quiz</h2>
+      <p>Test yourself on the words you've explored.<br>You need at least 4 searched words to begin.</p>
+      <button class="btn-gold" onclick="startQuiz()">Start Quiz →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= GLOSSARY TAB ======= -->
+<div id="dept-tab" style="display:none">
+  <div class="wotw-banner">
+    <div class="wotw-lbl">🏫 RLKU — Word of the Week</div>
+    <div class="wotw-word" id="wotw-word">Pharmacokinetics</div>
+    <div class="wotw-def"  id="wotw-def">The branch of pharmacology concerned with the movement of drugs within the body — absorption, distribution, metabolism, and excretion.</div>
+  </div>
+  <div class="sec-lbl">Department Glossary</div>
+  <div class="dept-btns">
+    <button class="dept-btn active" onclick="setDept(this,'medical')">🏥 Medical & Dental</button>
+    <button class="dept-btn" onclick="setDept(this,'cs')">💻 Computer Science</button>
+    <button class="dept-btn" onclick="setDept(this,'business')">📊 Business</button>
+    <button class="dept-btn" onclick="setDept(this,'allied')">⚕️ Allied Health</button>
+  </div>
+  <div class="gloss-grid" id="gloss-grid"></div>
+</div>
+
+<!-- ======= FAVORITES TAB ======= -->
+<div id="fav-tab" style="display:none">
+  <div class="sec-lbl">Saved Words</div>
+  <div id="fav-content"></div>
+</div>
+
+<!-- ======= MEDICAL HUB TAB ======= -->
+<div id="medical-tab" style="display:none">
+
+  <!-- Sub-nav -->
+  <div class="med-subnav">
+    <button class="med-snb active" id="msnb-dict"   onclick="medSub('dict')">📖 Medical Dictionary</button>
+    <button class="med-snb" id="msnb-abbr"          onclick="medSub('abbr')">🔤 Abbreviations</button>
+    <button class="med-snb" id="msnb-drug"          onclick="medSub('drug')">💊 Drug Interactions</button>
+    <button class="med-snb" id="msnb-dose"          onclick="medSub('dose')">⚖️ Dosage Calc</button>
+    <button class="med-snb" id="msnb-anatomy"       onclick="medSub('anatomy')">🫀 Anatomy</button>
+    <button class="med-snb" id="msnb-roots"         onclick="medSub('roots')">🌿 Latin/Greek Roots</button>
+    <button class="med-snb" id="msnb-cases"         onclick="medSub('cases')">📋 Case Notes</button>
+  </div>
+
+  <!-- MEDICAL DICTIONARY -->
+  <div id="med-dict" class="med-panel">
+    <div class="sec-lbl">Medical Terms Dictionary</div>
+    <div class="search-wrap" style="margin-bottom:16px">
+      <div class="search-row">
+        <input type="text" id="med-si" class="si" placeholder="Search medical term…" autocomplete="off"
+          oninput="medDictSearch(this.value)" onkeydown="if(event.key==='Enter')medDictSearch(document.getElementById('med-si').value,true)">
+        <button class="sb" onclick="medDictSearch(document.getElementById('med-si').value,true)">Search</button>
+      </div>
+    </div>
+    <div id="med-dict-result"></div>
+    <div class="sec-lbl" style="margin-top:24px">Browse by Category</div>
+    <div class="dept-btns">
+      <button class="dept-btn active" onclick="medBrowse(this,'cardiology')">❤️ Cardiology</button>
+      <button class="dept-btn" onclick="medBrowse(this,'neurology')">🧠 Neurology</button>
+      <button class="dept-btn" onclick="medBrowse(this,'pharmacology')">💊 Pharmacology</button>
+      <button class="dept-btn" onclick="medBrowse(this,'surgery')">🔪 Surgery</button>
+      <button class="dept-btn" onclick="medBrowse(this,'pathology')">🔬 Pathology</button>
+      <button class="dept-btn" onclick="medBrowse(this,'anatomy')">🦴 Anatomy</button>
+    </div>
+    <div class="gloss-grid" id="med-browse-grid"></div>
+  </div>
+
+  <!-- ABBREVIATIONS -->
+  <div id="med-abbr" class="med-panel" style="display:none">
+    <div class="sec-lbl">Medical Abbreviations</div>
+    <input type="text" id="abbr-si" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%;margin-bottom:18px"
+      placeholder="Search abbreviation (e.g. BP, ECG, IV)…" oninput="filterAbbr(this.value)">
+    <div id="abbr-grid" class="abbr-grid"></div>
+  </div>
+
+  <!-- DRUG INTERACTIONS -->
+  <div id="med-drug" class="med-panel" style="display:none">
+    <div class="sec-lbl">Drug Interaction Checker</div>
+    <div class="drug-box">
+      <div class="drug-inputs">
+        <div>
+          <label class="drug-lbl">Drug 1</label>
+          <input type="text" id="drug1" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%" placeholder="e.g. Aspirin" autocomplete="off">
+        </div>
+        <div style="display:flex;align-items:center;padding-top:20px;font-size:22px;color:var(--text3)">+</div>
+        <div>
+          <label class="drug-lbl">Drug 2</label>
+          <input type="text" id="drug2" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%" placeholder="e.g. Warfarin" autocomplete="off">
+        </div>
+      </div>
+      <button class="btn-gold" style="margin-top:16px;width:100%" onclick="checkDrug()">Check Interaction →</button>
+    </div>
+    <div id="drug-result" style="margin-top:20px"></div>
+    <div class="drug-disclaimer">⚠️ For educational purposes only. Always consult a qualified physician or pharmacist before administering any medication.</div>
+  </div>
+
+  <!-- DOSAGE CALCULATOR -->
+  <div id="med-dose" class="med-panel" style="display:none">
+    <div class="sec-lbl">Dosage Calculator</div>
+    <div class="dose-card">
+      <div class="dose-grid">
+        <div class="dose-field">
+          <label class="drug-lbl">Drug Name</label>
+          <input type="text" id="dose-drug" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%" placeholder="e.g. Paracetamol">
+        </div>
+        <div class="dose-field">
+          <label class="drug-lbl">Patient Weight (kg)</label>
+          <input type="number" id="dose-weight" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%" placeholder="e.g. 70" min="1" max="300">
+        </div>
+        <div class="dose-field">
+          <label class="drug-lbl">Age Group</label>
+          <select id="dose-age" class="si" style="border-radius:10px;width:100%;cursor:pointer">
+            <option value="adult">Adult (≥18 yrs)</option>
+            <option value="child">Child (2–17 yrs)</option>
+            <option value="infant">Infant (&lt;2 yrs)</option>
+          </select>
+        </div>
+        <div class="dose-field">
+          <label class="drug-lbl">Dose (mg/kg)</label>
+          <input type="number" id="dose-mgkg" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%" placeholder="e.g. 15" step="0.1">
+        </div>
+        <div class="dose-field">
+          <label class="drug-lbl">Frequency</label>
+          <select id="dose-freq" class="si" style="border-radius:10px;width:100%;cursor:pointer">
+            <option value="1">Once daily (OD)</option>
+            <option value="2">Twice daily (BD)</option>
+            <option value="3">Three times daily (TDS)</option>
+            <option value="4">Four times daily (QDS)</option>
+            <option value="6">Every 4 hours</option>
+          </select>
+        </div>
+        <div class="dose-field">
+          <label class="drug-lbl">Route</label>
+          <select id="dose-route" class="si" style="border-radius:10px;width:100%;cursor:pointer">
+            <option>Oral (PO)</option>
+            <option>Intravenous (IV)</option>
+            <option>Intramuscular (IM)</option>
+            <option>Subcutaneous (SC)</option>
+            <option>Topical</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-gold" style="margin-top:18px;width:100%" onclick="calcDose()">Calculate Dose →</button>
+    </div>
+    <div id="dose-result" style="margin-top:20px"></div>
+    <div class="drug-disclaimer">⚠️ Educational tool only. All doses must be verified by a licensed clinician.</div>
+  </div>
+
+  <!-- ANATOMY -->
+  <div id="med-anatomy" class="med-panel" style="display:none">
+    <div class="sec-lbl">Anatomy Terms & Systems</div>
+    <div class="dept-btns">
+      <button class="dept-btn active" onclick="loadAnatomy(this,'cardiovascular')">❤️ Cardiovascular</button>
+      <button class="dept-btn" onclick="loadAnatomy(this,'respiratory')">🫁 Respiratory</button>
+      <button class="dept-btn" onclick="loadAnatomy(this,'nervous')">🧠 Nervous</button>
+      <button class="dept-btn" onclick="loadAnatomy(this,'digestive')">🫃 Digestive</button>
+      <button class="dept-btn" onclick="loadAnatomy(this,'musculoskeletal')">🦴 Musculoskeletal</button>
+      <button class="dept-btn" onclick="loadAnatomy(this,'endocrine')">⚗️ Endocrine</button>
+    </div>
+    <div id="anatomy-grid" class="gloss-grid"></div>
+  </div>
+
+  <!-- LATIN/GREEK ROOTS -->
+  <div id="med-roots" class="med-panel" style="display:none">
+    <div class="sec-lbl">Latin & Greek Medical Roots</div>
+    <input type="text" id="root-si" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%;margin-bottom:18px"
+      placeholder="Search root (e.g. cardio, neuro, hepato)…" oninput="filterRoots(this.value)">
+    <div id="roots-grid" class="roots-grid"></div>
+  </div>
+
+  <!-- CASE NOTES -->
+  <div id="med-cases" class="med-panel" style="display:none">
+    <div class="sec-lbl">Case Study Notes</div>
+    <div class="case-form">
+      <input type="text" id="case-title" class="si" style="border-radius:10px;border-right:1px solid var(--border);width:100%;margin-bottom:10px" placeholder="Case title (e.g. Acute MI — 55M)">
+      <div class="case-tags-row">
+        <span class="drug-lbl">Tags:</span>
+        <input type="text" id="case-tags" class="si" style="border-radius:8px;border-right:1px solid var(--border);flex:1;font-size:13px;padding:8px 14px" placeholder="cardiology, emergency…">
+      </div>
+      <textarea id="case-body" class="note-ta" style="min-height:140px;margin-top:10px" placeholder="Chief complaint, history, examination findings, investigations, diagnosis, management…"></textarea>
+      <button class="btn-gold" style="margin-top:10px" onclick="saveCase()">Save Case ✓</button>
+    </div>
+    <div id="cases-list" style="margin-top:24px"></div>
+  </div>
+
+</div><!-- /medical-tab -->
+
+</div><!-- /wrap -->
+
+<script>
+/* ======================== DATA ======================== */
+const WOTD_POOL = ['ephemeral','eloquent','serendipity','melancholy','luminous','perspicacious','sanguine','ineffable','tenacious','halcyon','resplendent','pensive','arcane','zenith','prolific','solitude','veracious','loquacious','benevolent','labyrinthine'];
+
+const WOTW_LIST = [
+  {word:'Pharmacokinetics', def:'The branch of pharmacology concerned with the movement of drugs within the body.'},
+  {word:'Epistemology',     def:'The branch of philosophy concerned with the theory of knowledge.'},
+  {word:'Entrepreneurship', def:'The activity of setting up a business, taking on financial risks in hope of profit.'},
+  {word:'Jurisprudence',    def:'The theory and philosophy of law and legal systems.'},
+];
+
+const GLOSSARY = {
+  medical:[
+    {word:'Pharmacokinetics', def:'Movement of drugs within the body including absorption and metabolism.', field:'Pharmacology'},
+    {word:'Pathogenesis',     def:'The manner of development of a disease or morbid process.', field:'Pathology'},
+    {word:'Hematopoiesis',    def:'Formation of blood cellular components in bone marrow.', field:'Hematology'},
+    {word:'Anastomosis',      def:'A surgical connection between adjacent blood vessels or intestine.', field:'Surgery'},
+    {word:'Etiology',         def:'The cause or manner of causation of a disease.', field:'General Medicine'},
+    {word:'Prognosis',        def:'The likely course of a medical condition or forecast of its outcome.', field:'Clinical'},
+    {word:'Tachycardia',      def:'Abnormally rapid heart rate, typically over 100 beats per minute.', field:'Cardiology'},
+    {word:'Homeostasis',      def:'The tendency of biological systems to maintain stable internal conditions.', field:'Physiology'},
+    {word:'Contraindication', def:'A condition that makes a particular treatment inadvisable.', field:'Pharmacology'},
+    {word:'Nociception',      def:'The sensory nervous system process of encoding noxious stimuli.', field:'Neurology'},
+  ],
+  cs:[
+    {word:'Algorithm',     def:'A step-by-step set of instructions for solving a computational problem.', field:'Computer Science'},
+    {word:'Polymorphism',  def:'The ability of different objects to respond to the same interface differently.', field:'OOP'},
+    {word:'Recursion',     def:'A method where the solution depends on smaller instances of the same problem.', field:'Programming'},
+    {word:'Encapsulation', def:'Bundling data and methods within a single unit (class).', field:'OOP'},
+    {word:'Latency',       def:'The delay between a stimulus and the response, especially in networks.', field:'Networking'},
+    {word:'Heuristic',     def:'A problem-solving approach using practical methods for good-enough solutions.', field:'AI'},
+    {word:'Concurrency',   def:'Multiple computations happening simultaneously within overlapping time periods.', field:'Systems'},
+    {word:'Refactoring',   def:'Restructuring existing code without changing its external behavior.', field:'Software Eng.'},
+    {word:'Abstraction',   def:'Hiding complex implementation details while showing only essential features.', field:'OOP'},
+    {word:'Bandwidth',     def:'Maximum rate of data transfer across a given path in a network.', field:'Networking'},
+  ],
+  business:[
+    {word:'Liquidity',       def:'Availability of liquid assets to a company or ease of converting assets to cash.', field:'Finance'},
+    {word:'Amortization',    def:'Spreading payments over multiple periods for a loan or asset.', field:'Accounting'},
+    {word:'Diversification', def:'Strategy of reducing risk by allocating investments among various instruments.', field:'Investment'},
+    {word:'Arbitrage',       def:'Simultaneous buying and selling in different markets to profit from price differences.', field:'Trading'},
+    {word:'Benchmarking',    def:'Comparing business processes and performance to industry best practices.', field:'Management'},
+    {word:'Depreciation',    def:'Allocating the cost of a tangible asset over its useful life.', field:'Accounting'},
+    {word:'Synergy',         def:'Combined elements that produce a greater effect than the sum of their parts.', field:'Strategy'},
+    {word:'Equity',          def:'Ownership interest in an asset after liabilities are deducted.', field:'Finance'},
+    {word:'Stakeholder',     def:'A person or organization with an interest or concern in a business.', field:'Management'},
+    {word:'Monetization',    def:'The process of converting something into money or legal tender.', field:'Finance'},
+  ],
+  allied:[
+    {word:'Auscultation',  def:'The action of listening to sounds from the heart, lungs, or other organs.', field:'Clinical Skills'},
+    {word:'Dysphagia',     def:'Difficulty or discomfort in swallowing.', field:'Speech Therapy'},
+    {word:'Rehabilitation',def:'Restoring someone to health through training and therapy after illness or injury.', field:'Physiotherapy'},
+    {word:'Prophylaxis',   def:'Action taken to prevent disease, especially against a specified disease.', field:'Preventive'},
+    {word:'Spirometry',    def:'Measurement of the air capacity of the lungs.', field:'Respiratory'},
+    {word:'Hypertension',  def:'Abnormally high blood pressure in the arteries.', field:'Cardiology'},
+    {word:'Sonography',    def:'The use of ultrasound waves to form diagnostic images of internal structures.', field:'Imaging'},
+    {word:'Ergonomics',    def:'Study of people\'s efficiency in their working environment.', field:'Occupational'},
+    {word:'Analgesia',     def:'The inability to feel pain while conscious; pain relief treatment.', field:'Pain Management'},
+    {word:'Radiograph',    def:'An image produced on a sensitive surface by X-rays or similar radiation.', field:'Radiology'},
+  ]
+};
+
+/* Urdu dictionary — common words (no API needed — fixes wrong translations!) */
+const URDU_DICT = {
+  'beautiful':'خوبصورت (khubsurat)','love':'محبت (mohabbat)','happy':'خوش (khush)',
+  'sad':'اداس (udaas)','good':'اچھا (acha)','bad':'برا (bura)',
+  'book':'کتاب (kitaab)','water':'پانی (paani)','food':'کھانا (khaana)',
+  'house':'گھر (ghar)','friend':'دوست (dost)','family':'خاندان (khaandaan)',
+  'school':'سکول (school)','teacher':'استاد (ustad)','student':'طالب علم (talib-e-ilm)',
+  'university':'جامعہ (jaami-a)','knowledge':'علم (ilm)','wisdom':'حکمت (hikmat)',
+  'truth':'سچ (sach)','life':'زندگی (zindagi)','time':'وقت (waqt)',
+  'heart':'دل (dil)','mind':'ذہن (zehan)','soul':'روح (rooh)',
+  'light':'روشنی (roshni)','dark':'اندھیرا (andhera)','sky':'آسمان (aasmaan)',
+  'sun':'سورج (suraj)','moon':'چاند (chaand)','star':'ستارہ (sitaara)',
+  'earth':'زمین (zameen)','sea':'سمندر (samandar)','river':'دریا (darya)',
+  'mountain':'پہاڑ (pahaad)','flower':'پھول (phool)','tree':'درخت (darakht)',
+  'bird':'پرندہ (parinda)','lion':'شیر (sher)','horse':'گھوڑا (ghoda)',
+  'strong':'مضبوط (mazboot)','weak':'کمزور (kamzor)','big':'بڑا (bara)',
+  'small':'چھوٹا (chhota)','fast':'تیز (tez)','slow':'سست (sust)',
+  'new':'نیا (naya)','old':'پرانا (purana)','young':'جوان (jawaan)',
+  'rich':'امیر (ameer)','poor':'غریب (ghareeb)','peace':'امن (aman)',
+  'war':'جنگ (jang)','freedom':'آزادی (azadi)','justice':'انصاف (insaaf)',
+  'serendipity':'خوشگوار اتفاق (khushgawar ittifaaq)','ephemeral':'عارضی (aarzi)',
+  'eloquent':'فصیح (faseeh)','melancholy':'اداسی (udaasi)','luminous':'روشن (roshan)',
+  'tenacious':'پرعزم (pur-azm)','benevolent':'مہربان (mehrbaan)',
+  'perspicacious':'ذہین (zaheen)','solitude':'تنہائی (tanhaai)',
+  'resilient':'لچکدار (lachakdaar)','wisdom':'دانائی (daanaai)',
+};
+
+const LOCAL_WORDS = ['abandon','ability','absolute','academic','accept','access','account','accurate','achieve','across','active','actually','address','advance','advice','affect','after','again','against','agency','agent','agree','allow','almost','alone','already','although','always','among','amount','analysis','ancient','another','appeal','apply','approach','argue','arrange','article','aspect','assess','assist','assume','attempt','attention','attitude','author','available','avoid','aware','balance','basic','battle','beautiful','become','behavior','belief','benefit','better','beyond','break','broad','build','business','calculate','capable','career','cause','central','certain','challenge','change','character','choice','claim','clear','collect','common','community','compare','complete','complex','concept','concern','condition','consider','contain','context','continue','control','create','culture','current','damage','decide','define','deliver','depend','describe','design','detail','develop','different','difficult','discover','discuss','distance','effect','effort','element','enable','energy','engage','environment','establish','evaluate','example','exist','experience','explain','express','factor','failure','focus','follow','force','function','generate','global','govern','growth','happen','health','history','human','identify','improve','include','increase','indicate','individual','influence','involve','issue','knowledge','language','leader','learn','level','likely','limit','maintain','major','manage','measure','method','model','modern','natural','necessary','network','notice','observe','obtain','operate','opinion','organize','original','outcome','perform','period','physical','policy','position','positive','potential','practice','present','prevent','principle','process','produce','progress','protect','provide','purpose','quality','realize','reason','reduce','reflect','relate','remain','report','require','research','resolve','respond','result','reveal','review','section','select','service','similar','society','solution','source','specific','strategy','structure','subject','suggest','support','system','technique','technology','theory','understand','unique','value','various','whether','wonder','serendipity','ephemeral','eloquent','melancholy','luminous','resilient','ambiguous','benevolent','diligent','eccentric','formidable','gregarious','hierarchy','intricate','jubilant','loquacious','metamorphosis','nostalgic','perspicacious','tenacious','ubiquitous','whimsical','algorithm','pharmacokinetics','pathology','hematopoiesis','prognosis','tachycardia','homeostasis','liquidity','amortization','diversification','benchmarking','depreciation','synergy','equity','auscultation','dysphagia','rehabilitation','prophylaxis','hypertension','ergonomics'];
+
+const ETY_MAP = {serendipity:'Persian — Serendip (old name of Sri Lanka)',ephemeral:'Greek — ephēmeros (lasting a day)',melancholy:'Greek — melancholía (black bile)',eloquent:'Latin — eloqui (to speak out)',luminous:'Latin — lumen (light)',algorithm:'Arabic — al-Khwārizmī (9th c. mathematician)',algebra:'Arabic — al-jabr (reunion of broken parts)',alcohol:'Arabic — al-kuḥl (fine powder)',sugar:'Sanskrit — śarkarā (gravel, grit)'};
+
+const RHYME_MAP = {time:['lime','dime','prime','climb','mime'],light:['night','right','sight','might','bright'],love:['above','dove','shove','glove'],mind:['find','kind','blind','wind','bind'],free:['tree','see','be','key','degree'],day:['say','way','play','stay','ray'],heart:['art','part','start','smart','cart'],life:['wife','knife','strife','rife'],strong:['long','song','wrong','belong'],true:['blue','clue','flew','grew','knew']};
+
+/* ======================== STATE ======================== */
+let lang='en', favs=JSON.parse(localStorage.getItem('rlku-favs')||'[]'),
+    hist=JSON.parse(localStorage.getItem('rlku-hist')||'[]'),
+    notes=JSON.parse(localStorage.getItem('rlku-notes')||'{}'),
+    _lastEntry=null, _audio=null, _wotdWord='',
+    _sugTimer=null, sugList=[], sugFocus=-1,
+    _fontSize=16, _flashCards=[], _flashIdx=0, _flashFlipped=false,
+    _quizWords=[], _quizIdx=0, _quizScore=0,
+    _dept='medical';
+
+/* ======================== BOOT ======================== */
+(function boot(){
+  const t=localStorage.getItem('rlku-theme');
+  if(t){document.body.setAttribute('data-theme',t);document.getElementById('theme-btn').textContent=t==='light'?'☀️':'🌙';}
+  _fontSize=parseInt(localStorage.getItem('rlku-font')||'16');
+  document.getElementById('font-val').textContent=_fontSize+'px';
+  loadWotd(); loadWotw(); updateBadge(); renderHist(); renderDept();
+  // Pre-init medical data
+  setTimeout(()=>{renderAbbr();renderRoots();renderCases();medBrowse(null,'cardiology');loadAnatomy(null,'cardiovascular');},100);
+  setTimeout(()=>{const s=document.getElementById('splash');s.style.opacity='0';setTimeout(()=>s.style.display='none',700);},2300);
+  const p=new URLSearchParams(location.search);
+  if(p.get('q')){document.getElementById('si').value=p.get('q');setTimeout(doSearch,2500);}
+})();
+
+/* ======================== THEME ======================== */
+function toggleTheme(){
+  const d=document.body.getAttribute('data-theme')==='dark';
+  document.body.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('theme-btn').textContent=d?'☀️':'🌙';
+  localStorage.setItem('rlku-theme',d?'light':'dark');
+}
+
+/* ======================== FONT ======================== */
+function changeFont(d){
+  _fontSize=Math.max(12,Math.min(22,_fontSize+d));
+  localStorage.setItem('rlku-font',_fontSize);
+  document.getElementById('font-val').textContent=_fontSize+'px';
+  document.querySelectorAll('.def-txt').forEach(el=>el.style.fontSize=_fontSize+'px');
+}
+
+/* ======================== TABS ======================== */
+function goTab(t){
+  ['search','flash','quiz','dept','fav'].forEach(id=>{
+    document.getElementById(id+'-tab').style.display=t===id?'block':'none';
+    const b=document.getElementById('nb-'+id);
+    if(b) b.classList.toggle('active',t===id);
+  });
+  if(t==='fav')   renderFavs();
+  if(t==='flash') initFlash();
+}
+
+/* ======================== WOTD ======================== */
+async function loadWotd(){
+  const idx=Math.floor(Date.now()/86400000)%WOTD_POOL.length;
+  _wotdWord=WOTD_POOL[idx];
+  try{
+    const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${_wotdWord}`);
+    const d=await r.json();
+    if(Array.isArray(d)&&d[0]){
+      const m=d[0].meanings?.[0];
+      document.getElementById('wotd-word').textContent=d[0].word;
+      document.getElementById('wotd-pos').textContent=m?.partOfSpeech||'';
+      document.getElementById('wotd-def').textContent=(m?.definitions?.[0]?.definition||'').slice(0,120)+'…';
+    }
+  }catch{document.getElementById('wotd-word').textContent=_wotdWord;}
+}
+function exploreWotd(){document.getElementById('si').value=_wotdWord;setLang(document.querySelector('.lp'),'en');goTab('search');doSearch();}
+function notifyMe(){
+  if('Notification' in window){
+    Notification.requestPermission().then(p=>{
+      if(p==='granted'){new Notification('RLKU Dictionary',{body:`Today's word: ${_wotdWord}`,icon:'https://rlku.edu.pk/images/rlku4.png'});toast('🔔 Notification sent!');}
+      else toast('Please enable notifications in browser settings.');
+    });
+  } else toast('Your browser does not support notifications.');
+}
+function loadWotw(){const idx=Math.floor(Date.now()/(86400000*7))%WOTW_LIST.length;const w=WOTW_LIST[idx];document.getElementById('wotw-word').textContent=w.word;document.getElementById('wotw-def').textContent=w.def;}
+
+/* ======================== LANG ======================== */
+function setLang(btn,l){lang=l;document.querySelectorAll('.lp').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+/* ======================== AUTOCOMPLETE (Datamuse API) ======================== */
+function onInput(v){
+  clearTimeout(_sugTimer);sugFocus=-1;
+  if(v.length<2){hideSug();return;}
+  _sugTimer=setTimeout(()=>buildSug(v),220);
+}
+
+async function buildSug(v){
+  const q=v.toLowerCase().trim();
+  try{
+    // Fetch prefix suggestions AND spelling corrections simultaneously
+    const [prefixRes, spellRes] = await Promise.all([
+      fetch(`https://api.datamuse.com/words?sp=${encodeURIComponent(q+'*')}&max=6`),
+      fetch(`https://api.datamuse.com/words?sp=${encodeURIComponent(q)}&max=4`)
+    ]);
+    const prefixData = await prefixRes.json();
+    const spellData  = await spellRes.json();
+
+    // Build combined unique list — prefix suggestions first, then spell corrections
+    const seen = new Set();
+    sugList = [];
+    for(const item of [...prefixData, ...spellData]){
+      if(!seen.has(item.word) && item.word.toLowerCase() !== q){
+        seen.add(item.word);
+        sugList.push({word:item.word, isSpell: !item.word.startsWith(q)});
+      }
+    }
+    sugList = sugList.slice(0,8);
+
+    if(!sugList.length){
+      // Fallback to local list
+      const local = LOCAL_WORDS.filter(w=>w.startsWith(q)&&w!==q).slice(0,6).map(w=>({word:w,isSpell:false}));
+      sugList = local;
+    }
+
+    if(!sugList.length){hideSug();return;}
+
+    document.getElementById('sug').innerHTML = sugList.map((item,i)=>{
+      const w = item.word;
+      const icon = item.isSpell ? '✏️' : '🔍';
+      const label = item.isSpell ? `<span style="font-size:9px;color:var(--gold);margin-left:6px;font-family:'JetBrains Mono',monospace">Did you mean?</span>` : '';
+      const hl = w.toLowerCase().startsWith(q)
+        ? `<span class="si-hl">${w.slice(0,q.length)}</span>${w.slice(q.length)}`
+        : `<span style="color:var(--gold)">${w}</span>`;
+      return `<div class="si-item" onmousedown="pickSug('${w}')" onmouseover="hoverSug(${i})">
+        <span class="si-ico">${icon}</span>
+        <span>${hl}${label}</span>
+      </div>`;
+    }).join('');
+    showSug();
+  } catch {
+    // Fallback to local list on network error
+    const q2 = v.toLowerCase().trim();
+    sugList = LOCAL_WORDS.filter(w=>w.startsWith(q2)&&w!==q2).slice(0,8).map(w=>({word:w,isSpell:false}));
+    if(!sugList.length){hideSug();return;}
+    document.getElementById('sug').innerHTML = sugList.map((item,i)=>`<div class="si-item" onmousedown="pickSug('${item.word}')" onmouseover="hoverSug(${i})"><span class="si-ico">🔍</span><span><span class="si-hl">${item.word.slice(0,v.length)}</span>${item.word.slice(v.length)}</span></div>`).join('');
+    showSug();
+  }
+}
+
+function showSug(){const b=document.getElementById('sug');if(b.innerHTML)b.style.display='block';}
+function hideSug(){document.getElementById('sug').style.display='none';sugFocus=-1;}
+function hoverSug(i){sugFocus=i;document.querySelectorAll('.si-item').forEach((el,idx)=>el.classList.toggle('focused',idx===i));}
+function pickSug(w){document.getElementById('si').value=w;hideSug();doSearch();}
+function onKD(e){
+  const items=document.querySelectorAll('.si-item');
+  if(e.key==='ArrowDown'){e.preventDefault();sugFocus=Math.min(sugFocus+1,items.length-1);items.forEach((el,i)=>el.classList.toggle('focused',i===sugFocus));}
+  else if(e.key==='ArrowUp'){e.preventDefault();sugFocus=Math.max(sugFocus-1,-1);items.forEach((el,i)=>el.classList.toggle('focused',i===sugFocus));}
+  else if(e.key==='Enter'){sugFocus>=0&&sugList[sugFocus]?pickSug(sugList[sugFocus].word||sugList[sugFocus]):(hideSug(),doSearch());}
+  else if(e.key==='Escape')hideSug();
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))hideSug();});
+
+/* ======================== SEARCH — AI POWERED ======================== */
+async function doSearch(){
+  const q = document.getElementById('si').value.trim();
+  if(!q) return;
+  hideSug(); addToHist(q);
+  const el = document.getElementById('results');
+
+  el.innerHTML = `
+    <div class="loader">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      &nbsp;AI searching "<em>${q}</em>"…
+    </div>`;
+
+  try {
+    const aiResult = await fetchAIDefinition(q);
+    renderAIResults(q, aiResult);
+  } catch(err) {
+    // Fallback to free dictionary API if AI fails
+    try {
+      const r = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(q)}`);
+      const data = await r.json();
+      if(Array.isArray(data)) {
+        renderFallbackResults(data);
+        getUrdu(q);
+      } else {
+        showSpellSuggestions(q, el);
+      }
+    } catch {
+      el.innerHTML = `<div class="err">⚠ Network error. Please check your connection.</div>`;
+    }
+  }
+}
+
+/* ---- Call Claude AI API ---- */
+async function fetchAIDefinition(word) {
+  const prompt = `You are an expert multilingual dictionary for RLKU (Rashid Latif Khan University). 
+The user searched for the word or term: "${word}"
+
+Respond ONLY with a valid JSON object (no markdown, no backticks, no extra text) in this exact structure:
+{
+  "word": "exact word or term",
+  "phonetic": "pronunciation like /wɜːrd/",
+  "partOfSpeech": "noun/verb/adjective/medical term/etc",
+  "urdu": "اردو ترجمہ یہاں لکھیں",
+  "urduRomanized": "Urdu meaning in Roman script",
+  "difficulty": "easy or medium or hard",
+  "field": "General / Medical / Pharmacology / Surgery / Anatomy / Computer Science / Business / etc",
+  "definitions": [
+    {"def": "Primary definition here", "example": "Example sentence here"},
+    {"def": "Second definition if exists", "example": "Example sentence"},
+    {"def": "Third definition if exists", "example": ""}
+  ],
+  "medicalDetails": {
+    "latinGreekRoot": "Root origin if medical/scientific term",
+    "abbreviation": "Common abbreviation if any",
+    "clinicalNote": "Important clinical note for medical students",
+    "relatedConditions": ["condition1","condition2","condition3"]
+  },
+  "synonyms": ["syn1","syn2","syn3","syn4"],
+  "antonyms": ["ant1","ant2"],
+  "etymology": "Word origin and history",
+  "funFact": "Interesting fact about this word",
+  "relatedWords": ["word1","word2","word3","word4","word5"]
+}
+
+Rules:
+- Always provide Urdu translation (اردو میں ترجمہ ضرور لکھیں)
+- If it's a medical term, fill medicalDetails fully
+- If not medical, still fill medicalDetails with empty strings/arrays
+- Always provide at least 2 definitions
+- relatedWords should be real, clickable words
+- ONLY return valid JSON, nothing else`;
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+
+  const data = await response.json();
+  const text = data.content?.[0]?.text || '';
+  const clean = text.replace(/```json|```/g, '').trim();
+  return JSON.parse(clean);
+}
+
+/* ---- Render AI Result ---- */
+function renderAIResults(query, d) {
+  const el = document.getElementById('results');
+  const isFav = favs.some(f => f.word === (d.word||query));
+  const word = d.word || query;
+  const todayStr = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const isMedical = ['Medical','Pharmacology','Surgery','Anatomy','Neurology','Cardiology','Pathology','Physiology','Biochemistry','Microbiology'].some(f => (d.field||'').toLowerCase().includes(f.toLowerCase()));
+
+  _lastEntry = {word, pos: d.partOfSpeech||'', def: d.definitions?.[0]?.def||''};
+
+  let html = `
+  <div style="animation:fadeUp .4s ease both">
+
+    <!-- HERO -->
+    <div class="res-hero">
+      <div>
+        <div class="res-word">${word}</div>
+        ${d.phonetic?`<div class="res-phonetic">${d.phonetic}</div>`:''}
+      </div>
+      <div class="res-btns">
+        <button class="rbtn fav ${isFav?'on':''}" id="fav-toggle" onclick="toggleFav('${word}',this)" title="Save">${isFav?'♥':'♡'}</button>
+        <button class="rbtn copy"  onclick="copyDef()"        title="Copy">📋</button>
+        <button class="rbtn share" onclick="shareWord('${word}')" title="Share">🔗</button>
+        <button class="rbtn print" onclick="printCard('${word}')" title="Print">🖨️</button>
+      </div>
+    </div>
+
+    <!-- META CHIPS -->
+    <div class="word-meta">
+      <span class="meta-chip chip-${d.difficulty||'medium'}">${(d.partOfSpeech||'word').toUpperCase()}</span>
+      ${d.field?`<span class="meta-chip chip-ety">📚 ${d.field}</span>`:''}
+      ${isMedical?`<span class="meta-chip" style="background:rgba(46,196,182,.12);border-color:rgba(46,196,182,.3);color:var(--teal)">🏥 Medical</span>`:''}
+    </div>
+
+    <!-- URDU STRIP -->
+    <div class="urdu-strip">
+      <span class="urdu-lbl">اردو ترجمہ</span>
+      <div style="flex:1">
+        <div class="urdu-txt" id="urdu-txt">${d.urdu || '…'}</div>
+        <div class="urdu-rom" id="urdu-rom">${d.urduRomanized||''}</div>
+      </div>
+    </div>
+
+    <!-- DEFINITIONS -->
+    <div class="meanings">
+      <div class="pos-block">
+        <div class="pos-hdr">
+          <span class="pos-tag">${d.partOfSpeech||'definition'}</span>
+          <div class="pos-line"></div>
+        </div>
+        ${(d.definitions||[]).map((def,i)=>`
+          <div class="def-card">
+            <div class="def-n">0${i+1}</div>
+            <div class="def-body">
+              <div class="def-txt" style="font-size:${_fontSize}px">${def.def||def}</div>
+              ${def.example?`<div class="def-ex">"${def.example}"</div>`:''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+
+  /* Synonyms / Antonyms */
+  if((d.synonyms?.length)||(d.antonyms?.length)){
+    html+=`<div class="tags-row" style="margin:10px 0">`;
+    if(d.synonyms?.length){html+=`<span class="tl">Synonyms</span>`;d.synonyms.forEach(s=>html+=`<span class="wtag" onclick="qs('${s}')">${s}</span>`);}
+    if(d.antonyms?.length){html+=`<span class="tl" style="margin-left:10px">Antonyms</span>`;d.antonyms.forEach(a=>html+=`<span class="wtag ant" onclick="qs('${a}')">${a}</span>`);}
+    html+=`</div>`;
+  }
+
+  /* Medical Details Card */
+  if(isMedical && d.medicalDetails){
+    const md = d.medicalDetails;
+    html += `
+    <div class="extra-card" style="border-left:3px solid var(--teal);margin-top:12px">
+      <div class="extra-hdr">🏥 Medical Details</div>
+      ${md.abbreviation?`<div style="margin-bottom:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:2px">ABBREVIATION</span><br><span style="font-size:18px;font-weight:700;color:var(--teal)">${md.abbreviation}</span></div>`:''}
+      ${md.latinGreekRoot?`<div style="margin-bottom:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px">LATIN/GREEK ROOT</span><br><span style="font-size:13px;color:var(--text2)">${md.latinGreekRoot}</span></div>`:''}
+      ${md.clinicalNote?`<div style="margin-bottom:8px;padding:10px;background:rgba(46,196,182,.06);border-radius:8px;border:1px solid rgba(46,196,182,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:2px">CLINICAL NOTE</span><br><span style="font-size:13px;color:var(--text);line-height:1.6">${md.clinicalNote}</span></div>`:''}
+      ${md.relatedConditions?.length?`<div><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px">RELATED CONDITIONS</span><br><div style="margin-top:6px">${md.relatedConditions.map(c=>`<span class="wtag" onclick="qs('${c}')" style="border-color:rgba(46,196,182,.3);color:var(--teal)">${c}</span>`).join('')}</div></div>`:''}
+    </div>`;
+  }
+
+  /* Etymology */
+  if(d.etymology){
+    html+=`<div class="extra-card" style="margin-top:10px">
+      <div class="extra-hdr">📖 Etymology</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6">${d.etymology}</div>
+    </div>`;
+  }
+
+  /* Fun Fact */
+  if(d.funFact){
+    html+=`<div class="extra-card" style="margin-top:10px;border-left:3px solid var(--gold)">
+      <div class="extra-hdr">💡 Did You Know?</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6">${d.funFact}</div>
+    </div>`;
+  }
+
+  /* Related Words */
+  if(d.relatedWords?.length){
+    html+=`<div class="extra-card" style="margin-top:10px">
+      <div class="extra-hdr">🔗 Related Words</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">${d.relatedWords.map(w=>`<span class="wtag" onclick="qs('${w}')">${w}</span>`).join('')}</div>
+    </div>`;
+  }
+
+  /* Citation */
+  const cite=`"${word}" — RLKU Dictionary, Rashid Latif Khan University. Accessed ${todayStr}.`;
+  html+=`<div class="extra-card" style="margin-top:10px">
+    <div class="extra-hdr">📝 Citation</div>
+    <div class="cite-body" id="cite-body">${cite}</div>
+    <button class="cite-copy" onclick="copyCite()">Copy Citation</button>
+  </div>`;
+
+  /* Notes */
+  html+=`<div class="extra-card" style="margin-top:10px">
+    <div class="extra-hdr">✏️ My Notes</div>
+    <textarea class="note-ta" id="note-ta" placeholder="Write your personal notes for '${word}'…">${notes[word]||''}</textarea>
+    <button class="note-save" onclick="saveNote('${word}')">Save Note ✓</button>
+  </div>`;
+
+  html += `</div>`; // close animation div
+
+  el.innerHTML = html;
+  el.style.animation='none'; el.offsetHeight; el.style.animation='fadeUp .4s ease both';
+}
+
+/* ---- Fallback: Free Dictionary API render (when AI unavailable) ---- */
+function renderFallbackResults(arr){
+  const entry=arr[0], word=entry.word;
+  const phonetic=entry.phonetics?.find(p=>p.text)?.text||'';
+  const audioUrl=entry.phonetics?.find(p=>p.audio&&p.audio!=='')?.audio||'';
+  const isFav=favs.some(f=>f.word===word);
+  const allMeanings=arr.flatMap(e=>e.meanings||[]);
+  const diff=word.length<=5?'easy':word.length<=9?'medium':'hard';
+  const ety=ETY_MAP[word.toLowerCase()]||null;
+  const rhymes=getRhymes(word);
+  const todayStr=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  _lastEntry={word,pos:allMeanings[0]?.partOfSpeech||'',def:allMeanings[0]?.definitions[0]?.definition||''};
+
+  let html=`<div class="res-hero"><div><div class="res-word">${word}</div>${phonetic?`<div class="res-phonetic">${phonetic}</div>`:''}</div>
+    <div class="res-btns">
+      ${audioUrl?`<button class="rbtn audio" onclick="playAudio('${audioUrl}')" title="Pronunciation">🔊</button>`:''}
+      <button class="rbtn fav ${isFav?'on':''}" id="fav-toggle" onclick="toggleFav('${word}',this)">${isFav?'♥':'♡'}</button>
+      <button class="rbtn copy" onclick="copyDef()">📋</button>
+      <button class="rbtn share" onclick="shareWord('${word}')">🔗</button>
+      <button class="rbtn print" onclick="printCard('${word}')">🖨️</button>
+    </div></div>
+    <div class="word-meta"><span class="meta-chip chip-${diff}">${diff} Level</span>${ety?`<span class="meta-chip chip-ety">📖 Etymology</span>`:''}</div>
+    <div class="urdu-strip"><span class="urdu-lbl">اردو ترجمہ</span><div style="flex:1"><div class="urdu-txt" id="urdu-txt">…</div><div class="urdu-rom" id="urdu-rom"></div></div></div>
+    <div class="meanings">`;
+  allMeanings.forEach(m=>{
+    html+=`<div class="pos-block"><div class="pos-hdr"><span class="pos-tag">${m.partOfSpeech}</span><div class="pos-line"></div></div>`;
+    m.definitions.slice(0,4).forEach((d,i)=>{html+=`<div class="def-card"><div class="def-n">0${i+1}</div><div class="def-body"><div class="def-txt" style="font-size:${_fontSize}px">${d.definition}</div>${d.example?`<div class="def-ex">"${d.example}"</div>`:''}</div></div>`;});
+    const syns=m.synonyms?.slice(0,6)||[]; const ants=m.antonyms?.slice(0,4)||[];
+    if(syns.length||ants.length){html+=`<div class="tags-row">`;if(syns.length){html+=`<span class="tl">Synonyms</span>`;syns.forEach(s=>html+=`<span class="wtag" onclick="qs('${s}')">${s}</span>`);}if(ants.length){html+=`<span class="tl" style="margin-left:10px">Antonyms</span>`;ants.forEach(a=>html+=`<span class="wtag ant" onclick="qs('${a}')">${a}</span>`);}html+=`</div>`;}
+    html+=`</div>`;
+  });
+  html+=`</div>`;
+  if(rhymes.length){html+=`<div class="extra-card"><div class="extra-hdr">🎵 Rhymes</div><div class="rhyme-tags">${rhymes.map(r=>`<span class="rtag" onclick="qs('${r}')">${r}</span>`).join('')}</div></div>`;}
+  const cite=`"${word}" — RLKU Dictionary. Accessed ${todayStr}.`;
+  html+=`<div class="extra-card" style="margin-top:10px"><div class="extra-hdr">📝 Citation</div><div class="cite-body" id="cite-body">${cite}</div><button class="cite-copy" onclick="copyCite()">Copy Citation</button></div>`;
+  html+=`<div class="extra-card" style="margin-top:10px"><div class="extra-hdr">✏️ Notes</div><textarea class="note-ta" id="note-ta" placeholder="Notes for '${word}'…">${notes[word]||''}</textarea><button class="note-save" onclick="saveNote('${word}')">Save Note ✓</button></div>`;
+  const el=document.getElementById('results');
+  el.innerHTML=html; el.style.animation='none'; el.offsetHeight; el.style.animation='fadeUp .4s ease both';
+}
+
+/* ---- Spell Suggestions ---- */
+async function showSpellSuggestions(q, el){
+  try{
+    const sr=await fetch(`https://api.datamuse.com/words?sp=${encodeURIComponent(q)}&max=6`);
+    const suggestions=await sr.json();
+    const filtered=suggestions.filter(s=>s.word.toLowerCase()!==q.toLowerCase()).slice(0,5);
+    if(filtered.length){
+      const chips=filtered.map(s=>`<span onclick="document.getElementById('si').value='${s.word}';doSearch()" style="display:inline-block;background:var(--surface2);border:1px solid var(--border2);color:var(--blue2);padding:6px 16px;border-radius:20px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;margin:4px">${s.word}</span>`).join('');
+      el.innerHTML=`<div class="err" style="text-align:center"><div style="font-size:22px;margin-bottom:10px">🤔</div><div style="margin-bottom:14px">کوئی نتیجہ نہیں ملا "<em style="color:var(--gold)">${q}</em>"</div><div style="font-size:11px;color:var(--text2);margin-bottom:14px;font-family:'JetBrains Mono',monospace">کیا آپ کا مطلب یہ تھا؟</div><div>${chips}</div></div>`;
+    } else {
+      el.innerHTML=`<div class="err">⚠ No results for "<em>${q}</em>".</div>`;
+    }
+  }catch{ el.innerHTML=`<div class="err">⚠ No results for "<em>${q}</em>".</div>`; }
+}
+
+/* ======================== URDU TRANSLATION (Multi-API) ======================== */
+function getUrdu(word){
+  const w=word.toLowerCase().trim();
+  // 1. Local dictionary first (fastest, most accurate)
+  if(URDU_DICT[w]){
+    setUrdu(URDU_DICT[w],'');
+    return;
+  }
+  // 2. Try APIs
+  fetchUrduAPI(word);
+}
+
+async function fetchUrduAPI(word){
+  setUrdu('ترجمہ ہو رہا ہے…','');
+
+  // Try MyMemory API (free, no key needed, 10k/day)
+  try{
+    const r=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(word)}&langpair=en|ur`);
+    const d=await r.json();
+    const translated=d?.responseData?.translatedText||'';
+    const quality=parseInt(d?.responseData?.match||0);
+
+    if(translated && translated.toLowerCase()!==word.toLowerCase() && !translated.includes('INVALID') && quality>=30){
+      // Clean up the translation
+      const clean = translated.replace(/['"]/g,'').trim();
+      setUrdu(clean, getTransliteration(word));
+      return;
+    }
+  }catch{}
+
+  // Fallback: LibreTranslate (alternative free API)
+  try{
+    const r2=await fetch('https://libretranslate.de/translate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({q:word,source:'en',target:'ur',format:'text'})
+    });
+    const d2=await r2.json();
+    if(d2?.translatedText && d2.translatedText!==word){
+      setUrdu(d2.translatedText, getTransliteration(word));
+      return;
+    }
+  }catch{}
+
+  // Final fallback message
+  setUrdu(`"${word}" کا اردو ترجمہ دستیاب نہیں`, 'Translation not available');
+}
+
+function getTransliteration(word){
+  // Simple hint for common suffixes
+  const hints={tion:'شن',ness:'نیس',ment:'منٹ',ful:'فل',less:'لیس',ing:'نگ',er:'ر',est:'سٹ'};
+  for(const[k,v]of Object.entries(hints)){
+    if(word.toLowerCase().endsWith(k))return `(${word.slice(0,-k.length)}${v})`;
+  }
+  return '';
+}
+
+function setUrdu(txt,rom){
+  const el=document.getElementById('urdu-txt');
+  const el2=document.getElementById('urdu-rom');
+  if(el){el.textContent=txt;el.classList.remove('urdu-loading');}
+  if(el2){el2.textContent=rom;}
+}
+
+/* ======================== AUDIO ======================== */
+function playAudio(url){
+  if(_audio){_audio.pause();_audio=null;}
+  const a=new Audio(url.startsWith('//')?'https:'+url:url);
+  _audio=a;a.play().catch(()=>{});
+}
+
+/* ======================== RHYMES ======================== */
+function getRhymes(word){
+  const suffix=word.slice(-3).toLowerCase();
+  for(const[k,v]of Object.entries(RHYME_MAP)){
+    if(word.toLowerCase().endsWith(k.slice(-2)))return v;
+  }
+  return[];
+}
+
+/* ======================== COPY / SHARE / PRINT ======================== */
+function copyDef(){
+  const def=_lastEntry?.def||'';
+  navigator.clipboard?.writeText(`${_lastEntry?.word}: ${def}`).then(()=>toast('📋 Definition copied!')).catch(()=>toast('Copy failed.'));
+}
+function copyCite(){
+  const t=document.getElementById('cite-body')?.textContent||'';
+  navigator.clipboard?.writeText(t).then(()=>toast('📝 Citation copied!')).catch(()=>{});
+}
+function shareWord(word){
+  const url=`${location.href.split('?')[0]}?q=${encodeURIComponent(word)}`;
+  if(navigator.share){navigator.share({title:`${word} — RLKU Dictionary`,text:_lastEntry?.def||'',url});}
+  else{navigator.clipboard?.writeText(url).then(()=>toast('🔗 Link copied!'));}
+}
+function printCard(word){
+  const def=_lastEntry?.def||'';
+  const ph=document.querySelector('.res-phonetic')?.textContent||'';
+  const pw=window.open('','_blank','width=620,height=420');
+  pw.document.write(`<!DOCTYPE html><html><head><title>RLKU — ${word}</title><style>body{font-family:Georgia,serif;padding:48px;max-width:520px;margin:0 auto;background:#fff}.hdr{font-size:11px;letter-spacing:3px;color:#888;text-transform:uppercase;border-bottom:2px solid #3d7fff;padding-bottom:12px;margin-bottom:20px}.word{font-size:52px;font-weight:700;color:#040810;margin:8px 0;line-height:1}.ph{font-size:14px;color:#8ba4c0;margin-bottom:18px}.def{font-size:16px;line-height:1.7;color:#333}.foot{font-size:10px;color:#aaa;margin-top:32px;border-top:1px solid #eee;padding-top:10px}@media print{button{display:none}}</style></head><body><div class="hdr">RLKU Dictionary — Rashid Latif Khan University</div><div class="word">${word}</div><div class="ph">${ph}</div><div class="def">${def}</div><div class="foot">Printed from RLKU Dictionary &bull; ${new Date().toLocaleDateString()}</div><br><button onclick="window.print()">🖨️ Print</button></body></html>`);
+  pw.document.close();
+}
+
+/* ======================== NOTES ======================== */
+function saveNote(word){
+  notes[word]=document.getElementById('note-ta')?.value||'';
+  localStorage.setItem('rlku-notes',JSON.stringify(notes));
+  toast('✏️ Note saved!');
+}
+
+/* ======================== QUICK SEARCH ======================== */
+function qs(word){document.getElementById('si').value=word;doSearch();window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ======================== HISTORY ======================== */
+function addToHist(w){hist=hist.filter(x=>x!==w);hist.unshift(w);if(hist.length>12)hist.pop();localStorage.setItem('rlku-hist',JSON.stringify(hist));renderHist();}
+function renderHist(){
+  const row=document.getElementById('hist-row'),chips=document.getElementById('hist-chips');
+  if(!hist.length){row.style.display='none';return;}
+  row.style.display='flex';
+  chips.innerHTML=hist.slice(0,8).map(w=>`<span class="hchip" onclick="qs('${w}')">${w}</span>`).join('');
+}
+function clearHist(){hist=[];localStorage.setItem('rlku-hist','[]');renderHist();}
+
+/* ======================== FAVORITES ======================== */
+function toggleFav(word,btn){
+  const idx=favs.findIndex(f=>f.word===word);
+  if(idx>=0){favs.splice(idx,1);btn.classList.remove('on');btn.textContent='♡';}
+  else{favs.unshift(_lastEntry||{word,pos:'',def:''});btn.classList.add('on');btn.textContent='♥';}
+  localStorage.setItem('rlku-favs',JSON.stringify(favs));updateBadge();
+}
+function updateBadge(){const b=document.getElementById('fav-badge');if(favs.length>0){b.textContent=favs.length;b.style.display='inline';}else b.style.display='none';}
+function renderFavs(){
+  const el=document.getElementById('fav-content');
+  if(!favs.length){el.innerHTML=`<div class="empty"><span class="empty-icon">♡</span><p>No saved words yet.</p></div>`;return;}
+  el.innerHTML=`<div class="fav-grid">`+favs.map((f,i)=>`<div class="fav-card" onclick="qs('${f.word}');goTab('search')"><button class="fav-del" onclick="event.stopPropagation();delFav(${i})">✕</button><div class="fav-word">${f.word}</div><div class="fav-pos">${f.pos}</div><div class="fav-def">${f.def}</div></div>`).join('')+`</div>`;
+}
+function delFav(i){favs.splice(i,1);localStorage.setItem('rlku-favs',JSON.stringify(favs));updateBadge();renderFavs();const b=document.getElementById('fav-toggle');if(b){b.classList.remove('on');b.textContent='♡';}}
+
+/* ======================== GLOSSARY ======================== */
+function setDept(btn,dept){_dept=dept;document.querySelectorAll('.dept-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderDept();}
+function renderDept(){
+  document.getElementById('gloss-grid').innerHTML=(GLOSSARY[_dept]||[]).map(g=>`<div class="gloss-card" onclick="qs('${g.word}');goTab('search')"><div class="gloss-word">${g.word}</div><div class="gloss-field">${g.field}</div><div class="gloss-def">${g.def}</div></div>`).join('');
+}
+
+/* ======================== FLASHCARDS ======================== */
+async function initFlash(){
+  const words=hist.slice(0,10);
+  if(!words.length){document.getElementById('flash-content').innerHTML=`<div class="empty"><span class="empty-icon">🃏</span><p>Search words first,<br>then practice here!</p></div>`;return;}
+  document.getElementById('flash-content').innerHTML=`<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div>&nbsp;Loading cards…</div>`;
+  const cards=[];
+  for(const w of words){
+    try{
+      const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${w}`);
+      const d=await r.json();
+      if(Array.isArray(d)&&d[0]){
+        const m=d[0].meanings?.[0];
+        cards.push({word:w,pos:m?.partOfSpeech||'',def:(m?.definitions?.[0]?.definition||'').slice(0,100)});
+      }
+    }catch{}
+  }
+  if(!cards.length){document.getElementById('flash-content').innerHTML=`<div class="empty"><span class="empty-icon">🃏</span><p>Could not load cards.</p></div>`;return;}
+  _flashCards=cards;_flashIdx=0;_flashFlipped=false;
+  drawFlash();
+}
+function drawFlash(){
+  const c=_flashCards[_flashIdx];
+  const pct=Math.round((_flashIdx+1)/_flashCards.length*100);
+  document.getElementById('flash-content').innerHTML=`
+    <div class="fc-wrap">
+      <div class="fc-ctrl">
+        <button class="btn-sec" onclick="initFlash()">↺ Restart</button>
+        <span class="fc-cnt">${_flashIdx+1} / ${_flashCards.length}</span>
+      </div>
+      <div class="fc-prog"><div class="fc-prog-bar"><div class="fc-prog-fill" style="width:${pct}%"></div></div></div>
+      <div class="flashcard" onclick="flipCard()">
+        <div class="fc-inner" id="fc-inner">
+          <div class="fc-face"><div class="fc-word">${c.word}</div><div class="fc-pos2">${c.pos}</div><div class="fc-hint">Click to reveal</div></div>
+          <div class="fc-face fc-back-face"><div class="fc-def2">${c.def}</div></div>
+        </div>
+      </div>
+      <div class="fc-nav">
+        <button class="fc-nav-btn" onclick="prevFlash()" ${_flashIdx===0?'disabled':''}>← Prev</button>
+        <button class="fc-nav-btn" onclick="nextFlash()" ${_flashIdx===_flashCards.length-1?'disabled':''}>Next →</button>
+      </div>
+    </div>`;
+}
+function flipCard(){_flashFlipped=!_flashFlipped;document.getElementById('fc-inner')?.classList.toggle('flipped',_flashFlipped);}
+function nextFlash(){if(_flashIdx<_flashCards.length-1){_flashIdx++;_flashFlipped=false;drawFlash();}}
+function prevFlash(){if(_flashIdx>0){_flashIdx--;_flashFlipped=false;drawFlash();}}
+
+/* ======================== QUIZ ======================== */
+function startQuiz(){
+  const pool=[...new Set([...hist,...favs.map(f=>f.word)])];
+  if(pool.length<4){toast('Search at least 4 words first!');return;}
+  _quizWords=pool.slice(0,10);_quizIdx=0;_quizScore=0;
+  runQuiz();
+}
+async function runQuiz(){
+  if(_quizIdx>=_quizWords.length){showResult();return;}
+  const el=document.getElementById('quiz-content');
+  el.innerHTML=`<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div>&nbsp;Loading…</div>`;
+  const word=_quizWords[_quizIdx];
+  try{
+    const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    const d=await r.json();
+    if(!Array.isArray(d)||!d[0]){_quizIdx++;runQuiz();return;}
+    const correct=d[0].meanings?.[0]?.definitions?.[0]?.definition||'';
+    const others=_quizWords.filter(w=>w!==word).slice(0,3);
+    const defs=[correct];
+    for(const ow of others){
+      try{const rw=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${ow}`);const dw=await rw.json();if(Array.isArray(dw)&&dw[0])defs.push(dw[0].meanings?.[0]?.definitions?.[0]?.definition||ow);}
+      catch{defs.push(`A formal term related to ${ow}.`);}
+    }
+    while(defs.length<4)defs.push(`An archaic usage referring to ${word}.`);
+    const opts=[...defs].sort(()=>Math.random()-.5);
+    const pct=Math.round(_quizIdx/_quizWords.length*100);
+    el.innerHTML=`<div class="quiz-area">
+      <div class="quiz-prog-row"><span class="quiz-num">Q${_quizIdx+1}/${_quizWords.length}</span><div class="quiz-bar"><div class="quiz-fill" style="width:${pct}%"></div></div><span class="quiz-score">Score: ${_quizScore}</span></div>
+      <div class="quiz-q-label">What is the definition of:</div>
+      <div class="quiz-word-big">${word}</div>
+      <div class="quiz-opts">${opts.map(o=>`<button class="qopt" onclick="answerQ(this,'${correct.replace(/'/g,"\\'").slice(0,40)}','${o.replace(/'/g,"\\'").slice(0,40)}')">${o.slice(0,90)}${o.length>90?'…':''}</button>`).join('')}</div>
+    </div>`;
+  }catch{_quizIdx++;runQuiz();}
+}
+function answerQ(btn,correct,chosen){
+  document.querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  const ok=chosen.startsWith(correct.slice(0,30))||correct.startsWith(chosen.slice(0,30));
+  btn.classList.add(ok?'correct':'wrong');
+  if(ok)_quizScore++;
+  if(!ok)document.querySelectorAll('.qopt').forEach(b=>{if(b.textContent.trim().startsWith(correct.slice(0,20)))b.classList.add('correct');});
+  setTimeout(()=>{_quizIdx++;runQuiz();},1300);
+}
+function showResult(){
+  const pct=Math.round(_quizScore/_quizWords.length*100);
+  const msg=pct>=80?'🏆 Outstanding!':pct>=60?'👍 Well done!':pct>=40?'📚 Keep going!':'💪 More practice!';
+  document.getElementById('quiz-content').innerHTML=`<div class="quiz-result"><h2>${msg}</h2><div class="quiz-score-big">${_quizScore}/${_quizWords.length}</div><p>${pct}% correct — keep expanding your vocabulary!</p><button class="btn-gold" onclick="startQuiz()">Try Again →</button></div>`;
+}
+
+/* ======================== TOAST ======================== */
+function toast(msg){
+  document.querySelectorAll('.toast').forEach(t=>t.remove());
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),2800);
+}
+
+/* ======================== goTab UPDATE ======================== */
+const _origGoTab = window.goTab;
+function goTab(t){
+  const allTabs=['search','flash','quiz','dept','fav','medical'];
+  allTabs.forEach(id=>{
+    const el=document.getElementById(id+'-tab');
+    if(el) el.style.display=(t===id)?'block':'none';
+    const b=document.getElementById('nb-'+id);
+    if(b) b.classList.toggle('active',t===id);
+  });
+  if(t==='fav')    renderFavs();
+  if(t==='flash')  initFlash();
+  if(t==='medical'){medSub('dict');medBrowse(document.querySelector('.dept-btn'),'cardiology');renderAbbr();renderRoots();renderCases();}
+}
+
+/* ======================== MEDICAL SUB-NAV ======================== */
+function medSub(panel){
+  ['dict','abbr','drug','dose','anatomy','roots','cases'].forEach(p=>{
+    const el=document.getElementById('med-'+p);
+    if(el) el.style.display=p===panel?'block':'none';
+    const b=document.getElementById('msnb-'+p);
+    if(b) b.classList.toggle('active',p===panel);
+  });
+  if(panel==='anatomy') loadAnatomy(document.querySelector('.dept-btn'),'cardiovascular');
+  if(panel==='abbr') renderAbbr();
+  if(panel==='roots') renderRoots();
+  if(panel==='cases') renderCases();
+  if(panel==='dict') medBrowse(document.querySelector('[onclick*="medBrowse"][onclick*="cardiology"]'),'cardiology');
+}
+
+/* ======================== MEDICAL DICTIONARY ======================== */
+const MED_TERMS = {
+  cardiology:[
+    {word:'Myocardial Infarction',abbr:'MI',def:'Death of heart muscle due to blocked coronary artery blood supply.',urdu:'دل کا دورہ (Dil ka dora)',latin:'Myo (muscle) + Cardium (heart)'},
+    {word:'Arrhythmia',abbr:'',def:'Irregular heartbeat — too fast, too slow, or erratic electrical signals.',urdu:'دل کی بے ترتیبی (Dil ki be-tartibi)',latin:'Greek: a- (without) + rhythmos (rhythm)'},
+    {word:'Atherosclerosis',abbr:'',def:'Hardening and narrowing of arteries due to plaque buildup on artery walls.',urdu:'شریانوں کا سخت ہونا',latin:'Greek: athero (paste) + skleros (hard)'},
+    {word:'Tachycardia',abbr:'',def:'Heart rate exceeding 100 beats per minute at rest.',urdu:'دل کی تیز دھڑکن (Tez Dhadkan)',latin:'Greek: tachys (fast) + kardia (heart)'},
+    {word:'Bradycardia',abbr:'',def:'Heart rate below 60 beats per minute.',urdu:'دل کی سست دھڑکن',latin:'Greek: bradys (slow) + kardia (heart)'},
+    {word:'Hypertension',abbr:'HTN',def:'Persistently elevated blood pressure ≥130/80 mmHg.',urdu:'ہائی بلڈ پریشر (High blood pressure)',latin:'Latin: hyper (over) + tensio (stretching)'},
+    {word:'Angina Pectoris',abbr:'',def:'Chest pain from reduced blood flow to the heart, often triggered by exertion.',urdu:'سینے کا درد (Seene ka dard)',latin:'Latin: angina (strangling) + pectoris (of chest)'},
+    {word:'Heart Failure',abbr:'HF/CCF',def:'Heart cannot pump sufficient blood to meet the body\'s demands.',urdu:'دل کی ناکامی',latin:''},
+  ],
+  neurology:[
+    {word:'Cerebrovascular Accident',abbr:'CVA / Stroke',def:'Sudden loss of brain function due to interrupted blood supply.',urdu:'فالج (Falij)',latin:'Latin: cerebrum (brain) + vascular (vessel)'},
+    {word:'Epilepsy',abbr:'',def:'Neurological disorder causing recurrent unprovoked seizures.',urdu:'مرگی (Mirgi)',latin:'Greek: epilambanein (to seize)'},
+    {word:'Meningitis',abbr:'',def:'Inflammation of the protective membranes covering the brain and spinal cord.',urdu:'دماغ کی جھلی کی سوزش',latin:'Greek: meninx (membrane) + -itis (inflammation)'},
+    {word:'Parkinsonism',abbr:'PD',def:'Progressive neurological disorder causing tremor, rigidity, and bradykinesia.',urdu:'لرزہ کی بیماری',latin:'Named after James Parkinson (1817)'},
+    {word:'Neuropathy',abbr:'',def:'Damage or dysfunction of peripheral nerves causing weakness, numbness or pain.',urdu:'اعصابی بیماری (Asabi bimari)',latin:'Greek: neuron (nerve) + pathos (disease)'},
+  ],
+  pharmacology:[
+    {word:'Pharmacokinetics',abbr:'PK',def:'Study of how drugs are absorbed, distributed, metabolized and excreted (ADME).',urdu:'دوائی کا جسم میں سفر',latin:'Greek: pharmakon (drug) + kinetikos (moving)'},
+    {word:'Bioavailability',abbr:'F',def:'Fraction of administered drug that reaches systemic circulation unchanged.',urdu:'دوائی کی دستیابی',latin:'Bio (life) + Latin: availabilitas'},
+    {word:'Half-life',abbr:'t½',def:'Time for drug plasma concentration to reduce by 50%.',urdu:'نصف حیات',latin:''},
+    {word:'Contraindication',abbr:'CI',def:'Condition that makes a particular drug or treatment inadvisable.',urdu:'منع استعمال (Mana istemaal)',latin:'Latin: contra (against) + indicare (to indicate)'},
+    {word:'Adverse Drug Reaction',abbr:'ADR',def:'Harmful, unintended response to a drug occurring at normal doses.',urdu:'دوائی کا نقصاندہ اثر',latin:''},
+    {word:'Drug Synergism',abbr:'',def:'Combined drug effect greater than the sum of individual effects.',urdu:'دوائیوں کا مشترکہ اثر',latin:'Greek: synergos (working together)'},
+  ],
+  surgery:[
+    {word:'Laparotomy',abbr:'',def:'Surgical incision into the abdominal cavity for examination or surgery.',urdu:'پیٹ کا آپریشن',latin:'Greek: lapara (flank) + tome (cutting)'},
+    {word:'Anastomosis',abbr:'',def:'Surgical connection between two hollow structures (vessels, bowel).',urdu:'آپس میں جوڑنا',latin:'Greek: anastomoun (to furnish with a mouth)'},
+    {word:'Debridement',abbr:'',def:'Removal of dead, damaged or infected tissue to promote healing.',urdu:'زخم کی صفائی',latin:'French: débrider (to unbridle)'},
+    {word:'Haemostasis',abbr:'',def:'Process that stops bleeding through clot formation.',urdu:'خون بند کرنا',latin:'Greek: haima (blood) + stasis (standing)'},
+    {word:'Abscess',abbr:'',def:'Localized collection of pus in a cavity formed by tissue disintegration.',urdu:'پھوڑا (Phora)',latin:'Latin: abscessus (a going away)'},
+  ],
+  pathology:[
+    {word:'Neoplasm',abbr:'',def:'Abnormal and uncontrolled cell growth — can be benign or malignant.',urdu:'رسولی (Rasuli)',latin:'Greek: neo (new) + plasma (growth)'},
+    {word:'Metastasis',abbr:'',def:'Spread of cancer cells from the original site to distant organs.',urdu:'سرطان کا پھیلاؤ',latin:'Greek: meta (beyond) + stasis (standing)'},
+    {word:'Fibrosis',abbr:'',def:'Formation of excess fibrous connective tissue in an organ or tissue.',urdu:'ریشہ دار سوزش',latin:'Latin: fibra (fibre) + -osis (condition)'},
+    {word:'Infarction',abbr:'',def:'Tissue death due to local ischemia resulting from obstructed blood supply.',urdu:'بافتوں کی موت',latin:'Latin: infarcire (to stuff in)'},
+    {word:'Oedema',abbr:'',def:'Abnormal accumulation of fluid in interstitial spaces causing swelling.',urdu:'سوجن (Sujan)',latin:'Greek: oidema (swelling)'},
+  ],
+  anatomy:[
+    {word:'Peritoneum',abbr:'',def:'Serous membrane lining the abdominal cavity and covering abdominal organs.',urdu:'پیٹ کی جھلی',latin:'Greek: peritonaion (stretched around)'},
+    {word:'Diaphragm',abbr:'',def:'Dome-shaped muscle separating thoracic and abdominal cavities; primary breathing muscle.',urdu:'حجاب حاجز',latin:'Greek: diaphragma (partition)'},
+    {word:'Pericardium',abbr:'',def:'Double-walled sac enclosing the heart and roots of great vessels.',urdu:'دل کی جھلی',latin:'Greek: peri (around) + kardia (heart)'},
+    {word:'Pleura',abbr:'',def:'Two-layered membrane enclosing each lung.',urdu:'پھیپھڑوں کی جھلی',latin:'Greek: pleura (side, rib)'},
+    {word:'Mediastinum',abbr:'',def:'Central compartment of thoracic cavity containing heart, great vessels, and trachea.',urdu:'سینے کا درمیانی حصہ',latin:'Latin: mediastinus (middle)'},
+  ]
+};
+
+const ANATOMY_DATA = {
+  cardiovascular:[
+    {word:'Heart',def:'Four-chambered muscular organ pumping blood throughout the body.',detail:'Weight: ~300g. Located in mediastinum, slightly left of midline.',urdu:'دل (Dil)'},
+    {word:'Aorta',def:'Largest artery in the body, arising from left ventricle.',detail:'Diameter ~2.5cm. Three parts: ascending, arch, descending.',urdu:'شہ رگ (Shah rag)'},
+    {word:'Coronary Arteries',def:'Arteries supplying oxygenated blood to the heart muscle.',detail:'Right (RCA) and Left (LCA) — LCA divides into LAD and LCx.',urdu:'دل کی شریانیں'},
+    {word:'Mitral Valve',def:'Bicuspid valve between left atrium and left ventricle.',detail:'Most commonly affected valve in rheumatic heart disease.',urdu:'دو پٹی والو'},
+    {word:'SA Node',def:'Sinoatrial node — natural pacemaker of the heart.',detail:'Located in right atrial wall. Fires 60–100 bpm.',urdu:'دل کا قدرتی پیس میکر'},
+  ],
+  respiratory:[
+    {word:'Trachea',def:'Windpipe — cartilaginous tube connecting larynx to bronchi.',detail:'Length ~10–12cm. Bifurcates at carina (T4/T5 level).',urdu:'سانس کی نلی (Sans ki nali)'},
+    {word:'Alveoli',def:'Tiny air sacs in the lungs where gas exchange occurs.',detail:'~300 million alveoli per lung. Surface area ~70 m².',urdu:'ہوائی تھیلیاں'},
+    {word:'Diaphragm',def:'Primary muscle of respiration — contracts to increase thoracic volume.',detail:'Innervated by phrenic nerve (C3,4,5).',urdu:'حجاب حاجز'},
+    {word:'Pleural Cavity',def:'Space between visceral and parietal pleura, normally contains ~10–20mL fluid.',detail:'Negative pressure keeps lungs expanded.',urdu:'پھیپھڑوں کی جھلی کی جگہ'},
+  ],
+  nervous:[
+    {word:'Cerebrum',def:'Largest part of brain — conscious thought, movement, sensation, language.',detail:'Divided into 4 lobes: frontal, parietal, temporal, occipital.',urdu:'دماغ کا بڑا حصہ'},
+    {word:'Cerebellum',def:'Coordinates movement, balance and fine motor control.',detail:'Located posterior to brainstem. Contains Purkinje cells.',urdu:'چھوٹا دماغ (Chhota dimagh)'},
+    {word:'Brainstem',def:'Controls vital functions: breathing, heart rate, BP, consciousness.',detail:'Midbrain + Pons + Medulla oblongata.',urdu:'دماغی ڈنڈی'},
+    {word:'Spinal Cord',def:'Transmits signals between brain and peripheral nervous system.',detail:'Extends from foramen magnum to L1/L2.',urdu:'ریڑھ کی ہڈی کی نلی'},
+    {word:'Vagus Nerve',def:'Cranial nerve X — longest cranial nerve, supplies heart, lungs, GI tract.',detail:'Parasympathetic innervation. Slows heart rate.',urdu:'واگس اعصاب'},
+  ],
+  digestive:[
+    {word:'Oesophagus',def:'Muscular tube transporting food from pharynx to stomach.',detail:'Length ~25cm. Three constrictions: at cricopharyngeus, aortic arch, diaphragm.',urdu:'غذا کی نلی (Ghiza ki nali)'},
+    {word:'Liver',def:'Largest internal organ — metabolism, detoxification, bile production.',detail:'Weight ~1.5kg. Receives dual blood supply: hepatic artery + portal vein.',urdu:'جگر (Jigar)'},
+    {word:'Pancreas',def:'Exocrine (digestive enzymes) and endocrine (insulin, glucagon) gland.',detail:'Islets of Langerhans: α (glucagon), β (insulin), δ (somatostatin).',urdu:'لبلبہ (Lablaba)'},
+    {word:'Colon',def:'Large intestine — water/electrolyte absorption, stool formation.',detail:'~1.5m long. Parts: ascending, transverse, descending, sigmoid.',urdu:'بڑی آنت (Bari aant)'},
+  ],
+  musculoskeletal:[
+    {word:'Femur',def:'Thigh bone — longest and strongest bone in the human body.',detail:'Articulates with acetabulum (hip) and tibia/patella (knee).',urdu:'ران کی ہڈی (Ran ki haddi)'},
+    {word:'Rotator Cuff',def:'Group of 4 muscles stabilising the shoulder joint (SITS).',detail:'Supraspinatus, Infraspinatus, Teres minor, Subscapularis.',urdu:'کندھے کے پٹھے'},
+    {word:'Sarcomere',def:'Basic contractile unit of skeletal muscle between two Z-lines.',detail:'Contains actin (thin) and myosin (thick) filaments.',urdu:'پٹھوں کا بنیادی حصہ'},
+    {word:'Synovial Joint',def:'Freely movable joint with synovial membrane and fluid.',detail:'Types: hinge, ball-socket, pivot, condyloid, saddle, plane.',urdu:'جوڑ (Jor)'},
+  ],
+  endocrine:[
+    {word:'Hypothalamus',def:'Master regulator — controls pituitary gland and autonomic nervous system.',detail:'Links nervous and endocrine systems. Produces releasing hormones.',urdu:'ہائپوتھیلامس'},
+    {word:'Pituitary Gland',def:'Master gland — secretes hormones controlling other endocrine glands.',detail:'Anterior: GH, TSH, ACTH, FSH, LH, Prolactin. Posterior: ADH, Oxytocin.',urdu:'دماغ کا غدود'},
+    {word:'Thyroid Gland',def:'Butterfly-shaped gland producing T3, T4 (metabolism) and calcitonin.',detail:'Located anterior neck, C5–T1. Weighs ~20–30g.',urdu:'تھائرائیڈ غدود'},
+    {word:'Adrenal Glands',def:'Sit atop kidneys — cortex (steroids) and medulla (adrenaline).',detail:'Cortex: Glucocorticoids, Mineralocorticoids, Androgens.',urdu:'گردوں کے اوپر کے غدود'},
+    {word:'Insulin',def:'Pancreatic β-cell hormone — lowers blood glucose by promoting uptake.',detail:'Deficiency/resistance causes diabetes mellitus.',urdu:'انسولین'},
+  ]
+};
+
+async function medDictSearch(v, force){
+  if(!force && v.length < 2) return;
+  const q = v.trim();
+  if(!q) return;
+  const el = document.getElementById('med-dict-result');
+  el.innerHTML=`<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div>&nbsp;AI searching medical term…</div>`;
+  try {
+    const d = await fetchAIDefinition(q);
+    const isMedical = d.field && d.field !== 'General';
+    el.innerHTML=`
+    <div class="drug-result-card" style="border-left:3px solid var(--teal)">
+      <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700">${d.word||q}</span>
+        ${d.medicalDetails?.abbreviation?`<span class="interact-badge badge-minor">${d.medicalDetails.abbreviation}</span>`:''}
+        ${d.field?`<span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px">${d.field}</span>`:''}
+      </div>
+      ${d.phonetic?`<div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);margin-bottom:8px">${d.phonetic}</div>`:''}
+      ${(d.definitions||[]).map((def,i)=>`<div style="margin-bottom:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:2px">DEF ${i+1}</span><div style="font-size:14px;color:var(--text);line-height:1.6;margin-top:3px">${def.def||def}</div>${def.example?`<div style="font-size:12px;color:var(--text3);font-style:italic;margin-top:3px">"${def.example}"</div>`:''}</div>`).join('')}
+      ${d.urdu?`<div style="font-size:15px;color:var(--teal);margin:10px 0;padding:10px;background:rgba(46,196,182,.07);border-radius:8px">🇵🇰 <strong>اردو:</strong> ${d.urdu} <span style="font-size:12px;color:var(--text3)">${d.urduRomanized||''}</span></div>`:''}
+      ${d.medicalDetails?.clinicalNote?`<div style="padding:10px;background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.2);border-radius:8px;margin-bottom:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px">CLINICAL NOTE</span><div style="font-size:13px;color:var(--text);line-height:1.6;margin-top:4px">${d.medicalDetails.clinicalNote}</div></div>`:''}
+      ${d.medicalDetails?.latinGreekRoot?`<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:8px">📖 Root: ${d.medicalDetails.latinGreekRoot}</div>`:''}
+      ${d.medicalDetails?.relatedConditions?.length?`<div style="margin-top:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3)">RELATED:</span><br>${d.medicalDetails.relatedConditions.map(c=>`<span class="wtag" style="cursor:pointer;border-color:rgba(46,196,182,.3);color:var(--teal)" onclick="document.getElementById('med-si').value='${c}';medDictSearch('${c}',true)">${c}</span>`).join('')}</div>`:''}
+      ${d.etymology?`<div style="font-size:12px;color:var(--text3);margin-top:8px;font-style:italic">📖 ${d.etymology}</div>`:''}
+      <button class="btn-gold" style="margin-top:14px;font-size:11px" onclick="document.getElementById('si').value='${d.word||q}';goTab('search');doSearch()">Full Search →</button>
+    </div>`;
+  } catch(err) {
+    // Fallback to local db
+    const allTerms = Object.values(MED_TERMS).flat();
+    const results = allTerms.filter(t=>t.word.toLowerCase().includes(q.toLowerCase())||t.def.toLowerCase().includes(q.toLowerCase())||(t.abbr&&t.abbr.toLowerCase().includes(q.toLowerCase()))).slice(0,3);
+    if(results.length){
+      el.innerHTML = results.map(t=>`<div class="drug-result-card" style="margin-bottom:10px"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700">${t.word}${t.abbr?` <span class="interact-badge badge-minor">${t.abbr}</span>`:''}</div><div style="font-size:13px;color:var(--text);margin:6px 0">${t.def}</div>${t.urdu?`<div style="color:var(--teal);font-size:13px">🇵🇰 ${t.urdu}</div>`:''}${t.latin?`<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3)">📖 ${t.latin}</div>`:''}</div>`).join('');
+    } else {
+      el.innerHTML=`<div class="err">No results for "<em>${q}</em>". Check internet connection.</div>`;
+    }
+  }
+}
+
+function medBrowse(btn, category){
+  if(btn){document.querySelectorAll('[onclick*="medBrowse"]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  const terms = MED_TERMS[category]||[];
+  document.getElementById('med-browse-grid').innerHTML = terms.map(t=>`
+    <div class="gloss-card" onclick="medDictSearch('${t.word}',true);document.getElementById('med-si').value='${t.word}'">
+      <div class="gloss-word">${t.word}</div>
+      ${t.abbr?`<div class="gloss-field">${t.abbr}</div>`:''}
+      <div class="gloss-def">${t.def.slice(0,80)}…</div>
+    </div>`).join('');
+}
+
+/* ======================== ABBREVIATIONS ======================== */
+const MED_ABBR = [
+  {s:'ABG',f:'Arterial Blood Gas',n:'Measures O₂, CO₂, pH in arterial blood'},
+  {s:'ACLS',f:'Advanced Cardiac Life Support',n:'Emergency cardiac care protocol'},
+  {s:'ADL',f:'Activities of Daily Living',n:'Basic self-care tasks'},
+  {s:'AED',f:'Automated External Defibrillator',n:'Device for cardiac arrest'},
+  {s:'AF',f:'Atrial Fibrillation',n:'Irregular fast heart rhythm'},
+  {s:'AIDS',f:'Acquired Immunodeficiency Syndrome',n:'Advanced HIV infection'},
+  {s:'AKI',f:'Acute Kidney Injury',n:'Sudden loss of kidney function'},
+  {s:'AMBU',f:'Artificial Manual Breathing Unit',n:'Bag-valve-mask for ventilation'},
+  {s:'AV',f:'Atrioventricular',n:'Between atria and ventricles'},
+  {s:'BD',f:'Bis in Die (Twice Daily)',n:'Drug dosing frequency'},
+  {s:'BMI',f:'Body Mass Index',n:'Weight(kg)/Height²(m) — obesity screening'},
+  {s:'BP',f:'Blood Pressure',n:'Normal: <120/80 mmHg'},
+  {s:'BPM',f:'Beats Per Minute',n:'Heart rate measurement'},
+  {s:'Ca²⁺',f:'Calcium',n:'Essential electrolyte'},
+  {s:'CABG',f:'Coronary Artery Bypass Graft',n:'Open heart surgery for blocked arteries'},
+  {s:'CBC',f:'Complete Blood Count',n:'FBC — full haematology panel'},
+  {s:'CCU',f:'Cardiac Care Unit',n:'Intensive monitoring for heart patients'},
+  {s:'CHF',f:'Congestive Heart Failure',n:'Heart unable to pump effectively'},
+  {s:'CNS',f:'Central Nervous System',n:'Brain and spinal cord'},
+  {s:'COPD',f:'Chronic Obstructive Pulmonary Disease',n:'Progressive lung disease (emphysema/chronic bronchitis)'},
+  {s:'CPR',f:'Cardiopulmonary Resuscitation',n:'Emergency life support technique'},
+  {s:'CRP',f:'C-Reactive Protein',n:'Inflammation marker in blood'},
+  {s:'CT',f:'Computed Tomography',n:'Cross-sectional X-ray imaging'},
+  {s:'CVP',f:'Central Venous Pressure',n:'Blood pressure in right atrium'},
+  {s:'DM',f:'Diabetes Mellitus',n:'Impaired insulin function'},
+  {s:'DNR',f:'Do Not Resuscitate',n:'Medical order to withhold CPR'},
+  {s:'DVT',f:'Deep Vein Thrombosis',n:'Blood clot in deep vein, usually legs'},
+  {s:'ECG/EKG',f:'Electrocardiogram',n:'Records heart electrical activity'},
+  {s:'EEG',f:'Electroencephalogram',n:'Records brain electrical activity'},
+  {s:'ESR',f:'Erythrocyte Sedimentation Rate',n:'Inflammation screening test'},
+  {s:'FBC',f:'Full Blood Count',n:'Complete haematology panel'},
+  {s:'GCS',f:'Glasgow Coma Scale',n:'Consciousness level: Eye + Verbal + Motor (max 15)'},
+  {s:'GFR',f:'Glomerular Filtration Rate',n:'Kidney filtration efficiency'},
+  {s:'GI',f:'Gastrointestinal',n:'Relating to stomach and intestines'},
+  {s:'GTN',f:'Glyceryl Trinitrate',n:'Vasodilator for angina relief'},
+  {s:'HbA1c',f:'Glycated Haemoglobin',n:'3-month average blood sugar — diabetes monitoring'},
+  {s:'HDL',f:'High-Density Lipoprotein',n:'"Good" cholesterol'},
+  {s:'HIV',f:'Human Immunodeficiency Virus',n:'Virus attacking immune system'},
+  {s:'HR',f:'Heart Rate',n:'Beats per minute'},
+  {s:'HTN',f:'Hypertension',n:'High blood pressure ≥130/80'},
+  {s:'ICU',f:'Intensive Care Unit',n:'Critical care ward'},
+  {s:'IM',f:'Intramuscular',n:'Injection into muscle'},
+  {s:'INR',f:'International Normalised Ratio',n:'Blood clotting speed — warfarin monitoring'},
+  {s:'IV',f:'Intravenous',n:'Into the vein'},
+  {s:'IVF',f:'Intravenous Fluids',n:'Fluid therapy via IV route'},
+  {s:'K⁺',f:'Potassium',n:'Key electrolyte — normal 3.5–5 mmol/L'},
+  {s:'LDH',f:'Lactate Dehydrogenase',n:'Tissue damage marker'},
+  {s:'LDL',f:'Low-Density Lipoprotein',n:'"Bad" cholesterol'},
+  {s:'LFT',f:'Liver Function Tests',n:'ALT, AST, ALP, Bilirubin, Albumin'},
+  {s:'LOC',f:'Loss of Consciousness',n:'Brief or prolonged unconsciousness'},
+  {s:'LP',f:'Lumbar Puncture',n:'CSF sampling from spinal canal'},
+  {s:'MI',f:'Myocardial Infarction',n:'Heart attack — coronary artery blockage'},
+  {s:'MRI',f:'Magnetic Resonance Imaging',n:'Soft tissue imaging using magnetic fields'},
+  {s:'MS',f:'Multiple Sclerosis',n:'Demyelinating autoimmune CNS disease'},
+  {s:'Na⁺',f:'Sodium',n:'Main extracellular electrolyte — normal 135–145 mmol/L'},
+  {s:'NBM',f:'Nil By Mouth',n:'No oral intake — pre-operative or bowel rest'},
+  {s:'NGT',f:'Nasogastric Tube',n:'Tube from nose to stomach for feeding/drainage'},
+  {s:'NSAID',f:'Non-Steroidal Anti-Inflammatory Drug',n:'e.g. Ibuprofen, Diclofenac — analgesic/anti-inflammatory'},
+  {s:'OD',f:'Omni Die (Once Daily)',n:'Drug dosing frequency'},
+  {s:'PCI',f:'Percutaneous Coronary Intervention',n:'Angioplasty/stenting for blocked coronary arteries'},
+  {s:'PCR',f:'Polymerase Chain Reaction',n:'DNA amplification — pathogen detection'},
+  {s:'PE',f:'Pulmonary Embolism',n:'Blood clot in pulmonary arteries'},
+  {s:'PO',f:'Per Os (By Mouth / Oral)',n:'Oral drug administration route'},
+  {s:'PR',f:'Per Rectum',n:'Rectal administration route'},
+  {s:'PRN',f:'Pro Re Nata (As Required)',n:'Drug given when needed, not scheduled'},
+  {s:'PT',f:'Prothrombin Time',n:'Clotting time test'},
+  {s:'QDS',f:'Quater Die Sumendum (4× Daily)',n:'Drug dosing frequency'},
+  {s:'RBC',f:'Red Blood Cell',n:'Erythrocyte — carries oxygen via haemoglobin'},
+  {s:'RR',f:'Respiratory Rate',n:'Breaths per minute. Normal: 12–20/min'},
+  {s:'SC',f:'Subcutaneous',n:'Under the skin injection'},
+  {s:'SL',f:'Sublingual',n:'Under the tongue — fast absorption'},
+  {s:'SOB',f:'Shortness Of Breath',n:'Dyspnoea'},
+  {s:'SpO₂',f:'Peripheral Oxygen Saturation',n:'Blood oxygen level by pulse oximetry. Normal >95%'},
+  {s:'STAT',f:'Statim (Immediately)',n:'Give dose right now'},
+  {s:'TDS',f:'Ter Die Sumendum (3× Daily)',n:'Drug dosing frequency'},
+  {s:'TIA',f:'Transient Ischaemic Attack',n:'"Mini-stroke" — temporary neurological deficit'},
+  {s:'TPR',f:'Temperature, Pulse, Respiration',n:'Basic vital signs'},
+  {s:'U&E',f:'Urea & Electrolytes',n:'Renal function panel — Na, K, Cl, HCO₃, Urea, Creatinine'},
+  {s:'UFH',f:'Unfractionated Heparin',n:'IV anticoagulant'},
+  {s:'UTI',f:'Urinary Tract Infection',n:'Bacterial infection of urinary system'},
+  {s:'VF',f:'Ventricular Fibrillation',n:'Life-threatening chaotic heart rhythm — needs defibrillation'},
+  {s:'VT',f:'Ventricular Tachycardia',n:'Fast rhythm from ventricles — may be life-threatening'},
+  {s:'WBC',f:'White Blood Cell',n:'Leucocyte — immune defence'},
+  {s:'WCC',f:'White Cell Count',n:'Number of white blood cells in blood'},
+];
+
+let _abbrFull = [...MED_ABBR];
+function renderAbbr(list){
+  const data = list||MED_ABBR;
+  document.getElementById('abbr-grid').innerHTML = data.map(a=>`
+    <div class="abbr-card">
+      <div class="abbr-short">${a.s}</div>
+      <div class="abbr-full">${a.f}</div>
+      <div class="abbr-note">${a.n}</div>
+    </div>`).join('');
+}
+function filterAbbr(v){
+  const q=v.toLowerCase();
+  const filtered=MED_ABBR.filter(a=>a.s.toLowerCase().includes(q)||a.f.toLowerCase().includes(q)||a.n.toLowerCase().includes(q));
+  renderAbbr(filtered);
+}
+
+/* ======================== DRUG INTERACTIONS ======================== */
+const DRUG_DB = [
+  {d1:'aspirin',d2:'warfarin',level:'severe',effect:'Increased bleeding risk — both inhibit clotting via different mechanisms.',action:'Avoid combination. If necessary, use lowest aspirin dose with close INR monitoring.'},
+  {d1:'aspirin',d2:'ibuprofen',level:'moderate',effect:'Ibuprofen may reduce aspirin\'s antiplatelet effect.',action:'Take aspirin 30 min before ibuprofen. Consider alternative analgesic.'},
+  {d1:'metformin',d2:'alcohol',level:'severe',effect:'Risk of lactic acidosis — a rare but life-threatening complication.',action:'Advise patient to avoid heavy alcohol use while on metformin.'},
+  {d1:'metformin',d2:'contrast dye',level:'severe',effect:'Contrast nephrotoxicity can cause metformin-induced lactic acidosis.',action:'Hold metformin 48h before and after contrast procedures. Check renal function.'},
+  {d1:'simvastatin',d2:'amlodipine',level:'moderate',effect:'Amlodipine increases simvastatin levels — risk of myopathy/rhabdomyolysis.',action:'Limit simvastatin to 20mg/day when combined with amlodipine.'},
+  {d1:'warfarin',d2:'amoxicillin',level:'moderate',effect:'Antibiotics alter gut flora, reducing vitamin K synthesis and increasing INR.',action:'Monitor INR closely during and after antibiotic course. Adjust warfarin dose.'},
+  {d1:'ssri',d2:'tramadol',level:'severe',effect:'Risk of serotonin syndrome — potentially life-threatening.',action:'Avoid combination. If essential, use lowest doses with close monitoring.'},
+  {d1:'ace inhibitor',d2:'potassium',level:'moderate',effect:'ACE inhibitors cause potassium retention — risk of hyperkalaemia.',action:'Monitor serum potassium. Avoid K+ supplements unless guided.'},
+  {d1:'digoxin',d2:'amiodarone',level:'severe',effect:'Amiodarone increases digoxin levels — risk of digoxin toxicity.',action:'Reduce digoxin dose by 50% when adding amiodarone. Monitor levels.'},
+  {d1:'ciprofloxacin',d2:'antacid',level:'moderate',effect:'Antacids reduce ciprofloxacin absorption significantly.',action:'Separate by at least 2 hours — give ciprofloxacin first.'},
+  {d1:'atenolol',d2:'verapamil',level:'severe',effect:'Combined effect can cause severe bradycardia and heart block.',action:'Avoid combination. Use alternative antihypertensive.'},
+  {d1:'lithium',d2:'nsaid',level:'severe',effect:'NSAIDs reduce renal lithium clearance — risk of lithium toxicity.',action:'Avoid NSAIDs in lithium patients. Use paracetamol instead.'},
+];
+
+function checkDrug(){
+  const d1=document.getElementById('drug1').value.trim().toLowerCase();
+  const d2=document.getElementById('drug2').value.trim().toLowerCase();
+  const el=document.getElementById('drug-result');
+  if(!d1||!d2){el.innerHTML=`<div class="err">Please enter both drug names.</div>`;return;}
+
+  const match=DRUG_DB.find(r=>
+    (d1.includes(r.d1)||r.d1.includes(d1))&&(d2.includes(r.d2)||r.d2.includes(d2)) ||
+    (d2.includes(r.d1)||r.d1.includes(d2))&&(d1.includes(r.d2)||r.d2.includes(d1))
+  );
+
+  if(match){
+    const badge=`badge-${match.level}`;
+    const label=match.level==='severe'?'⚠️ SEVERE':match.level==='moderate'?'⚡ MODERATE':'ℹ️ MINOR';
+    el.innerHTML=`<div class="drug-result-card">
+      <div class="interact-badge ${badge}">${label} INTERACTION</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:10px">${document.getElementById('drug1').value} + ${document.getElementById('drug2').value}</div>
+      <div style="margin-bottom:12px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:2px">EFFECT</span><br><span style="font-size:14px;color:var(--text);line-height:1.6">${match.effect}</span></div>
+      <div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px">CLINICAL ACTION</span><br><span style="font-size:14px;color:var(--text2);line-height:1.6">${match.action}</span></div>
+    </div>`;
+  } else {
+    el.innerHTML=`<div class="drug-result-card">
+      <div class="interact-badge badge-none">✓ NO KNOWN INTERACTION</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:10px">No significant interaction found between <strong>${document.getElementById('drug1').value}</strong> and <strong>${document.getElementById('drug2').value}</strong> in our database.</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:10px">⚠️ Always verify with a clinical pharmacist or BNF/UpToDate for comprehensive drug interaction data.</div>
+    </div>`;
+  }
+}
+
+/* ======================== DOSAGE CALCULATOR ======================== */
+function calcDose(){
+  const drug=document.getElementById('dose-drug').value.trim()||'Drug';
+  const weight=parseFloat(document.getElementById('dose-weight').value);
+  const mgkg=parseFloat(document.getElementById('dose-mgkg').value);
+  const freq=parseInt(document.getElementById('dose-freq').value);
+  const age=document.getElementById('dose-age').value;
+  const route=document.getElementById('dose-route').value;
+  const el=document.getElementById('dose-result');
+
+  if(!weight||!mgkg){el.innerHTML=`<div class="err">Please enter patient weight and dose (mg/kg).</div>`;return;}
+
+  const singleDose=(weight*mgkg).toFixed(1);
+  const dailyDose=(weight*mgkg*freq).toFixed(1);
+  const freqLabels={1:'Once daily (OD)',2:'Twice daily (BD)',3:'Three times daily (TDS)',4:'Four times daily (QDS)',6:'Every 4 hours'};
+
+  el.innerHTML=`<div class="dose-result-card">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;margin-bottom:8px">CALCULATED DOSE</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;margin-bottom:14px">${drug} — ${age==='adult'?'Adult':age==='child'?'Child':'Infant'}</div>
+    <table class="dose-table">
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Patient Weight</td><td>${weight} kg</td></tr>
+      <tr><td>Dose per kg</td><td>${mgkg} mg/kg</td></tr>
+      <tr><td>Single Dose</td><td><strong style="color:var(--teal);font-size:16px">${singleDose} mg</strong></td></tr>
+      <tr><td>Frequency</td><td>${freqLabels[freq]||freq+'× daily'}</td></tr>
+      <tr><td>Total Daily Dose</td><td><strong style="color:var(--gold)">${dailyDose} mg/day</strong></td></tr>
+      <tr><td>Route</td><td>${route}</td></tr>
+    </table>
+    ${age==='infant'?'<div style="margin-top:12px;font-size:12px;color:var(--red)">⚠️ Infant dosing requires specialist paediatric review.</div>':''}
+  </div>`;
+}
+
+/* ======================== ANATOMY ======================== */
+function loadAnatomy(btn, system){
+  if(btn){document.querySelectorAll('[onclick*="loadAnatomy"]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  const terms=ANATOMY_DATA[system]||[];
+  document.getElementById('anatomy-grid').innerHTML=terms.map(t=>`
+    <div class="gloss-card" style="border-left:2px solid var(--teal)">
+      <div class="gloss-word">${t.word}</div>
+      <div style="font-size:12px;color:var(--text);margin:6px 0;line-height:1.5">${t.def}</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:4px">${t.detail}</div>
+      <div style="font-size:12px;color:var(--teal)">🇵🇰 ${t.urdu}</div>
+    </div>`).join('');
+}
+
+/* ======================== LATIN/GREEK ROOTS ======================== */
+const MED_ROOTS = [
+  {r:'a-/an-',l:'Greek',m:'Without / not',e:'Anaemia, Apnoea, Analgesia, Atrophy'},
+  {r:'abdomin-',l:'Latin',m:'Abdomen / belly',e:'Abdominal, Abdominoplasty'},
+  {r:'acr-',l:'Greek',m:'Extremity / tip',e:'Acromegaly, Acrocyanosis'},
+  {r:'adeno-',l:'Greek',m:'Gland',e:'Adenoma, Adenitis, Adenocarcinoma'},
+  {r:'aesthesia',l:'Greek',m:'Sensation / feeling',e:'Anaesthesia, Hyperaesthesia'},
+  {r:'angio-',l:'Greek',m:'Blood vessel',e:'Angioplasty, Angiogram, Angioma'},
+  {r:'anti-',l:'Greek',m:'Against / opposing',e:'Antibiotic, Antidote, Anticoagulant'},
+  {r:'arthro-',l:'Greek',m:'Joint',e:'Arthritis, Arthroscopy, Arthroplasty'},
+  {r:'bio-',l:'Greek',m:'Life',e:'Biopsy, Biomarker, Bioavailability'},
+  {r:'brady-',l:'Greek',m:'Slow',e:'Bradycardia, Bradypnoea, Bradykinesia'},
+  {r:'broncho-',l:'Greek',m:'Bronchi / airway',e:'Bronchitis, Bronchoscopy, Bronchodilator'},
+  {r:'cardi-',l:'Greek',m:'Heart',e:'Cardiology, Tachycardia, Pericardium'},
+  {r:'cephal-',l:'Greek',m:'Head',e:'Cephalic, Hydrocephalus, Encephalitis'},
+  {r:'cerebro-',l:'Latin',m:'Brain',e:'Cerebrovascular, Cerebellum, Cerebral'},
+  {r:'chol-',l:'Greek',m:'Bile / gall',e:'Cholesterol, Cholecystitis, Cholelithiasis'},
+  {r:'chondro-',l:'Greek',m:'Cartilage',e:'Chondritis, Chondrosarcoma, Hypochondria'},
+  {r:'colo-',l:'Greek',m:'Colon / large intestine',e:'Colostomy, Colonoscopy, Colitis'},
+  {r:'contra-',l:'Latin',m:'Against / opposite',e:'Contraindication, Contraception'},
+  {r:'cost-',l:'Latin',m:'Rib',e:'Costal, Intercostal, Subcostal'},
+  {r:'crani-',l:'Greek',m:'Skull',e:'Craniotomy, Cranial, Intracranial'},
+  {r:'cut-',l:'Latin',m:'Skin',e:'Subcutaneous, Cutaneous'},
+  {r:'cyan-',l:'Greek',m:'Blue',e:'Cyanosis, Cyanide, Acrocyanosis'},
+  {r:'cyst-',l:'Greek',m:'Bladder / sac',e:'Cystitis, Cystoscopy, Cholecystectomy'},
+  {r:'derm-',l:'Greek',m:'Skin',e:'Dermatology, Epidermis, Dermatitis'},
+  {r:'dys-',l:'Greek',m:'Difficult / painful / abnormal',e:'Dysphagia, Dyspnoea, Dysuria, Dystrophy'},
+  {r:'ecto-',l:'Greek',m:'Outside / external',e:'Ectopic, Ectoderm, Ectoparasite'},
+  {r:'electro-',l:'Greek',m:'Electrical',e:'ECG, EEG, Electrolyte'},
+  {r:'endo-',l:'Greek',m:'Within / inside',e:'Endoscopy, Endocardium, Endocrine'},
+  {r:'epi-',l:'Greek',m:'Upon / above',e:'Epidermis, Epigastric, Epidural'},
+  {r:'erythro-',l:'Greek',m:'Red',e:'Erythrocyte (RBC), Erythropoietin, Erythema'},
+  {r:'gastro-',l:'Greek',m:'Stomach',e:'Gastrology, Gastritis, Gastroscopy'},
+  {r:'haem-/hema-',l:'Greek',m:'Blood',e:'Haemoglobin, Haematology, Haemorrhage'},
+  {r:'hepato-',l:'Greek',m:'Liver',e:'Hepatitis, Hepatomegaly, Hepatic'},
+  {r:'hist-',l:'Greek',m:'Tissue',e:'Histology, Histamine, Histopathology'},
+  {r:'hydro-',l:'Greek',m:'Water / fluid',e:'Hydrocephalus, Hydration, Hydrops'},
+  {r:'hyper-',l:'Greek',m:'Above / excessive',e:'Hypertension, Hyperglycaemia, Hyperthyroidism'},
+  {r:'hypo-',l:'Greek',m:'Below / deficient',e:'Hypotension, Hypoglycaemia, Hypothyroidism'},
+  {r:'hyster-',l:'Greek',m:'Uterus',e:'Hysterectomy, Hysteria, Hysteroscopy'},
+  {r:'-itis',l:'Greek',m:'Inflammation',e:'Appendicitis, Tonsillitis, Meningitis'},
+  {r:'-ectomy',l:'Greek',m:'Surgical removal',e:'Appendicectomy, Tonsillectomy, Gastrectomy'},
+  {r:'-ostomy',l:'Greek',m:'Opening/mouth creation',e:'Colostomy, Tracheostomy, Ileostomy'},
+  {r:'-otomy',l:'Greek',m:'Cutting into',e:'Laparotomy, Craniotomy, Phlebotomy'},
+  {r:'-plasty',l:'Greek',m:'Surgical repair/reshaping',e:'Rhinoplasty, Arthroplasty, Angioplasty'},
+  {r:'-scopy',l:'Greek',m:'Visual examination',e:'Endoscopy, Colonoscopy, Bronchoscopy'},
+  {r:'-ology',l:'Greek',m:'Study of',e:'Cardiology, Neurology, Pharmacology'},
+  {r:'-pathy',l:'Greek',m:'Disease / suffering',e:'Neuropathy, Cardiomyopathy, Nephropathy'},
+  {r:'immuno-',l:'Latin',m:'Immune / protected',e:'Immunology, Immunodeficiency, Immunotherapy'},
+  {r:'intra-',l:'Latin',m:'Within / inside',e:'Intravenous, Intramuscular, Intracranial'},
+  {r:'laparo-',l:'Greek',m:'Abdomen / flank',e:'Laparotomy, Laparoscopy, Laparoscopic'},
+  {r:'leuco-/leuko-',l:'Greek',m:'White',e:'Leucocyte (WBC), Leukaemia, Leucopenia'},
+  {r:'lipo-',l:'Greek',m:'Fat',e:'Lipid, Liposuction, Lipoma, Lipolysis'},
+  {r:'lympho-',l:'Latin',m:'Lymph / fluid',e:'Lymphocyte, Lymphoma, Lymphadenopathy'},
+  {r:'macro-',l:'Greek',m:'Large',e:'Macrophage, Macrocytic, Macroscopic'},
+  {r:'micro-',l:'Greek',m:'Small',e:'Microscopy, Microorganism, Microbiology'},
+  {r:'mono-',l:'Greek',m:'Single / one',e:'Monocyte, Mononucleosis, Monoclonal'},
+  {r:'myelo-',l:'Greek',m:'Bone marrow / spinal cord',e:'Myeloma, Myelitis, Myelopathy'},
+  {r:'myo-',l:'Greek',m:'Muscle',e:'Myocardium, Myopathy, Myalgia'},
+  {r:'nephro-',l:'Greek',m:'Kidney',e:'Nephritis, Nephrology, Nephrectomy'},
+  {r:'neuro-',l:'Greek',m:'Nerve',e:'Neurology, Neuropathy, Neurotransmitter'},
+  {r:'ocul-',l:'Latin',m:'Eye',e:'Oculomotor, Intraocular, Binocular'},
+  {r:'onco-',l:'Greek',m:'Tumour / mass',e:'Oncology, Oncogene, Oncologist'},
+  {r:'ophthalmo-',l:'Greek',m:'Eye',e:'Ophthalmology, Ophthalmoscopy'},
+  {r:'ortho-',l:'Greek',m:'Straight / correct',e:'Orthopaedics, Orthodontics, Orthostatic'},
+  {r:'osteo-',l:'Greek',m:'Bone',e:'Osteoporosis, Osteomyelitis, Osteoarthritis'},
+  {r:'oto-',l:'Greek',m:'Ear',e:'Otology, Otitis, Otoscopy'},
+  {r:'path-',l:'Greek',m:'Disease',e:'Pathology, Pathogen, Pathophysiology'},
+  {r:'peri-',l:'Greek',m:'Around / surrounding',e:'Pericardium, Peritoneum, Peristalsis'},
+  {r:'phago-',l:'Greek',m:'Eating / ingestion',e:'Phagocyte, Phagocytosis, Dysphagia'},
+  {r:'pharmaco-',l:'Greek',m:'Drug',e:'Pharmacology, Pharmacokinetics, Pharmacy'},
+  {r:'phlebo-',l:'Greek',m:'Vein',e:'Phlebotomy, Phlebitis, Phlebology'},
+  {r:'pneumo-',l:'Greek',m:'Lung / air',e:'Pneumonia, Pneumothorax, Pneumococcal'},
+  {r:'poly-',l:'Greek',m:'Many / much',e:'Polycythaemia, Polyneuropathy, Polypharmacy'},
+  {r:'post-',l:'Latin',m:'After / behind',e:'Postoperative, Postnatal, Post-mortem'},
+  {r:'pre-/pro-',l:'Latin',m:'Before / in front of',e:'Preoperative, Prognosis, Prophylaxis'},
+  {r:'pseudo-',l:'Greek',m:'False / fake',e:'Pseudomonas, Pseudocyst, Pseudogout'},
+  {r:'psych-',l:'Greek',m:'Mind',e:'Psychiatry, Psychology, Psychosis'},
+  {r:'pulmo-',l:'Latin',m:'Lung',e:'Pulmonary, Cardiopulmonary'},
+  {r:'pyro-',l:'Greek',m:'Fire / fever',e:'Pyrexia, Pyrogen, Antipyretic'},
+  {r:'reno-',l:'Latin',m:'Kidney',e:'Renal, Adrenal, Renin'},
+  {r:'rhino-',l:'Greek',m:'Nose',e:'Rhinitis, Rhinoplasty, Rhinoscopy'},
+  {r:'sarco-',l:'Greek',m:'Flesh / muscle',e:'Sarcoma, Sarcoidosis'},
+  {r:'sclero-',l:'Greek',m:'Hard',e:'Sclerosis, Atherosclerosis, Scleroderma'},
+  {r:'semi-',l:'Latin',m:'Half',e:'Semiconscious, Semipermeable'},
+  {r:'septic-',l:'Greek',m:'Putrefaction / infection',e:'Sepsis, Septicaemia, Antiseptic'},
+  {r:'somato-',l:'Greek',m:'Body',e:'Somatisation, Somatotype, Psychosomatic'},
+  {r:'spiro-',l:'Latin',m:'Breathing',e:'Spirometry, Respirator'},
+  {r:'sub-',l:'Latin',m:'Under / below',e:'Subcutaneous, Subacute, Subcostal'},
+  {r:'supra-',l:'Latin',m:'Above / over',e:'Supraclavicular, Suprarenal, Supine'},
+  {r:'tachy-',l:'Greek',m:'Fast / rapid',e:'Tachycardia, Tachypnoea, Tachyphylaxis'},
+  {r:'thrombo-',l:'Greek',m:'Clot',e:'Thrombosis, Thrombocyte, Thrombolysis'},
+  {r:'thyro-',l:'Greek',m:'Thyroid / shield',e:'Thyroid, Hypothyroidism, Thyrotoxicosis'},
+  {r:'toxic-',l:'Greek',m:'Poison / toxin',e:'Toxicology, Hepatotoxic, Toxic'},
+  {r:'trans-',l:'Latin',m:'Across / through',e:'Transfusion, Transplant, Transdermal'},
+  {r:'ultra-',l:'Latin',m:'Beyond',e:'Ultrasound, Ultraviolet'},
+  {r:'urethro-',l:'Greek',m:'Urethra',e:'Urethritis, Urethroscopy'},
+  {r:'uro-',l:'Greek',m:'Urine / urinary',e:'Urology, Urinalysis, Ureter'},
+  {r:'vaso-',l:'Latin',m:'Blood vessel',e:'Vasodilation, Vasconstriction, Cardiovascular'},
+  {r:'veno-',l:'Latin',m:'Vein',e:'Venous, Intravenous, Venoplasty'},
+  {r:'zymo-',l:'Greek',m:'Enzyme / fermentation',e:'Zymogen, Enzyme'},
+];
+
+let _rootsAll=[...MED_ROOTS];
+function renderRoots(list){
+  const data=list||MED_ROOTS;
+  document.getElementById('roots-grid').innerHTML=data.map(r=>`
+    <div class="root-card">
+      <div class="root-word">${r.r}</div>
+      <div class="root-lang">${r.l}</div>
+      <div class="root-meaning">${r.m}</div>
+      <div class="root-examples">${r.e}</div>
+    </div>`).join('');
+}
+function filterRoots(v){
+  const q=v.toLowerCase();
+  renderRoots(MED_ROOTS.filter(r=>r.r.toLowerCase().includes(q)||r.m.toLowerCase().includes(q)||r.e.toLowerCase().includes(q)));
+}
+
+/* ======================== CASE NOTES ======================== */
+let _cases=JSON.parse(localStorage.getItem('rlku-cases')||'[]');
+function saveCase(){
+  const title=document.getElementById('case-title').value.trim();
+  const body=document.getElementById('case-body').value.trim();
+  const tags=document.getElementById('case-tags').value.trim();
+  if(!title||!body){toast('Please enter title and case notes.');return;}
+  _cases.unshift({id:Date.now(),title,body,tags,date:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})});
+  localStorage.setItem('rlku-cases',JSON.stringify(_cases));
+  document.getElementById('case-title').value='';
+  document.getElementById('case-body').value='';
+  document.getElementById('case-tags').value='';
+  renderCases();
+  toast('📋 Case saved!');
+}
+function deleteCase(id){
+  _cases=_cases.filter(c=>c.id!==id);
+  localStorage.setItem('rlku-cases',JSON.stringify(_cases));
+  renderCases();
+}
+function renderCases(){
+  const el=document.getElementById('cases-list');
+  if(!_cases.length){el.innerHTML=`<div class="empty"><span class="empty-icon">📋</span><p>No case notes yet.<br>Add your first case above!</p></div>`;return;}
+  el.innerHTML=_cases.map(c=>`
+    <div class="case-item">
+      <button class="case-del" onclick="deleteCase(${c.id})">✕</button>
+      <div class="case-item-title">${c.title}</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin:4px 0">${c.date}</div>
+      ${c.tags?`<div class="case-item-tags">${c.tags.split(',').map(t=>`<span class="case-tag">${t.trim()}</span>`).join('')}</div>`:''}
+      <div class="case-item-body">${c.body.slice(0,300)}${c.body.length>300?'…':''}</div>
+    </div>`).join('');
+}
+</script>
+</body>
+</html>
