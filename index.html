@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flexbox Practice</title>
+
+<style>
+
+/* 🔹 BASIC RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+/* 🔹 BODY */
+body{
+  background:#f2f2f2;
+}
+
+/* 🔹 HEADING */
+h1{
+  text-align:center;
+  margin:20px;
+}
+
+/* 🔹 FLEX CONTAINER */
+.container{
+  display:flex;                /* flex start */
+  flex-direction:row;          /* row direction */
+  justify-content:space-around;/* horizontal alignment */
+  align-items:center;          /* vertical alignment */
+  flex-wrap:wrap;              /* wrapping */
+  gap:15px;
+  padding:20px;
+}
+
+/* 🔹 BOXES */
+.box{
+  background:white;
+  border:2px solid black;
+  padding:30px;
+  text-align:center;
+  flex-basis:150px;
+}
+
+/* 🔹 DIFFERENT FLEX PROPERTIES */
+
+/* Box 1 */
+.box1{
+  flex-grow:1;
+  background:lightblue;
+}
+
+/* Box 2 */
+.box2{
+  flex-grow:2;
+  background:lightgreen;
+}
+
+/* Box 3 */
+.box3{
+  flex-shrink:2;
+  background:lightcoral;
+}
+
+/* Box 4 */
+.box4{
+  order:-1;
+  background:khaki;
+}
+
+/* Box 5 */
+.box5{
+  flex:0 0 200px;
+  background:plum;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Flexbox Practice Assignment</h1>
+
+<div class="container">
+
+  <div class="box box1">flex-grow:1</div>
+  <div class="box box2">flex-grow:2</div>
+  <div class="box box3">flex-shrink:2</div>
+  <div class="box box4">order:-1</div>
+  <div class="box box5">flex:0 0 200px</div>
+
+</div>
+
+</body>
+</html>
