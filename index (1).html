@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RLKU Dictionary — Rashid Latif Khan University</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RLKU DICTIONARY — REDESIGNED
+   Aesthetic: Academic Luxury Dark — Deep navy, gold accents,
+   editorial typography, glass morphism cards
+   ============================================================ */
+
+:root {
+  --bg:        #040810;
+  --bg2:       #070d1a;
+  --surface:   #0a1020;
+  --surface2:  #0f1828;
+  --surface3:  #162035;
+  --glass:     rgba(15,24,40,0.8);
+  --border:    rgba(100,140,200,0.12);
+  --border2:   rgba(100,140,200,0.2);
+  --gold:      #d4a843;
+  --gold2:     #f0c866;
+  --gold-dim:  rgba(212,168,67,0.15);
+  --blue:      #3d7fff;
+  --blue2:     #6fa3ff;
+  --blue-dim:  rgba(61,127,255,0.12);
+  --teal:      #2ec4b6;
+  --red:       #ff5e5b;
+  --green:     #2dd4aa;
+  --purple:    #a78bfa;
+  --text:      #dce8f8;
+  --text2:     #8ba4c0;
+  --text3:     #3d5470;
+  --glow-gold: 0 0 40px rgba(212,168,67,0.15);
+  --glow-blue: 0 0 40px rgba(61,127,255,0.15);
+  --shadow:    0 16px 48px rgba(0,0,0,0.6);
+  --radius:    12px;
+}
+
+[data-theme="light"] {
+  --bg:       #f5f0e8;
+  --bg2:      #ede8dc;
+  --surface:  #ffffff;
+  --surface2: #f8f4ec;
+  --surface3: #ede8de;
+  --glass:    rgba(255,255,255,0.85);
+  --border:   rgba(160,120,60,0.2);
+  --border2:  rgba(160,120,60,0.35);
+  --text:     #1a2535;
+  --text2:    #5a6a7a;
+  --text3:    #aab4be;
+  --glow-gold: 0 0 30px rgba(212,168,67,0.1);
+  --shadow:   0 8px 32px rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background .4s, color .4s;
+}
+
+/* Atmospheric background */
+body::before {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse 60% 60% at 0% 0%,   rgba(61,127,255,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 100% 100%, rgba(212,168,67,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 100%,  rgba(46,196,182,0.04) 0%, transparent 55%);
+}
+
+/* Noise texture */
+body::after {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap { position:relative; z-index:1; max-width:1000px; margin:0 auto; padding:0 20px 80px; }
+
+/* ===================== SPLASH ===================== */
+#splash {
+  position:fixed; inset:0; z-index:9999;
+  background: var(--bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  transition: opacity .7s ease;
+}
+.splash-logo { height:70px; animation: splashFloat 2s ease-in-out infinite alternate; filter: drop-shadow(0 0 20px rgba(212,168,67,0.5)); }
+.splash-name { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; letter-spacing:8px; color:var(--gold); text-transform:uppercase; }
+.splash-sub  { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:4px; color:var(--text2); text-transform:uppercase; }
+.splash-track { width:180px; height:2px; background:var(--surface3); border-radius:2px; overflow:hidden; margin-top:8px; }
+.splash-fill  { height:100%; background:linear-gradient(90deg, var(--blue), var(--gold)); border-radius:2px; animation:splashLoad 2.2s ease forwards; }
+@keyframes splashFloat { from{transform:translateY(0)} to{transform:translateY(-8px)} }
+@keyframes splashLoad  { from{width:0} to{width:100%} }
+
+/* ===================== HEADER ===================== */
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 0 18px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom:28px;
+  flex-wrap:wrap; gap:14px;
+  position:sticky; top:0; z-index:100;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  padding-left:4px; padding-right:4px;
+  margin-left:-4px; margin-right:-4px;
+}
+
+.brand { display:flex; align-items:center; gap:14px; }
+.brand-logo {
+  height:48px;
+  filter: drop-shadow(0 2px 12px rgba(212,168,67,0.4));
+  transition: filter .3s;
+}
+.brand-logo:hover { filter: drop-shadow(0 4px 20px rgba(212,168,67,0.7)); }
+.brand-title { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:700; letter-spacing:3px; color:var(--gold); text-transform:uppercase; }
+.brand-sub   { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--text2); text-transform:uppercase; margin-top:2px; }
+
+.hdr-right { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+.btn-icon {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text2); cursor:pointer; font-size:15px;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.btn-icon:hover { border-color:var(--gold); color:var(--gold); box-shadow:var(--glow-gold); }
+
+nav { display:flex; gap:5px; flex-wrap:wrap; }
+.nb {
+  background:none; border:1px solid var(--border);
+  color:var(--text2); padding:7px 14px; border-radius:8px;
+  cursor:pointer; font-family:'JetBrains Mono',monospace;
+  font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+  transition:all .2s; position:relative; white-space:nowrap;
+}
+.nb:hover { border-color:var(--blue2); color:var(--blue2); background:var(--blue-dim); }
+.nb.active { background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 0 20px rgba(61,127,255,0.3); }
+.nbadge {
+  background:var(--gold); color:#000; font-size:9px; font-weight:700;
+  padding:1px 5px; border-radius:8px; position:absolute; top:-7px; right:-7px;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ===================== WOTD ===================== */
+#wotd {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border2);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 20px 26px;
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 20px;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: fadeUp .7s ease both;
+}
+#wotd::before {
+  content:''; position:absolute; right:-40px; top:-40px;
+  width:180px; height:180px;
+  background: radial-gradient(circle, var(--gold-dim) 0%, transparent 70%);
+  pointer-events:none;
+}
+.wotd-pill {
+  font-family:'JetBrains Mono',monospace; font-size:9px;
+  letter-spacing:3px; color:var(--gold); text-transform:uppercase;
+  white-space:nowrap; line-height:2; text-align:center;
+  background:var(--gold-dim); border:1px solid rgba(212,168,67,0.25);
+  padding:8px 12px; border-radius:8px;
+}
+.wotd-divider { width:1px; height:52px; background:var(--border2); flex-shrink:0; }
+.wotd-body { flex:1; min-width:0; }
+.wotd-word {
+  font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700;
+  cursor:pointer; color:var(--text); transition:color .2s;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.wotd-word:hover { color:var(--gold); }
+.wotd-pos  { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue2); margin:4px 0; font-style:italic; }
+.wotd-def  { font-size:13px; color:var(--text2); line-height:1.5; }
+.wotd-right { display:flex; gap:8px; flex-shrink:0; }
+.wotd-notif {
+  background:var(--surface3); border:1px solid var(--border);
+  color:var(--text2); padding:9px 13px; border-radius:8px;
+  cursor:pointer; font-size:15px; transition:all .2s;
+}
+.wotd-notif:hover { border-color:var(--gold); color:var(--gold); }
+.wotd-explore {
+  background:var(--gold); border:none; color:#000;
+  padding:9px 18px; border-radius:8px; cursor:pointer;
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  font-weight:600; letter-spacing:1px; white-space:nowrap;
+  transition:all .2s;
+}
+.wotd-explore:hover { background:var(--gold2); transform:translateY(-1px); box-shadow:var(--glow-gold); }
+
+/* ===================== SEARCH TAB ===================== */
+.font-row { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.font-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--text3); text-transform:uppercase; }
+.fbtn {
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text2); width:28px; height:28px; border-radius:6px;
+  cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.fbtn:hover { border-color:var(--blue2); color:var(--blue2); }
+#font-val { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); min-width:30px; text-align:center; }
+
+.lang-row { display:flex; gap:7px; margin-bottom:14px; flex-wrap:wrap; }
+.lp {
+  background:var(--surface); border:1px solid var(--border);
+  color:var(--text2); padding:5px 14px; border-radius:20px;
+  cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px;
+  transition:all .2s;
+}
+.lp:hover, .lp.active { background:var(--surface3); border-color:var(--blue2); color:var(--blue2); }
+
+/* Search box */
+.search-wrap { position:relative; margin-bottom:22px; }
+.search-row { display:flex; }
+.si {
+  flex:1; background:var(--surface);
+  border:1px solid var(--border); border-right:none;
+  color:var(--text); padding:16px 22px;
+  font-family:'Cormorant Garamond',serif; font-size:24px;
+  border-radius:10px 0 0 10px; outline:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.si::placeholder { color:var(--text3); font-style:italic; font-size:20px; }
+.si:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(61,127,255,0.1); }
+.sb {
+  background:var(--blue); border:1px solid var(--blue);
+  color:#fff; padding:16px 26px; border-radius:0 10px 10px 0;
+  cursor:pointer; font-family:'JetBrains Mono',monospace;
+  font-size:12px; font-weight:500; letter-spacing:1px; transition:all .2s;
+}
+.sb:hover { background:var(--blue2); border-color:var(--blue2); }
+
+/* Suggestions */
+#sug {
+  position:absolute; top:100%; left:0; right:70px;
+  background:var(--surface); border:1px solid var(--border2);
+  border-top:none; border-radius:0 0 10px 10px;
+  z-index:200; max-height:230px; overflow-y:auto;
+  box-shadow:var(--shadow); display:none;
+  backdrop-filter:blur(20px);
+}
+.si-item {
+  padding:11px 20px; cursor:pointer;
+  display:flex; align-items:center; gap:12px;
+  border-bottom:1px solid var(--border);
+  transition:background .15s; font-size:15px;
+}
+.si-item:last-child { border-bottom:none; }
+.si-item:hover, .si-item.focused { background:var(--surface2); }
+.si-hl { color:var(--blue2); font-weight:600; }
+.si-ico { color:var(--text3); font-size:11px; }
+
+/* History */
+.hist-row { display:flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.hist-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--text3); text-transform:uppercase; white-space:nowrap; }
+.hist-chips { display:flex; gap:7px; flex-wrap:wrap; flex:1; }
+.hchip {
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text2); padding:4px 12px; border-radius:20px;
+  font-size:12px; cursor:pointer; transition:all .2s;
+  font-family:'JetBrains Mono',monospace;
+}
+.hchip:hover { border-color:var(--blue2); color:var(--blue2); }
+.clr { background:none; border:1px solid var(--border); color:var(--text3); padding:4px 10px; border-radius:6px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; transition:all .2s; }
+.clr:hover { border-color:var(--red); color:var(--red); }
+
+/* ===================== RESULTS ===================== */
+#results { animation:fadeUp .4s ease both; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.res-hero {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:6px; flex-wrap:wrap; gap:14px;
+}
+.res-word {
+  font-family:'Cormorant Garamond',serif;
+  font-size:58px; font-weight:700; line-height:1;
+  background: linear-gradient(135deg, var(--text) 0%, var(--blue2) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.res-phonetic { font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--text2); margin-top:6px; }
+.res-btns { display:flex; gap:8px; flex-wrap:wrap; padding-bottom:4px; }
+
+.rbtn {
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--border); background:var(--surface2);
+  cursor:pointer; font-size:16px;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .25s;
+}
+.rbtn.audio:hover  { background:var(--blue);   border-color:var(--blue);   color:#fff; box-shadow:var(--glow-blue); }
+.rbtn.fav:hover, .rbtn.fav.on { background:var(--gold-dim); color:var(--gold); border-color:var(--gold); }
+.rbtn.copy:hover   { background:rgba(45,212,170,.12); color:var(--green);  border-color:var(--green); }
+.rbtn.share:hover  { background:rgba(61,127,255,.12); color:var(--blue2);  border-color:var(--blue2); }
+.rbtn.print:hover  { background:rgba(167,139,250,.12);color:var(--purple); border-color:var(--purple); }
+
+/* Word meta chips */
+.word-meta { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+.meta-chip {
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:1px; text-transform:uppercase;
+  padding:4px 12px; border-radius:20px;
+}
+.chip-easy   { background:rgba(45,212,170,.1);  color:var(--green);  border:1px solid rgba(45,212,170,.25); }
+.chip-medium { background:var(--gold-dim);       color:var(--gold);   border:1px solid rgba(212,168,67,.25); }
+.chip-hard   { background:rgba(255,94,91,.1);   color:var(--red);    border:1px solid rgba(255,94,91,.25); }
+.chip-ety    { background:rgba(167,139,250,.1); color:var(--purple); border:1px solid rgba(167,139,250,.25); cursor:pointer; transition:background .2s; }
+.chip-ety:hover { background:rgba(167,139,250,.2); }
+
+/* Urdu strip */
+.urdu-strip {
+  background: linear-gradient(135deg, var(--surface2), var(--surface3));
+  border:1px solid var(--border2);
+  border-left:3px solid var(--gold);
+  border-radius:10px; padding:14px 20px;
+  display:flex; align-items:center; gap:16px;
+  margin:14px 0; flex-wrap:wrap;
+}
+.urdu-lbl { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; white-space:nowrap; }
+.urdu-txt { font-size:24px; color:var(--text); direction:rtl; flex:1; text-align:right; line-height:1.4; }
+.urdu-rom { font-size:13px; color:var(--text2); font-style:italic; margin-top:2px; text-align:right; width:100%; direction:ltr; }
+
+/* Meanings */
+.meanings { margin-top:22px; }
+
+.pos-block { margin-bottom:28px; animation:fadeUp .5s ease both; }
+.pos-hdr { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.pos-tag {
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:3px; text-transform:uppercase;
+  padding:4px 12px; border-radius:4px;
+  background:var(--blue-dim); color:var(--blue2);
+  border:1px solid rgba(61,127,255,.2);
+}
+.pos-line { flex:1; height:1px; background:var(--border); }
+
+.def-card {
+  display:flex; gap:14px; padding:15px 18px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; margin-bottom:10px;
+  transition:all .25s; cursor:default;
+}
+.def-card:hover { border-color:var(--blue); box-shadow:0 4px 20px rgba(61,127,255,.08); transform:translateX(2px); }
+.def-n { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold); min-width:24px; margin-top:3px; opacity:.7; }
+.def-body { flex:1; }
+.def-txt  { font-size:15px; line-height:1.7; color:var(--text); }
+.def-ex   { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--text2); margin-top:8px; padding-left:14px; border-left:2px solid var(--border2); }
+
+/* Tags */
+.tags-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--border); align-items:center; }
+.tl { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--text2); letter-spacing:3px; text-transform:uppercase; }
+.wtag { background:var(--surface2); border:1px solid var(--border); color:var(--blue2); padding:3px 10px; border-radius:6px; font-size:12px; font-family:'JetBrains Mono',monospace; cursor:pointer; transition:all .2s; }
+.wtag:hover { border-color:var(--blue2); background:var(--blue-dim); }
+.wtag.ant { color:var(--red); border-color:rgba(255,94,91,.2); }
+.wtag.ant:hover { border-color:var(--red); background:rgba(255,94,91,.08); }
+
+/* Rhymes */
+.extra-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 20px; margin-top:14px; }
+.extra-hdr { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--text2); text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.extra-hdr::before { content:''; width:16px; height:1px; background:var(--gold); }
+.rhyme-tags { display:flex; flex-wrap:wrap; gap:7px; }
+.rtag { background:var(--surface2); border:1px solid var(--border); color:var(--purple); padding:3px 10px; border-radius:6px; font-size:12px; font-family:'JetBrains Mono',monospace; cursor:pointer; transition:all .2s; }
+.rtag:hover { border-color:var(--purple); background:rgba(167,139,250,.1); }
+
+/* Citation */
+.cite-body { font-size:12px; color:var(--text2); line-height:1.8; font-style:italic; background:var(--surface2); padding:12px 16px; border-radius:8px; }
+.cite-copy { background:none; border:1px solid var(--border); color:var(--text2); padding:7px 16px; border-radius:6px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; margin-top:10px; transition:all .2s; letter-spacing:1px; text-transform:uppercase; }
+.cite-copy:hover { border-color:var(--purple); color:var(--purple); }
+
+/* Notes */
+.note-ta { width:100%; background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:12px 16px; border-radius:8px; font-size:14px; font-family:'Outfit',sans-serif; resize:vertical; min-height:80px; outline:none; transition:border-color .2s; line-height:1.6; }
+.note-ta:focus { border-color:var(--green); }
+.note-save { background:var(--green); border:none; color:#000; padding:8px 20px; border-radius:6px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; margin-top:10px; transition:all .2s; font-weight:600; letter-spacing:1px; }
+.note-save:hover { opacity:.85; }
+
+/* ===================== FLASHCARDS ===================== */
+.fc-wrap { max-width:500px; margin:0 auto; }
+.fc-ctrl { display:flex; gap:10px; align-items:center; margin-bottom:24px; flex-wrap:wrap; }
+.fc-cnt { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); }
+.btn-pri { background:var(--blue); border:none; color:#fff; padding:10px 20px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; transition:all .2s; }
+.btn-pri:hover { background:var(--blue2); }
+.btn-sec { background:var(--surface2); border:1px solid var(--border); color:var(--text2); padding:10px 20px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; transition:all .2s; }
+.btn-sec:hover { border-color:var(--blue2); color:var(--blue2); }
+
+.fc-prog { margin-bottom:20px; }
+.fc-prog-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.fc-prog-fill { height:100%; background:linear-gradient(90deg, var(--blue), var(--gold)); border-radius:2px; transition:width .4s; }
+
+.flashcard { perspective:1000px; height:260px; cursor:pointer; margin-bottom:24px; }
+.fc-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.fc-inner.flipped { transform:rotateY(180deg); }
+.fc-face {
+  position:absolute; inset:0; backface-visibility:hidden;
+  background:var(--surface); border:1px solid var(--border2);
+  border-radius:16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:32px; box-shadow:var(--shadow);
+}
+.fc-back-face { transform:rotateY(180deg); background:var(--surface2); }
+.fc-word { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:700; text-align:center; }
+.fc-pos2 { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue2); margin-top:8px; letter-spacing:2px; }
+.fc-hint { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text3); margin-top:18px; letter-spacing:1px; }
+.fc-def2 { font-size:15px; color:var(--text); text-align:center; line-height:1.6; }
+.fc-nav { display:flex; justify-content:center; gap:14px; }
+.fc-nav-btn { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:10px 26px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; transition:all .2s; }
+.fc-nav-btn:hover:not([disabled]) { border-color:var(--blue2); color:var(--blue2); }
+.fc-nav-btn[disabled] { opacity:.3; cursor:not-allowed; }
+
+/* ===================== QUIZ ===================== */
+.quiz-start-screen { text-align:center; padding:50px 20px; }
+.quiz-start-screen h2 { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; margin-bottom:10px; }
+.quiz-start-screen p { color:var(--text2); font-size:14px; margin-bottom:28px; line-height:1.6; }
+.btn-gold { background:var(--gold); border:none; color:#000; padding:14px 36px; border-radius:10px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; letter-spacing:1px; transition:all .2s; }
+.btn-gold:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:var(--glow-gold); }
+
+.quiz-area { max-width:620px; margin:0 auto; }
+.quiz-prog-row { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.quiz-num { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text2); }
+.quiz-bar { flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.quiz-fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--gold)); border-radius:2px; transition:width .3s; }
+.quiz-score { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--green); }
+.quiz-q-label { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text2); margin-bottom:8px; font-style:italic; }
+.quiz-word-big { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:700; margin-bottom:26px; }
+.quiz-opts { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.qopt {
+  background:var(--surface); border:2px solid var(--border);
+  color:var(--text); padding:15px 16px; border-radius:10px;
+  cursor:pointer; font-size:14px; line-height:1.4; text-align:left;
+  transition:all .2s; font-family:'Outfit',sans-serif;
+}
+.qopt:hover:not([disabled]) { border-color:var(--blue); background:var(--blue-dim); }
+.qopt.correct { border-color:var(--green)!important; background:rgba(45,212,170,.1)!important; color:var(--green)!important; }
+.qopt.wrong   { border-color:var(--red)!important;   background:rgba(255,94,91,.08)!important; color:var(--red)!important; }
+
+.quiz-result { text-align:center; padding:50px 20px; animation:fadeUp .4s ease both; }
+.quiz-result h2 { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:700; margin-bottom:6px; }
+.quiz-score-big { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:700; color:var(--gold); margin:16px 0; line-height:1; }
+.quiz-result p { color:var(--text2); margin-bottom:26px; font-size:14px; }
+
+/* ===================== GLOSSARY ===================== */
+.wotw-banner {
+  background:linear-gradient(135deg, var(--surface2), var(--surface3));
+  border:1px solid var(--border2); border-left:3px solid var(--gold);
+  border-radius:12px; padding:22px 26px; margin-bottom:24px;
+}
+.wotw-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.wotw-word { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; }
+.wotw-def  { font-size:14px; color:var(--text2); margin-top:6px; line-height:1.6; }
+
+.dept-btns { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.dept-btn { background:var(--surface); border:1px solid var(--border); color:var(--text2); padding:8px 16px; border-radius:8px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; transition:all .2s; }
+.dept-btn:hover, .dept-btn.active { background:var(--surface2); border-color:var(--blue2); color:var(--blue2); }
+
+.gloss-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; }
+.gloss-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; cursor:pointer; transition:all .25s; }
+.gloss-card:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+.gloss-word  { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:700; }
+.gloss-field { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin:4px 0 6px; }
+.gloss-def   { font-size:12px; color:var(--text2); line-height:1.5; }
+
+/* ===================== FAVORITES ===================== */
+.fav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:16px; }
+.fav-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; cursor:pointer; transition:all .25s; position:relative; }
+.fav-card:hover { border-color:var(--blue2); transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.fav-word { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; }
+.fav-pos  { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--blue2); letter-spacing:2px; text-transform:uppercase; margin:4px 0; }
+.fav-def  { font-size:12px; color:var(--text2); line-height:1.4; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+.fav-del  { position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:14px; line-height:1; transition:color .2s; }
+.fav-del:hover { color:var(--red); }
+
+/* ===================== UTILS ===================== */
+.loader { display:flex; align-items:center; justify-content:center; gap:8px; padding:70px; color:var(--text2); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; }
+.dot { width:6px; height:6px; background:var(--blue); border-radius:50%; animation:blink 1.2s infinite ease-in-out; }
+.dot:nth-child(2){animation-delay:.2s} .dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+
+.err { background:rgba(255,94,91,.07); border:1px solid rgba(255,94,91,.25); color:var(--red); padding:18px 24px; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; }
+.empty { text-align:center; padding:70px 20px; color:var(--text2); }
+.empty-icon { font-size:44px; opacity:.2; display:block; margin-bottom:14px; }
+.empty p { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; opacity:.5; }
+
+.sec-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--text3); text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:14px; }
+.sec-lbl::before { content:''; width:18px; height:1px; background:var(--gold); }
+
+/* Toast */
+.toast { position:fixed; bottom:28px; right:28px; background:var(--surface2); border:1px solid var(--border2); color:var(--text); padding:12px 20px; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:12px; z-index:9000; box-shadow:var(--shadow); animation:fadeUp .3s ease; }
+
+::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:640px){
+  .res-word{font-size:42px} header{flex-direction:column;align-items:flex-start}
+  #wotd{flex-direction:column;gap:12px} .wotd-divider{display:none}
+  .quiz-opts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- SPLASH -->
+<div id="splash">
+  <img class="splash-logo" src="https://rlku.edu.pk/images/rlku4.png" alt="RLKU" onerror="this.style.display='none'">
+  <div class="splash-name">RLKU Dictionary</div>
+  <div class="splash-sub">Rashid Latif Khan University — Lahore</div>
+  <div class="splash-track"><div class="splash-fill"></div></div>
+</div>
+
+<div class="wrap">
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <img class="brand-logo" src="https://rlku.edu.pk/images/rlku4.png" alt="RLKU" onerror="this.style.display='none'">
+    <div>
+      <div class="brand-title">RLKU Dictionary</div>
+      <div class="brand-sub">Rashid Latif Khan University</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <button class="btn-icon" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <nav>
+      <button class="nb active" id="nb-search" onclick="goTab('search')">Search</button>
+      <button class="nb" id="nb-flash"  onclick="goTab('flash')">Cards</button>
+      <button class="nb" id="nb-quiz"   onclick="goTab('quiz')">Quiz</button>
+      <button class="nb" id="nb-dept"   onclick="goTab('dept')">Glossary</button>
+      <button class="nb" id="nb-fav"    onclick="goTab('fav')">
+        Saved <span class="nbadge" id="fav-badge" style="display:none">0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- WORD OF THE DAY -->
+<div id="wotd">
+  <div class="wotd-pill">Word<br>of the<br>Day</div>
+  <div class="wotd-divider"></div>
+  <div class="wotd-body">
+    <div class="wotd-word" id="wotd-word">Loading…</div>
+    <div class="wotd-pos"  id="wotd-pos"></div>
+    <div class="wotd-def"  id="wotd-def"></div>
+  </div>
+  <div class="wotd-right">
+    <button class="wotd-notif"   onclick="notifyMe()" title="Daily reminder">🔔</button>
+    <button class="wotd-explore" onclick="exploreWotd()">Explore →</button>
+  </div>
+</div>
+
+<!-- ======= SEARCH TAB ======= -->
+<div id="search-tab">
+  <div class="font-row">
+    <span class="font-lbl">Text Size</span>
+    <button class="fbtn" onclick="changeFont(-1)">A−</button>
+    <span id="font-val">16px</span>
+    <button class="fbtn" onclick="changeFont(1)">A+</button>
+  </div>
+
+  <div class="lang-row">
+    <button class="lp active" onclick="setLang(this,'en')">🇬🇧 English</button>
+    <button class="lp" onclick="setLang(this,'es')">🇪🇸 Español</button>
+    <button class="lp" onclick="setLang(this,'fr')">🇫🇷 Français</button>
+    <button class="lp" onclick="setLang(this,'de')">🇩🇪 Deutsch</button>
+    <button class="lp" onclick="setLang(this,'it')">🇮🇹 Italiano</button>
+    <button class="lp" onclick="setLang(this,'pt')">🇧🇷 Português</button>
+    <button class="lp" onclick="setLang(this,'hi')">🇮🇳 Hindi</button>
+    <button class="lp" onclick="setLang(this,'tr')">🇹🇷 Türkçe</button>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-row">
+      <input type="text" id="si" class="si" placeholder="Search any word…"
+        autocomplete="off" spellcheck="false"
+        oninput="onInput(this.value)"
+        onkeydown="onKD(event)"
+        onfocus="if(this.value.length>1)showSug()">
+      <button class="sb" onclick="doSearch()">Search</button>
+    </div>
+    <div id="sug"></div>
+  </div>
+
+  <div id="hist-row" class="hist-row" style="display:none">
+    <span class="hist-lbl">Recent</span>
+    <div class="hist-chips" id="hist-chips"></div>
+    <button class="clr" onclick="clearHist()">Clear</button>
+  </div>
+
+  <div id="results"></div>
+</div>
+
+<!-- ======= FLASHCARDS TAB ======= -->
+<div id="flash-tab" style="display:none">
+  <div class="sec-lbl">Flashcard Practice</div>
+  <div id="flash-content">
+    <div class="empty"><span class="empty-icon">🃏</span><p>Search words first,<br>then practice here!</p></div>
+  </div>
+</div>
+
+<!-- ======= QUIZ TAB ======= -->
+<div id="quiz-tab" style="display:none">
+  <div id="quiz-content">
+    <div class="quiz-start-screen">
+      <h2>Vocabulary Quiz</h2>
+      <p>Test yourself on the words you've explored.<br>You need at least 4 searched words to begin.</p>
+      <button class="btn-gold" onclick="startQuiz()">Start Quiz →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= GLOSSARY TAB ======= -->
+<div id="dept-tab" style="display:none">
+  <div class="wotw-banner">
+    <div class="wotw-lbl">🏫 RLKU — Word of the Week</div>
+    <div class="wotw-word" id="wotw-word">Pharmacokinetics</div>
+    <div class="wotw-def"  id="wotw-def">The branch of pharmacology concerned with the movement of drugs within the body — absorption, distribution, metabolism, and excretion.</div>
+  </div>
+  <div class="sec-lbl">Department Glossary</div>
+  <div class="dept-btns">
+    <button class="dept-btn active" onclick="setDept(this,'medical')">🏥 Medical & Dental</button>
+    <button class="dept-btn" onclick="setDept(this,'cs')">💻 Computer Science</button>
+    <button class="dept-btn" onclick="setDept(this,'business')">📊 Business</button>
+    <button class="dept-btn" onclick="setDept(this,'allied')">⚕️ Allied Health</button>
+  </div>
+  <div class="gloss-grid" id="gloss-grid"></div>
+</div>
+
+<!-- ======= FAVORITES TAB ======= -->
+<div id="fav-tab" style="display:none">
+  <div class="sec-lbl">Saved Words</div>
+  <div id="fav-content"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+/* ======================== DATA ======================== */
+const WOTD_POOL = ['ephemeral','eloquent','serendipity','melancholy','luminous','perspicacious','sanguine','ineffable','tenacious','halcyon','resplendent','pensive','arcane','zenith','prolific','solitude','veracious','loquacious','benevolent','labyrinthine'];
+
+const WOTW_LIST = [
+  {word:'Pharmacokinetics', def:'The branch of pharmacology concerned with the movement of drugs within the body.'},
+  {word:'Epistemology',     def:'The branch of philosophy concerned with the theory of knowledge.'},
+  {word:'Entrepreneurship', def:'The activity of setting up a business, taking on financial risks in hope of profit.'},
+  {word:'Jurisprudence',    def:'The theory and philosophy of law and legal systems.'},
+];
+
+const GLOSSARY = {
+  medical:[
+    {word:'Pharmacokinetics', def:'Movement of drugs within the body including absorption and metabolism.', field:'Pharmacology'},
+    {word:'Pathogenesis',     def:'The manner of development of a disease or morbid process.', field:'Pathology'},
+    {word:'Hematopoiesis',    def:'Formation of blood cellular components in bone marrow.', field:'Hematology'},
+    {word:'Anastomosis',      def:'A surgical connection between adjacent blood vessels or intestine.', field:'Surgery'},
+    {word:'Etiology',         def:'The cause or manner of causation of a disease.', field:'General Medicine'},
+    {word:'Prognosis',        def:'The likely course of a medical condition or forecast of its outcome.', field:'Clinical'},
+    {word:'Tachycardia',      def:'Abnormally rapid heart rate, typically over 100 beats per minute.', field:'Cardiology'},
+    {word:'Homeostasis',      def:'The tendency of biological systems to maintain stable internal conditions.', field:'Physiology'},
+    {word:'Contraindication', def:'A condition that makes a particular treatment inadvisable.', field:'Pharmacology'},
+    {word:'Nociception',      def:'The sensory nervous system process of encoding noxious stimuli.', field:'Neurology'},
+  ],
+  cs:[
+    {word:'Algorithm',     def:'A step-by-step set of instructions for solving a computational problem.', field:'Computer Science'},
+    {word:'Polymorphism',  def:'The ability of different objects to respond to the same interface differently.', field:'OOP'},
+    {word:'Recursion',     def:'A method where the solution depends on smaller instances of the same problem.', field:'Programming'},
+    {word:'Encapsulation', def:'Bundling data and methods within a single unit (class).', field:'OOP'},
+    {word:'Latency',       def:'The delay between a stimulus and the response, especially in networks.', field:'Networking'},
+    {word:'Heuristic',     def:'A problem-solving approach using practical methods for good-enough solutions.', field:'AI'},
+    {word:'Concurrency',   def:'Multiple computations happening simultaneously within overlapping time periods.', field:'Systems'},
+    {word:'Refactoring',   def:'Restructuring existing code without changing its external behavior.', field:'Software Eng.'},
+    {word:'Abstraction',   def:'Hiding complex implementation details while showing only essential features.', field:'OOP'},
+    {word:'Bandwidth',     def:'Maximum rate of data transfer across a given path in a network.', field:'Networking'},
+  ],
+  business:[
+    {word:'Liquidity',       def:'Availability of liquid assets to a company or ease of converting assets to cash.', field:'Finance'},
+    {word:'Amortization',    def:'Spreading payments over multiple periods for a loan or asset.', field:'Accounting'},
+    {word:'Diversification', def:'Strategy of reducing risk by allocating investments among various instruments.', field:'Investment'},
+    {word:'Arbitrage',       def:'Simultaneous buying and selling in different markets to profit from price differences.', field:'Trading'},
+    {word:'Benchmarking',    def:'Comparing business processes and performance to industry best practices.', field:'Management'},
+    {word:'Depreciation',    def:'Allocating the cost of a tangible asset over its useful life.', field:'Accounting'},
+    {word:'Synergy',         def:'Combined elements that produce a greater effect than the sum of their parts.', field:'Strategy'},
+    {word:'Equity',          def:'Ownership interest in an asset after liabilities are deducted.', field:'Finance'},
+    {word:'Stakeholder',     def:'A person or organization with an interest or concern in a business.', field:'Management'},
+    {word:'Monetization',    def:'The process of converting something into money or legal tender.', field:'Finance'},
+  ],
+  allied:[
+    {word:'Auscultation',  def:'The action of listening to sounds from the heart, lungs, or other organs.', field:'Clinical Skills'},
+    {word:'Dysphagia',     def:'Difficulty or discomfort in swallowing.', field:'Speech Therapy'},
+    {word:'Rehabilitation',def:'Restoring someone to health through training and therapy after illness or injury.', field:'Physiotherapy'},
+    {word:'Prophylaxis',   def:'Action taken to prevent disease, especially against a specified disease.', field:'Preventive'},
+    {word:'Spirometry',    def:'Measurement of the air capacity of the lungs.', field:'Respiratory'},
+    {word:'Hypertension',  def:'Abnormally high blood pressure in the arteries.', field:'Cardiology'},
+    {word:'Sonography',    def:'The use of ultrasound waves to form diagnostic images of internal structures.', field:'Imaging'},
+    {word:'Ergonomics',    def:'Study of people\'s efficiency in their working environment.', field:'Occupational'},
+    {word:'Analgesia',     def:'The inability to feel pain while conscious; pain relief treatment.', field:'Pain Management'},
+    {word:'Radiograph',    def:'An image produced on a sensitive surface by X-rays or similar radiation.', field:'Radiology'},
+  ]
+};
+
+/* Urdu dictionary — common words (no API needed — fixes wrong translations!) */
+const URDU_DICT = {
+  'beautiful':'خوبصورت (khubsurat)','love':'محبت (mohabbat)','happy':'خوش (khush)',
+  'sad':'اداس (udaas)','good':'اچھا (acha)','bad':'برا (bura)',
+  'book':'کتاب (kitaab)','water':'پانی (paani)','food':'کھانا (khaana)',
+  'house':'گھر (ghar)','friend':'دوست (dost)','family':'خاندان (khaandaan)',
+  'school':'سکول (school)','teacher':'استاد (ustad)','student':'طالب علم (talib-e-ilm)',
+  'university':'جامعہ (jaami-a)','knowledge':'علم (ilm)','wisdom':'حکمت (hikmat)',
+  'truth':'سچ (sach)','life':'زندگی (zindagi)','time':'وقت (waqt)',
+  'heart':'دل (dil)','mind':'ذہن (zehan)','soul':'روح (rooh)',
+  'light':'روشنی (roshni)','dark':'اندھیرا (andhera)','sky':'آسمان (aasmaan)',
+  'sun':'سورج (suraj)','moon':'چاند (chaand)','star':'ستارہ (sitaara)',
+  'earth':'زمین (zameen)','sea':'سمندر (samandar)','river':'دریا (darya)',
+  'mountain':'پہاڑ (pahaad)','flower':'پھول (phool)','tree':'درخت (darakht)',
+  'bird':'پرندہ (parinda)','lion':'شیر (sher)','horse':'گھوڑا (ghoda)',
+  'strong':'مضبوط (mazboot)','weak':'کمزور (kamzor)','big':'بڑا (bara)',
+  'small':'چھوٹا (chhota)','fast':'تیز (tez)','slow':'سست (sust)',
+  'new':'نیا (naya)','old':'پرانا (purana)','young':'جوان (jawaan)',
+  'rich':'امیر (ameer)','poor':'غریب (ghareeb)','peace':'امن (aman)',
+  'war':'جنگ (jang)','freedom':'آزادی (azadi)','justice':'انصاف (insaaf)',
+  'serendipity':'خوشگوار اتفاق (khushgawar ittifaaq)','ephemeral':'عارضی (aarzi)',
+  'eloquent':'فصیح (faseeh)','melancholy':'اداسی (udaasi)','luminous':'روشن (roshan)',
+  'tenacious':'پرعزم (pur-azm)','benevolent':'مہربان (mehrbaan)',
+  'perspicacious':'ذہین (zaheen)','solitude':'تنہائی (tanhaai)',
+  'resilient':'لچکدار (lachakdaar)','wisdom':'دانائی (daanaai)',
+};
+
+const LOCAL_WORDS = ['abandon','ability','absolute','academic','accept','access','account','accurate','achieve','across','active','actually','address','advance','advice','affect','after','again','against','agency','agent','agree','allow','almost','alone','already','although','always','among','amount','analysis','ancient','another','appeal','apply','approach','argue','arrange','article','aspect','assess','assist','assume','attempt','attention','attitude','author','available','avoid','aware','balance','basic','battle','beautiful','become','behavior','belief','benefit','better','beyond','break','broad','build','business','calculate','capable','career','cause','central','certain','challenge','change','character','choice','claim','clear','collect','common','community','compare','complete','complex','concept','concern','condition','consider','contain','context','continue','control','create','culture','current','damage','decide','define','deliver','depend','describe','design','detail','develop','different','difficult','discover','discuss','distance','effect','effort','element','enable','energy','engage','environment','establish','evaluate','example','exist','experience','explain','express','factor','failure','focus','follow','force','function','generate','global','govern','growth','happen','health','history','human','identify','improve','include','increase','indicate','individual','influence','involve','issue','knowledge','language','leader','learn','level','likely','limit','maintain','major','manage','measure','method','model','modern','natural','necessary','network','notice','observe','obtain','operate','opinion','organize','original','outcome','perform','period','physical','policy','position','positive','potential','practice','present','prevent','principle','process','produce','progress','protect','provide','purpose','quality','realize','reason','reduce','reflect','relate','remain','report','require','research','resolve','respond','result','reveal','review','section','select','service','similar','society','solution','source','specific','strategy','structure','subject','suggest','support','system','technique','technology','theory','understand','unique','value','various','whether','wonder','serendipity','ephemeral','eloquent','melancholy','luminous','resilient','ambiguous','benevolent','diligent','eccentric','formidable','gregarious','hierarchy','intricate','jubilant','loquacious','metamorphosis','nostalgic','perspicacious','tenacious','ubiquitous','whimsical','algorithm','pharmacokinetics','pathology','hematopoiesis','prognosis','tachycardia','homeostasis','liquidity','amortization','diversification','benchmarking','depreciation','synergy','equity','auscultation','dysphagia','rehabilitation','prophylaxis','hypertension','ergonomics'];
+
+const ETY_MAP = {serendipity:'Persian — Serendip (old name of Sri Lanka)',ephemeral:'Greek — ephēmeros (lasting a day)',melancholy:'Greek — melancholía (black bile)',eloquent:'Latin — eloqui (to speak out)',luminous:'Latin — lumen (light)',algorithm:'Arabic — al-Khwārizmī (9th c. mathematician)',algebra:'Arabic — al-jabr (reunion of broken parts)',alcohol:'Arabic — al-kuḥl (fine powder)',sugar:'Sanskrit — śarkarā (gravel, grit)'};
+
+const RHYME_MAP = {time:['lime','dime','prime','climb','mime'],light:['night','right','sight','might','bright'],love:['above','dove','shove','glove'],mind:['find','kind','blind','wind','bind'],free:['tree','see','be','key','degree'],day:['say','way','play','stay','ray'],heart:['art','part','start','smart','cart'],life:['wife','knife','strife','rife'],strong:['long','song','wrong','belong'],true:['blue','clue','flew','grew','knew']};
+
+/* ======================== STATE ======================== */
+let lang='en', favs=JSON.parse(localStorage.getItem('rlku-favs')||'[]'),
+    hist=JSON.parse(localStorage.getItem('rlku-hist')||'[]'),
+    notes=JSON.parse(localStorage.getItem('rlku-notes')||'{}'),
+    _lastEntry=null, _audio=null, _wotdWord='',
+    _sugTimer=null, sugList=[], sugFocus=-1,
+    _fontSize=16, _flashCards=[], _flashIdx=0, _flashFlipped=false,
+    _quizWords=[], _quizIdx=0, _quizScore=0,
+    _dept='medical';
+
+/* ======================== BOOT ======================== */
+(function boot(){
+  const t=localStorage.getItem('rlku-theme');
+  if(t){document.body.setAttribute('data-theme',t);document.getElementById('theme-btn').textContent=t==='light'?'☀️':'🌙';}
+  _fontSize=parseInt(localStorage.getItem('rlku-font')||'16');
+  document.getElementById('font-val').textContent=_fontSize+'px';
+  loadWotd(); loadWotw(); updateBadge(); renderHist(); renderDept();
+  setTimeout(()=>{const s=document.getElementById('splash');s.style.opacity='0';setTimeout(()=>s.style.display='none',700);},2300);
+  const p=new URLSearchParams(location.search);
+  if(p.get('q')){document.getElementById('si').value=p.get('q');setTimeout(doSearch,2500);}
+})();
+
+/* ======================== THEME ======================== */
+function toggleTheme(){
+  const d=document.body.getAttribute('data-theme')==='dark';
+  document.body.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('theme-btn').textContent=d?'☀️':'🌙';
+  localStorage.setItem('rlku-theme',d?'light':'dark');
+}
+
+/* ======================== FONT ======================== */
+function changeFont(d){
+  _fontSize=Math.max(12,Math.min(22,_fontSize+d));
+  localStorage.setItem('rlku-font',_fontSize);
+  document.getElementById('font-val').textContent=_fontSize+'px';
+  document.querySelectorAll('.def-txt').forEach(el=>el.style.fontSize=_fontSize+'px');
+}
+
+/* ======================== TABS ======================== */
+function goTab(t){
+  ['search','flash','quiz','dept','fav'].forEach(id=>{
+    document.getElementById(id+'-tab').style.display=t===id?'block':'none';
+    const b=document.getElementById('nb-'+id);
+    if(b) b.classList.toggle('active',t===id);
+  });
+  if(t==='fav')   renderFavs();
+  if(t==='flash') initFlash();
+}
+
+/* ======================== WOTD ======================== */
+async function loadWotd(){
+  const idx=Math.floor(Date.now()/86400000)%WOTD_POOL.length;
+  _wotdWord=WOTD_POOL[idx];
+  try{
+    const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${_wotdWord}`);
+    const d=await r.json();
+    if(Array.isArray(d)&&d[0]){
+      const m=d[0].meanings?.[0];
+      document.getElementById('wotd-word').textContent=d[0].word;
+      document.getElementById('wotd-pos').textContent=m?.partOfSpeech||'';
+      document.getElementById('wotd-def').textContent=(m?.definitions?.[0]?.definition||'').slice(0,120)+'…';
+    }
+  }catch{document.getElementById('wotd-word').textContent=_wotdWord;}
+}
+function exploreWotd(){document.getElementById('si').value=_wotdWord;setLang(document.querySelector('.lp'),'en');goTab('search');doSearch();}
+function notifyMe(){
+  if('Notification' in window){
+    Notification.requestPermission().then(p=>{
+      if(p==='granted'){new Notification('RLKU Dictionary',{body:`Today's word: ${_wotdWord}`,icon:'https://rlku.edu.pk/images/rlku4.png'});toast('🔔 Notification sent!');}
+      else toast('Please enable notifications in browser settings.');
+    });
+  } else toast('Your browser does not support notifications.');
+}
+function loadWotw(){const idx=Math.floor(Date.now()/(86400000*7))%WOTW_LIST.length;const w=WOTW_LIST[idx];document.getElementById('wotw-word').textContent=w.word;document.getElementById('wotw-def').textContent=w.def;}
+
+/* ======================== LANG ======================== */
+function setLang(btn,l){lang=l;document.querySelectorAll('.lp').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+/* ======================== AUTOCOMPLETE ======================== */
+function onInput(v){clearTimeout(_sugTimer);sugFocus=-1;if(v.length<2){hideSug();return;}_sugTimer=setTimeout(()=>buildSug(v),160);}
+function buildSug(v){
+  const q=v.toLowerCase().trim();
+  sugList=LOCAL_WORDS.filter(w=>w.startsWith(q)&&w!==q).slice(0,8);
+  if(!sugList.length){hideSug();return;}
+  document.getElementById('sug').innerHTML=sugList.map((w,i)=>`<div class="si-item" onmousedown="pickSug('${w}')" onmouseover="hoverSug(${i})"><span class="si-ico">🔍</span><span><span class="si-hl">${w.slice(0,q.length)}</span>${w.slice(q.length)}</span></div>`).join('');
+  showSug();
+}
+function showSug(){const b=document.getElementById('sug');if(b.innerHTML)b.style.display='block';}
+function hideSug(){document.getElementById('sug').style.display='none';sugFocus=-1;}
+function hoverSug(i){sugFocus=i;document.querySelectorAll('.si-item').forEach((el,idx)=>el.classList.toggle('focused',idx===i));}
+function pickSug(w){document.getElementById('si').value=w;hideSug();doSearch();}
+function onKD(e){
+  const items=document.querySelectorAll('.si-item');
+  if(e.key==='ArrowDown'){e.preventDefault();sugFocus=Math.min(sugFocus+1,items.length-1);items.forEach((el,i)=>el.classList.toggle('focused',i===sugFocus));}
+  else if(e.key==='ArrowUp'){e.preventDefault();sugFocus=Math.max(sugFocus-1,-1);items.forEach((el,i)=>el.classList.toggle('focused',i===sugFocus));}
+  else if(e.key==='Enter'){sugFocus>=0&&sugList[sugFocus]?pickSug(sugList[sugFocus]):(hideSug(),doSearch());}
+  else if(e.key==='Escape')hideSug();
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))hideSug();});
+
+/* ======================== SEARCH ======================== */
+async function doSearch(){
+  const q=document.getElementById('si').value.trim();
+  if(!q)return;
+  hideSug();addToHist(q);
+  const el=document.getElementById('results');
+  el.innerHTML=`<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div>&nbsp;Searching…</div>`;
+  try{
+    const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/${lang}/${encodeURIComponent(q)}`);
+    const data=await r.json();
+    if(!Array.isArray(data)){el.innerHTML=`<div class="err">⚠ No results for "<em>${q}</em>". Try English or check spelling.</div>`;return;}
+    renderResults(data);
+    getUrdu(q);
+  }catch{el.innerHTML=`<div class="err">⚠ Network error. Please check your connection.</div>`;}
+}
+
+function renderResults(arr){
+  const entry=arr[0], word=entry.word;
+  const phonetic=entry.phonetics?.find(p=>p.text)?.text||'';
+  const audioUrl=entry.phonetics?.find(p=>p.audio&&p.audio!=='')?.audio||'';
+  const isFav=favs.some(f=>f.word===word);
+  const allMeanings=arr.flatMap(e=>e.meanings||[]);
+  const diff=word.length<=5?'easy':word.length<=9?'medium':'hard';
+  const ety=ETY_MAP[word.toLowerCase()]||null;
+  const rhymes=getRhymes(word);
+  const todayStr=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  _lastEntry={word,pos:allMeanings[0]?.partOfSpeech||'',def:allMeanings[0]?.definitions[0]?.definition||''};
+
+  let html=`
+    <div class="res-hero">
+      <div>
+        <div class="res-word">${word}</div>
+        ${phonetic?`<div class="res-phonetic">${phonetic}</div>`:''}
+      </div>
+      <div class="res-btns">
+        ${audioUrl?`<button class="rbtn audio" onclick="playAudio('${audioUrl}')" title="Pronunciation">🔊</button>`:''}
+        <button class="rbtn fav ${isFav?'on':''}" id="fav-toggle" onclick="toggleFav('${word}',this)" title="Save">${isFav?'♥':'♡'}</button>
+        <button class="rbtn copy"  onclick="copyDef()"       title="Copy definition">📋</button>
+        <button class="rbtn share" onclick="shareWord('${word}')" title="Share">🔗</button>
+        <button class="rbtn print" onclick="printCard('${word}')" title="Print card">🖨️</button>
+      </div>
+    </div>
+    <div class="word-meta">
+      <span class="meta-chip chip-${diff}">${diff.charAt(0).toUpperCase()+diff.slice(1)} Level</span>
+      ${ety?`<span class="meta-chip chip-ety" onclick="toast('Origin: ${ety}')">📖 Etymology</span>`:''}
+    </div>
+    <div class="urdu-strip">
+      <span class="urdu-lbl">اردو ترجمہ</span>
+      <div style="flex:1">
+        <div class="urdu-txt" id="urdu-txt">…</div>
+        <div class="urdu-rom" id="urdu-rom"></div>
+      </div>
+    </div>
+    <div class="meanings">
+  `;
+
+  allMeanings.forEach(m=>{
+    html+=`<div class="pos-block"><div class="pos-hdr"><span class="pos-tag">${m.partOfSpeech}</span><div class="pos-line"></div></div>`;
+    m.definitions.slice(0,4).forEach((d,i)=>{
+      html+=`<div class="def-card"><div class="def-n">0${i+1}</div><div class="def-body"><div class="def-txt" style="font-size:${_fontSize}px">${d.definition}</div>${d.example?`<div class="def-ex">"${d.example}"</div>`:''}</div></div>`;
+    });
+    const syns=m.synonyms?.slice(0,6)||[];
+    const ants=m.antonyms?.slice(0,4)||[];
+    if(syns.length||ants.length){
+      html+=`<div class="tags-row">`;
+      if(syns.length){html+=`<span class="tl">Synonyms</span>`;syns.forEach(s=>html+=`<span class="wtag" onclick="qs('${s}')">${s}</span>`);}
+      if(ants.length){html+=`<span class="tl" style="margin-left:10px">Antonyms</span>`;ants.forEach(a=>html+=`<span class="wtag ant" onclick="qs('${a}')">${a}</span>`);}
+      html+=`</div>`;
+    }
+    html+=`</div>`;
+  });
+
+  html+=`</div>`;
+
+  if(rhymes.length){
+    html+=`<div class="extra-card"><div class="extra-hdr">🎵 Rhyming Words</div><div class="rhyme-tags">${rhymes.map(r=>`<span class="rtag" onclick="qs('${r}')">${r}</span>`).join('')}</div></div>`;
+  }
+
+  const cite=`"${word}" — RLKU Dictionary, Rashid Latif Khan University. Accessed ${todayStr}.`;
+  html+=`<div class="extra-card" style="margin-top:10px"><div class="extra-hdr">📝 Citation Generator</div><div class="cite-body" id="cite-body">${cite}</div><button class="cite-copy" onclick="copyCite()">Copy Citation</button></div>`;
+  html+=`<div class="extra-card" style="margin-top:10px"><div class="extra-hdr">✏️ My Notes</div><textarea class="note-ta" id="note-ta" placeholder="Write your personal notes for '${word}'…">${notes[word]||''}</textarea><button class="note-save" onclick="saveNote('${word}')">Save Note ✓</button></div>`;
+
+  const el=document.getElementById('results');
+  el.innerHTML=html;
+  el.style.animation='none';el.offsetHeight;el.style.animation='fadeUp .4s ease both';
+}
+
+/* ======================== URDU (FIXED) ======================== */
+function getUrdu(word){
+  const w=word.toLowerCase();
+  // 1. Check local dictionary first
+  if(URDU_DICT[w]){
+    setUrdu(URDU_DICT[w],'');
+    return;
+  }
+  // 2. Try API
+  fetchUrduAPI(word);
+}
+
+async function fetchUrduAPI(word){
+  try{
+    const r=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(word)}&langpair=en|ur&de=rlku@edu.pk`);
+    const d=await r.json();
+    const translated=d?.responseData?.translatedText||'';
+    const quality=parseInt(d?.responseData?.match||0);
+    // Only use API result if quality is decent and not same as input
+    if(translated && translated.toLowerCase()!==word.toLowerCase() && quality>=50){
+      setUrdu(translated,'');
+    } else {
+      setUrdu(`Translation for "${word}" not available`,'Try searching in English');
+    }
+  }catch{
+    setUrdu('Translation unavailable','');
+  }
+}
+
+function setUrdu(txt,rom){
+  const el=document.getElementById('urdu-txt');
+  const el2=document.getElementById('urdu-rom');
+  if(el){el.textContent=txt;el.classList.remove('urdu-loading');}
+  if(el2){el2.textContent=rom;}
+}
+
+/* ======================== AUDIO ======================== */
+function playAudio(url){
+  if(_audio){_audio.pause();_audio=null;}
+  const a=new Audio(url.startsWith('//')?'https:'+url:url);
+  _audio=a;a.play().catch(()=>{});
+}
+
+/* ======================== RHYMES ======================== */
+function getRhymes(word){
+  const suffix=word.slice(-3).toLowerCase();
+  for(const[k,v]of Object.entries(RHYME_MAP)){
+    if(word.toLowerCase().endsWith(k.slice(-2)))return v;
+  }
+  return[];
+}
+
+/* ======================== COPY / SHARE / PRINT ======================== */
+function copyDef(){
+  const def=_lastEntry?.def||'';
+  navigator.clipboard?.writeText(`${_lastEntry?.word}: ${def}`).then(()=>toast('📋 Definition copied!')).catch(()=>toast('Copy failed.'));
+}
+function copyCite(){
+  const t=document.getElementById('cite-body')?.textContent||'';
+  navigator.clipboard?.writeText(t).then(()=>toast('📝 Citation copied!')).catch(()=>{});
+}
+function shareWord(word){
+  const url=`${location.href.split('?')[0]}?q=${encodeURIComponent(word)}`;
+  if(navigator.share){navigator.share({title:`${word} — RLKU Dictionary`,text:_lastEntry?.def||'',url});}
+  else{navigator.clipboard?.writeText(url).then(()=>toast('🔗 Link copied!'));}
+}
+function printCard(word){
+  const def=_lastEntry?.def||'';
+  const ph=document.querySelector('.res-phonetic')?.textContent||'';
+  const pw=window.open('','_blank','width=620,height=420');
+  pw.document.write(`<!DOCTYPE html><html><head><title>RLKU — ${word}</title><style>body{font-family:Georgia,serif;padding:48px;max-width:520px;margin:0 auto;background:#fff}.hdr{font-size:11px;letter-spacing:3px;color:#888;text-transform:uppercase;border-bottom:2px solid #3d7fff;padding-bottom:12px;margin-bottom:20px}.word{font-size:52px;font-weight:700;color:#040810;margin:8px 0;line-height:1}.ph{font-size:14px;color:#8ba4c0;margin-bottom:18px}.def{font-size:16px;line-height:1.7;color:#333}.foot{font-size:10px;color:#aaa;margin-top:32px;border-top:1px solid #eee;padding-top:10px}@media print{button{display:none}}</style></head><body><div class="hdr">RLKU Dictionary — Rashid Latif Khan University</div><div class="word">${word}</div><div class="ph">${ph}</div><div class="def">${def}</div><div class="foot">Printed from RLKU Dictionary &bull; ${new Date().toLocaleDateString()}</div><br><button onclick="window.print()">🖨️ Print</button></body></html>`);
+  pw.document.close();
+}
+
+/* ======================== NOTES ======================== */
+function saveNote(word){
+  notes[word]=document.getElementById('note-ta')?.value||'';
+  localStorage.setItem('rlku-notes',JSON.stringify(notes));
+  toast('✏️ Note saved!');
+}
+
+/* ======================== QUICK SEARCH ======================== */
+function qs(word){document.getElementById('si').value=word;doSearch();window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ======================== HISTORY ======================== */
+function addToHist(w){hist=hist.filter(x=>x!==w);hist.unshift(w);if(hist.length>12)hist.pop();localStorage.setItem('rlku-hist',JSON.stringify(hist));renderHist();}
+function renderHist(){
+  const row=document.getElementById('hist-row'),chips=document.getElementById('hist-chips');
+  if(!hist.length){row.style.display='none';return;}
+  row.style.display='flex';
+  chips.innerHTML=hist.slice(0,8).map(w=>`<span class="hchip" onclick="qs('${w}')">${w}</span>`).join('');
+}
+function clearHist(){hist=[];localStorage.setItem('rlku-hist','[]');renderHist();}
+
+/* ======================== FAVORITES ======================== */
+function toggleFav(word,btn){
+  const idx=favs.findIndex(f=>f.word===word);
+  if(idx>=0){favs.splice(idx,1);btn.classList.remove('on');btn.textContent='♡';}
+  else{favs.unshift(_lastEntry||{word,pos:'',def:''});btn.classList.add('on');btn.textContent='♥';}
+  localStorage.setItem('rlku-favs',JSON.stringify(favs));updateBadge();
+}
+function updateBadge(){const b=document.getElementById('fav-badge');if(favs.length>0){b.textContent=favs.length;b.style.display='inline';}else b.style.display='none';}
+function renderFavs(){
+  const el=document.getElementById('fav-content');
+  if(!favs.length){el.innerHTML=`<div class="empty"><span class="empty-icon">♡</span><p>No saved words yet.</p></div>`;return;}
+  el.innerHTML=`<div class="fav-grid">`+favs.map((f,i)=>`<div class="fav-card" onclick="qs('${f.word}');goTab('search')"><button class="fav-del" onclick="event.stopPropagation();delFav(${i})">✕</button><div class="fav-word">${f.word}</div><div class="fav-pos">${f.pos}</div><div class="fav-def">${f.def}</div></div>`).join('')+`</div>`;
+}
+function delFav(i){favs.splice(i,1);localStorage.setItem('rlku-favs',JSON.stringify(favs));updateBadge();renderFavs();const b=document.getElementById('fav-toggle');if(b){b.classList.remove('on');b.textContent='♡';}}
+
+/* ======================== GLOSSARY ======================== */
+function setDept(btn,dept){_dept=dept;document.querySelectorAll('.dept-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderDept();}
+function renderDept(){
+  document.getElementById('gloss-grid').innerHTML=(GLOSSARY[_dept]||[]).map(g=>`<div class="gloss-card" onclick="qs('${g.word}');goTab('search')"><div class="gloss-word">${g.word}</div><div class="gloss-field">${g.field}</div><div class="gloss-def">${g.def}</div></div>`).join('');
+}
+
+/* ======================== FLASHCARDS ======================== */
+async function initFlash(){
+  const words=hist.slice(0,10);
+  if(!words.length){document.getElementById('flash-content').innerHTML=`<div class="empty"><span class="empty-icon">🃏</span><p>Search words first,<br>then practice here!</p></div>`;return;}
+  document.getElementById('flash-content').innerHTML=`<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div>&nbsp;Loading cards…</div>`;
+  const cards=[];
+  for(const w of words){
+    try{
+      const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${w}`);
+      const d=await r.json();
+      if(Array.isArray(d)&&d[0]){
+        const m=d[0].meanings?.[0];
+        cards.push({word:w,pos:m?.partOfSpeech||'',def:(m?.definitions?.[0]?.definition||'').slice(0,100)});
+      }
+    }catch{}
+  }
+  if(!cards.length){document.getElementById('flash-content').innerHTML=`<div class="empty"><span class="empty-icon">🃏</span><p>Could not load cards.</p></div>`;return;}
+  _flashCards=cards;_flashIdx=0;_flashFlipped=false;
+  drawFlash();
+}
+function drawFlash(){
+  const c=_flashCards[_flashIdx];
+  const pct=Math.round((_flashIdx+1)/_flashCards.length*100);
+  document.getElementById('flash-content').innerHTML=`
+    <div class="fc-wrap">
+      <div class="fc-ctrl">
+        <button class="btn-sec" onclick="initFlash()">↺ Restart</button>
+        <span class="fc-cnt">${_flashIdx+1} / ${_flashCards.length}</span>
+      </div>
+      <div class="fc-prog"><div class="fc-prog-bar"><div class="fc-prog-fill" style="width:${pct}%"></div></div></div>
+      <div class="flashcard" onclick="flipCard()">
+        <div class="fc-inner" id="fc-inner">
+          <div class="fc-face"><div class="fc-word">${c.word}</div><div class="fc-pos2">${c.pos}</div><div class="fc-hint">Click to reveal</div></div>
+          <div class="fc-face fc-back-face"><div class="fc-def2">${c.def}</div></div>
+        </div>
+      </div>
+      <div class="fc-nav">
+        <button class="fc-nav-btn" onclick="prevFlash()" ${_flashIdx===0?'disabled':''}>← Prev</button>
+        <button class="fc-nav-btn" onclick="nextFlash()" ${_flashIdx===_flashCards.length-1?'disabled':''}>Next →</button>
+      </div>
+    </div>`;
+}
+function flipCard(){_flashFlipped=!_flashFlipped;document.getElementById('fc-inner')?.classList.toggle('flipped',_flashFlipped);}
+function nextFlash(){if(_flashIdx<_flashCards.length-1){_flashIdx++;_flashFlipped=false;drawFlash();}}
+function prevFlash(){if(_flashIdx>0){_flashIdx--;_flashFlipped=false;drawFlash();}}
+
+/* ======================== QUIZ ======================== */
+function startQuiz(){
+  const pool=[...new Set([...hist,...favs.map(f=>f.word)])];
+  if(pool.length<4){toast('Search at least 4 words first!');return;}
+  _quizWords=pool.slice(0,10);_quizIdx=0;_quizScore=0;
+  runQuiz();
+}
+async function runQuiz(){
+  if(_quizIdx>=_quizWords.length){showResult();return;}
+  const el=document.getElementById('quiz-content');
+  el.innerHTML=`<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div>&nbsp;Loading…</div>`;
+  const word=_quizWords[_quizIdx];
+  try{
+    const r=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    const d=await r.json();
+    if(!Array.isArray(d)||!d[0]){_quizIdx++;runQuiz();return;}
+    const correct=d[0].meanings?.[0]?.definitions?.[0]?.definition||'';
+    const others=_quizWords.filter(w=>w!==word).slice(0,3);
+    const defs=[correct];
+    for(const ow of others){
+      try{const rw=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${ow}`);const dw=await rw.json();if(Array.isArray(dw)&&dw[0])defs.push(dw[0].meanings?.[0]?.definitions?.[0]?.definition||ow);}
+      catch{defs.push(`A formal term related to ${ow}.`);}
+    }
+    while(defs.length<4)defs.push(`An archaic usage referring to ${word}.`);
+    const opts=[...defs].sort(()=>Math.random()-.5);
+    const pct=Math.round(_quizIdx/_quizWords.length*100);
+    el.innerHTML=`<div class="quiz-area">
+      <div class="quiz-prog-row"><span class="quiz-num">Q${_quizIdx+1}/${_quizWords.length}</span><div class="quiz-bar"><div class="quiz-fill" style="width:${pct}%"></div></div><span class="quiz-score">Score: ${_quizScore}</span></div>
+      <div class="quiz-q-label">What is the definition of:</div>
+      <div class="quiz-word-big">${word}</div>
+      <div class="quiz-opts">${opts.map(o=>`<button class="qopt" onclick="answerQ(this,'${correct.replace(/'/g,"\\'").slice(0,40)}','${o.replace(/'/g,"\\'").slice(0,40)}')">${o.slice(0,90)}${o.length>90?'…':''}</button>`).join('')}</div>
+    </div>`;
+  }catch{_quizIdx++;runQuiz();}
+}
+function answerQ(btn,correct,chosen){
+  document.querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  const ok=chosen.startsWith(correct.slice(0,30))||correct.startsWith(chosen.slice(0,30));
+  btn.classList.add(ok?'correct':'wrong');
+  if(ok)_quizScore++;
+  if(!ok)document.querySelectorAll('.qopt').forEach(b=>{if(b.textContent.trim().startsWith(correct.slice(0,20)))b.classList.add('correct');});
+  setTimeout(()=>{_quizIdx++;runQuiz();},1300);
+}
+function showResult(){
+  const pct=Math.round(_quizScore/_quizWords.length*100);
+  const msg=pct>=80?'🏆 Outstanding!':pct>=60?'👍 Well done!':pct>=40?'📚 Keep going!':'💪 More practice!';
+  document.getElementById('quiz-content').innerHTML=`<div class="quiz-result"><h2>${msg}</h2><div class="quiz-score-big">${_quizScore}/${_quizWords.length}</div><p>${pct}% correct — keep expanding your vocabulary!</p><button class="btn-gold" onclick="startQuiz()">Try Again →</button></div>`;
+}
+
+/* ======================== TOAST ======================== */
+function toast(msg){
+  document.querySelectorAll('.toast').forEach(t=>t.remove());
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),2800);
+}
+</script>
+</body>
+</html>
